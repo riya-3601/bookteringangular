@@ -1,0 +1,17 @@
+
+
+<div class="container">
+
+  <form  [formGroup]="bookforbarteradd" (ngSubmit)="onEditClick()">
+  <h2>Add New book forbarter</h2>
+
+   <input class="form-control" type="text" formControlName="bookbarter_id" placeholder="Enter bookbarter Id"><br><br>
+   <input class="form-control" type="text" formControlName="bookbarter_title" placeholder="Enter bookbarter title"><br><br>
+   <input class="form-control" type="text"  formControlName="bookbarter_author" placeholder="Enter bookbarter author"><br><br>
+   <input class="form-control" type="text"  formControlName="bookbarter_status" placeholder="Enter bookbarter status"><br><br>
+   <input class="form-control" type="text"  formControlName="bookbarter_price" placeholder="Enter bookbarter price"><br><br>
+   <button type="submit" class="btn btn-primary">Save</button><br>
+  <button  class="btn btn-info">cancel</button><br>
+
+  </form>
+</div>

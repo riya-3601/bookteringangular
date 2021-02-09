@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
 import { AddcategoryComponent } from './category/addcategory/addcategory.component';
 import { EditcategoryComponent } from './category/editcategory/editcategory.component';
+import { BookforbarterComponent } from "./bookforbarter/bookforbarter.component";
+import { AddbookforbarterComponent } from "./bookforbarter/addbookforbarter/addbookforbarter.component";
+import { EditbookforbarterComponent } from "./bookforbarter/editbookforbarter/editbookforbarter.component";
 import { HeaderComponent } from './header/header.component';
 
 @NgModule({
@@ -15,6 +18,9 @@ import { HeaderComponent } from './header/header.component';
     CategoryComponent,
     AddcategoryComponent,
     EditcategoryComponent,
+    BookforbarterComponent,
+    AddbookforbarterComponent,
+    EditbookforbarterComponent ,
     HeaderComponent
   ],
   imports: [
