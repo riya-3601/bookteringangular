@@ -1,0 +1,37 @@
+
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Status</th>
+        <th>Price</th>
+        <th>Customer id</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of obj;let i=index">
+          <td>{{item.bookbarter_id}}</td>
+          <td>{{item.bookbarter_title}}</td>
+          <td>{{item.bookbarter_author}}</td>
+          <td>{{item.bookbarter_status}}</td>
+          <td>{{item.bookbarter_price}}</td>
+          <td>{{item.fk_customer_id}}</td>
+          <td>
+            <button (click)="onDeleteClick(item,i)" type="button" class="btn btn-primary" aria-label="Left Align">Delete</button>
+              <button (click)="onEditClick(item,i)" type="button" class="btn btn-primary" aria-label="Left Align">Edit
+            </button> |
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+</div>
+
+
+

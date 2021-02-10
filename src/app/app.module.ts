@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
 import { AddcategoryComponent } from './category/addcategory/addcategory.component';
 import { EditcategoryComponent } from './category/editcategory/editcategory.component';
+import { BookforbarterComponent } from "./bookforbarter/bookforbarter.component";
+import { AddbookforbarterComponent } from "./bookforbarter/addbookforbarter/addbookforbarter.component";
+import { EditbookforbarterComponent } from "./bookforbarter/editbookforbarter/editbookforbarter.component";
 import { HeaderComponent } from './header/header.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
@@ -31,7 +34,11 @@ import { EditorderComponent } from './order/editorder/editorder.component';
     EditcustomerComponent,
     OrderComponent,
     AddorderComponent,
-    EditorderComponent
+    EditorderComponent,
+    BookforbarterComponent,
+    AddbookforbarterComponent,
+    EditbookforbarterComponent ,
+
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,11 @@ import { AddorderComponent } from "./order/addorder/addorder.component";
 import { EditorderComponent } from "./order/editorder/editorder.component";
 import { WelcomeComponent } from "./welcome/welcome.component";
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { BookforbarterComponent } from "./bookforbarter/bookforbarter.component";
+import { AddbookforbarterComponent } from "./bookforbarter/addbookforbarter/addbookforbarter.component";
+import { EditbookforbarterComponent } from "./bookforbarter/editbookforbarter/editbookforbarter.component";
+
+
 
 const arr:Routes=[
   {path:'welcome',component:WelcomeComponent},
@@ -22,7 +27,9 @@ const arr:Routes=[
   {path:'order',component:OrderComponent},
   {path:'addorder',component:AddorderComponent},
   {path:'editorder/:order_id',component:EditorderComponent},
-  {path:'**',component:PagenotfoundComponent}
-
+  {path:'**',component:PagenotfoundComponent},
+  {path:'bookforbarter',component:BookforbarterComponent},
+  {path:'addbookforbarter',component:AddbookforbarterComponent},
+  {path:'editbookforbarter/:bookbarter_id',component:EditbookforbarterComponent}
 ];
 export const routingarr=RouterModule.forRoot(arr);
