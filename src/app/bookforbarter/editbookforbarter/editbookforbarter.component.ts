@@ -36,6 +36,7 @@ export class EditbookforbarterComponent implements OnInit {
         bookbarter_author:data[0].bookbarter_author,
         bookbarter_status:data[0].bookbarter_status,
         bookbarter_price:data[0].bookbarter_price,
+        fk_customer_id:data[0].fk_customer_id
       });
     });
   }
@@ -52,6 +53,7 @@ export class EditbookforbarterComponent implements OnInit {
       else
       {
         alert('Something went wrong');
+        console.log(data);
       }
     },function(err){
       console.log(err);

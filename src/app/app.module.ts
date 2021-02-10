@@ -17,6 +17,14 @@ import { EditemployeedeliveryComponent } from './employeedelivery/editemployeede
 import { BookreviewComponent } from './bookreview/bookreview.component';
 import { AddbookreviewComponent } from './bookreview/addbookreview/addbookreview.component';
 import { EditbookreviewComponent } from './bookreview/editbookreview/editbookreview.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { CustomerComponent } from './customer/customer.component';
+import { AddcustomerComponent } from './customer/addcustomer/addcustomer.component';
+import { EditcustomerComponent } from './customer/editcustomer/editcustomer.component';
+import { OrderComponent } from './order/order.component';
+import { AddorderComponent } from './order/addorder/addorder.component';
+import { EditorderComponent } from './order/editorder/editorder.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +32,15 @@ import { EditbookreviewComponent } from './bookreview/editbookreview/editbookrev
     CategoryComponent,
     AddcategoryComponent,
     EditcategoryComponent,
+    HeaderComponent,
+    WelcomeComponent,
+    PagenotfoundComponent,
+    CustomerComponent,
+    AddcustomerComponent,
+    EditcustomerComponent,
+    OrderComponent,
+    AddorderComponent,
+    EditorderComponent,
     BookforbarterComponent,
     AddbookforbarterComponent,
     EditbookforbarterComponent ,
@@ -34,6 +51,7 @@ import { EditbookreviewComponent } from './bookreview/editbookreview/editbookrev
     BookreviewComponent,
     AddbookreviewComponent,
     EditbookreviewComponent
+
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+<h3>Add Customer</h3>>
+<div class="container">
+  <div>
+    <form [formGroup]="addcustomerform" (ngSubmit)="onsignupClick()">
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter customer ID" formControlName="customer_id">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter customer Email ID" formControlName="customer_emailid">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter password" formControlName="customer_password">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter customer name" formControlName="customer_name">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter customer gender" formControlName="customer_gender">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter customer mobile no." formControlName="customer_mobileno">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button  class="btn btn-info">cancel</button><br>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" ></button>
+    </div>
+    </form>
+  </div>
+</div>
+
