@@ -1,0 +1,19 @@
+
+
+<div class="container">
+
+  <form  [formGroup]="bookreviewadd" (ngSubmit)="onsubmitClick()">
+  <h2>Add book review</h2>
+
+   <input class="form-control" type="text" formControlName="bookreview_id" placeholder="Enter bookreview Id"><br><br>
+   <input class="form-control" type="text" formControlName="bookreview_description" placeholder="Enter bookreview description"><br><br>
+   <input class="form-control" type="text"  formControlName="bookreview_date" placeholder="Enter bookreview date"><br><br>
+   <input class="form-control" type="text"  formControlName="fk_bookbarter_id" placeholder="Enter fk_bookbarter_id"><br><br>
+   <input class="form-control" type="text"  formControlName="fk_customer_id" placeholder="Enter fk_customer_id"><br><br>
+   <input class="form-control" type="text"  formControlName="fk_category_id" placeholder="Enter fk_category_id"><br><br>
+
+   <button type="submit" class="btn btn-primary">Save</button><br>
+  <button  class="btn btn-info">cancel</button><br>
+
+  </form>
+</div>
