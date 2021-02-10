@@ -12,6 +12,7 @@
         <th>Payment Type</th>
         <th>Total Amount</th>
         <th>fk Category ID</th>
+        <th>Customer Name</th>
       </thead>
       <tbody>
         <tr *ngFor="let item of obj;let i=index">
@@ -21,6 +22,7 @@
           <td>{{item.order_paymenttype}}</td>
           <td>{{item.order_totalamount}}</td>
           <td>{{item.fk_customer_id}}</td>
+          <td>{{item.customer_name}}</td>
           <td>
             <button (click)="onDeleteClick(item,i)" type="button" class="btn btn-primary" aria-label="Left Align">Delete
             </button> |

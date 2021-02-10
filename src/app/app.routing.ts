@@ -27,9 +27,9 @@ const arr:Routes=[
   {path:'order',component:OrderComponent},
   {path:'addorder',component:AddorderComponent},
   {path:'editorder/:order_id',component:EditorderComponent},
-  {path:'**',component:PagenotfoundComponent},
   {path:'bookforbarter',component:BookforbarterComponent},
   {path:'addbookforbarter',component:AddbookforbarterComponent},
-  {path:'editbookforbarter/:bookbarter_id',component:EditbookforbarterComponent}
+  {path:'editbookforbarter/:bookbarter_id',component:EditbookforbarterComponent},
+  {path:'**',component:PagenotfoundComponent}
 ];
 export const routingarr=RouterModule.forRoot(arr);

@@ -17,7 +17,7 @@ export class AddorderComponent implements OnInit {
       order_status:new FormControl(null),
       order_paymenttype:new FormControl(null),
       order_totalamount:new FormControl(null),
-      fk_category_id:new FormControl(null),
+      fk_customer_id:new FormControl(null),
     });
   }
   onsignupClick():void{

@@ -21,7 +21,7 @@ export class EditorderComponent implements OnInit {
       order_status:new FormControl(null),
       order_paymenttype:new FormControl(null),
       order_totalamount:new FormControl(null),
-      fk_category_id:new FormControl(null),
+      fk_customer_id:new FormControl(null),
     });
     this.order_id=this._actRoute.snapshot.params['order_id'];
     console.log(this.order_id);
@@ -33,12 +33,13 @@ export class EditorderComponent implements OnInit {
         order_status:data[0].order_status,
         order_paymenttype:data[0].order_paymenttype,
         order_totalamount:data[0].order_totalamount,
-        fk_category_id:data[0].fk_customer_id,
+        fk_customer_id:data[0].fk_customer_id,
       });
     });
   }
   onEditCategory(){
     this._editorder.editOrder(this.ordform.value).subscribe((data:any)=>{
+
       if(data.affectedRows==1)
        {
          alert('Data updated succesfully');

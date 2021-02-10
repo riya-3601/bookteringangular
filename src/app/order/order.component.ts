@@ -15,6 +15,7 @@ export class OrderComponent implements OnInit {
   order_paymenttype:string;
   order_totalamount:number;
   fk_category_id:number;
+  customer_name:string;
   obj:Ord[]=[];
   flag: boolean = false;
   constructor(private _orddata:OrderService,private _router:Router,private _actRoute:ActivatedRoute) { }
