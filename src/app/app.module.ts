@@ -8,6 +8,14 @@ import { CategoryComponent } from './category/category.component';
 import { AddcategoryComponent } from './category/addcategory/addcategory.component';
 import { EditcategoryComponent } from './category/editcategory/editcategory.component';
 import { HeaderComponent } from './header/header.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { CustomerComponent } from './customer/customer.component';
+import { AddcustomerComponent } from './customer/addcustomer/addcustomer.component';
+import { EditcustomerComponent } from './customer/editcustomer/editcustomer.component';
+import { OrderComponent } from './order/order.component';
+import { AddorderComponent } from './order/addorder/addorder.component';
+import { EditorderComponent } from './order/editorder/editorder.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +23,15 @@ import { HeaderComponent } from './header/header.component';
     CategoryComponent,
     AddcategoryComponent,
     EditcategoryComponent,
-    HeaderComponent
+    HeaderComponent,
+    WelcomeComponent,
+    PagenotfoundComponent,
+    CustomerComponent,
+    AddcustomerComponent,
+    EditcustomerComponent,
+    OrderComponent,
+    AddorderComponent,
+    EditorderComponent
   ],
   imports: [
     BrowserModule,

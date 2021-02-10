@@ -1,0 +1,34 @@
+<h3>Add Order</h3>
+<div class="container">
+  <div>
+    <form [formGroup]="ordform" (ngSubmit)="onsignupClick()">
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter Order ID" formControlName="order_id">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter Order Date" formControlName="order_date">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter Order Status" formControlName="order_status">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter Order Payment Type" formControlName="order_paymenttype">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter Order Total Amount" formControlName="order_totalamount">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter fk category ID" formControlName="fk_category_id">
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button  class="btn btn-info">cancel</button><br>
+    </div>
+    <div class="form-group">
+    </div>
+    </form>
+  </div>
+</div>
+

@@ -19,7 +19,7 @@ export class AddcategoryComponent implements OnInit {
     });
   }
   onsignupClick():void{
-    alert('into signupClick');
+
 
     this._catdata.addCategory(this.catform.value).subscribe((data:any)=>{
 
