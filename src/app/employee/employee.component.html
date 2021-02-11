@@ -1,0 +1,33 @@
+
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Mobile no</th>
+        <th>Password</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of obj;let i=index">
+          <td>{{item.employee_id}}</td>
+          <td>{{item.employee_name}}</td>
+          <td>{{item.employee_mobileno}}</td>
+          <td>{{item.employee_password}}</td>
+          <td>
+            <button (click)="onDeleteClick(item,i)" type="button" class="btn btn-primary" aria-label="Left Align">Delete</button>
+              <button (click)="onEditClick(item,i)" type="button" class="btn btn-primary" aria-label="Left Align">Edit
+            </button> |
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+</div>
+
+
+

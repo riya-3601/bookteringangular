@@ -1,0 +1,17 @@
+
+
+<div class="container">
+
+  <form  [formGroup]="employeeadd" (ngSubmit)="onsubmitClick()">
+  <h2>Add New employee </h2>
+
+   <input class="form-control" type="text" formControlName="employee_id" placeholder="Enter employee Id"><br><br>
+   <input class="form-control" type="text" formControlName="employee_name" placeholder="Enter employee_name"><br><br>
+   <input class="form-control" type="text"  formControlName="employee_mobileno" placeholder="Enter employee_mobileno"><br><br>
+   <input class="form-control" type="text"  formControlName="employee_password" placeholder="Enter employee_password"><br><br>
+
+   <button type="submit" class="btn btn-primary">Save</button><br>
+  <button  class="btn btn-info">cancel</button><br>
+
+  </form>
+</div>

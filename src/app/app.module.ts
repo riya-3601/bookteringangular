@@ -25,6 +25,12 @@ import { EditcustomerComponent } from './customer/editcustomer/editcustomer.comp
 import { OrderComponent } from './order/order.component';
 import { AddorderComponent } from './order/addorder/addorder.component';
 import { EditorderComponent } from './order/editorder/editorder.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
+import { EditemployeeComponent } from './employee/editemployee/editemployee.component';
+import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
+import { AddorderdetailsComponent } from './orderdetails/addorderdetails/addorderdetails.component';
+import { EditorderdetailsComponent } from './orderdetails/editorderdetails/editorderdetails.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +56,13 @@ import { EditorderComponent } from './order/editorder/editorder.component';
     EditemployeedeliveryComponent,
     BookreviewComponent,
     AddbookreviewComponent,
-    EditbookreviewComponent
+    EditbookreviewComponent,
+    EmployeeComponent,
+    AddemployeeComponent,
+    EditemployeeComponent,
+    OrderdetailsComponent,
+    AddorderdetailsComponent,
+    EditorderdetailsComponent
 
   ],
   imports: [

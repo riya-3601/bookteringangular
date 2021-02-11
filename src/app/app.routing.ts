@@ -19,6 +19,12 @@ import { EditemployeedeliveryComponent } from "./employeedelivery/editemployeede
 import { BookreviewComponent } from "./bookreview/bookreview.component";
 import { AddbookreviewComponent } from "./bookreview/addbookreview/addbookreview.component";
 import { EditbookreviewComponent } from "./bookreview/editbookreview/editbookreview.component";
+import { EmployeeComponent } from "./employee/employee.component";
+import { AddemployeeComponent } from "./employee/addemployee/addemployee.component";
+import { EditemployeeComponent } from "./employee/editemployee/editemployee.component";
+import { OrderdetailsComponent } from "./orderdetails/orderdetails.component";
+import { AddorderdetailsComponent } from "./orderdetails/addorderdetails/addorderdetails.component";
+import { EditorderdetailsComponent } from "./orderdetails/editorderdetails/editorderdetails.component";
 
 const arr:Routes=[
   {path:'welcome',component:WelcomeComponent},
@@ -40,6 +46,12 @@ const arr:Routes=[
    {path:'employeedelivery',component:EmployeedeliveryComponent},
   {path:'addemployeedelivery',component:AddemployeedeliveryComponent},
   {path:'editemployeedelivery/:delivery_id',component:EditemployeedeliveryComponent},
+  {path:'employee',component:EmployeeComponent},
+  {path:'addemployee',component:AddemployeeComponent},
+  {path:'editemployee/:employee_id',component:EditemployeeComponent},
+  {path:'orderdetails',component:OrderdetailsComponent},
+  {path:'addorderdetails',component:AddorderdetailsComponent},
+  {path:'editorderdetails/:orderdetails_id',component:EditorderdetailsComponent},
   {path:'**',component:PagenotfoundComponent}
 ];
 export const routingarr=RouterModule.forRoot(arr);

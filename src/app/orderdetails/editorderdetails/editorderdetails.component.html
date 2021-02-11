@@ -1,0 +1,17 @@
+
+
+<div class="container">
+
+  <form  [formGroup]="Orderdetailsadd" (ngSubmit)="onEditClick()">
+  <h2>Edit order Details</h2>
+
+   <input class="form-control" type="text" formControlName="orderdetails_id" placeholder="Enter orderdetails Id"><br><br>
+   <input class="form-control" type="text" formControlName="orderdetails_quantity" placeholder="Enter orderdetails_quantity"><br><br>
+   <input class="form-control" type="text"  formControlName="fk_order_id" placeholder="Enter fk_order_id"><br><br>
+   <input class="form-control" type="text"  formControlName="fk_book_id" placeholder="Enter fk_book_id"><br><br>
+
+   <button type="submit" class="btn btn-primary">Save</button><br>
+  <button  class="btn btn-info">cancel</button><br>
+
+  </form>
+</div>
