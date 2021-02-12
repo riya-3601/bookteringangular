@@ -31,6 +31,7 @@ import { EditemployeeComponent } from './employee/editemployee/editemployee.comp
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { AddorderdetailsComponent } from './orderdetails/addorderdetails/addorderdetails.component';
 import { EditorderdetailsComponent } from './orderdetails/editorderdetails/editorderdetails.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { EditorderdetailsComponent } from './orderdetails/editorderdetails/edito
     ReactiveFormsModule,
     routingarr,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
