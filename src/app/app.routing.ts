@@ -19,8 +19,16 @@ import { EditemployeedeliveryComponent } from "./employeedelivery/editemployeede
 import { BookreviewComponent } from "./bookreview/bookreview.component";
 import { AddbookreviewComponent } from "./bookreview/addbookreview/addbookreview.component";
 import { EditbookreviewComponent } from "./bookreview/editbookreview/editbookreview.component";
+import { AddressbookComponent } from "./addressbook/addressbook.component";
+import { AddaddressbookComponent } from "./addressbook/addaddressbook/addaddressbook.component";
+import { EditaddressbookComponent } from "./addressbook/editaddressbook/editaddressbook.component";
+import { BookforsaleComponent } from "./bookforsale/bookforsale.component";
+import { AddbookforsaleComponent } from "./bookforsale/addbookforsale/addbookforsale.component";
+import { EditbookforsaleComponent } from "./bookforsale/editbookforsale/editbookforsale.component";
+import { Component } from '@angular/core';
 
 const arr:Routes=[
+  {path:'',redirectTo:'/welcome',pathMatch:'full'},
   {path:'welcome',component:WelcomeComponent},
   {path:'category',component:CategoryComponent},
   {path:'addcategory',component:AddcategoryComponent},
@@ -37,9 +45,15 @@ const arr:Routes=[
   {path:'bookreview',component:BookreviewComponent},
   {path:'addbookreview',component:AddbookreviewComponent},
   {path:'editbookreview/:bookreview_id',component:EditbookreviewComponent},
-   {path:'employeedelivery',component:EmployeedeliveryComponent},
+  {path:'employeedelivery',component:EmployeedeliveryComponent},
   {path:'addemployeedelivery',component:AddemployeedeliveryComponent},
   {path:'editemployeedelivery/:delivery_id',component:EditemployeedeliveryComponent},
+  {path:'addressbook',component:AddressbookComponent},
+  {path:'addaddressbook',component:AddaddressbookComponent},
+  {path:'editaddressbook/:address_id',component:EditaddressbookComponent},
+  {path:'bookforsale',component:BookforsaleComponent},
+  {path:'addbookforsale',component:AddbookforsaleComponent},
+  {path:'editbookforsale/:book_id',component:EditbookforsaleComponent},
   {path:'**',component:PagenotfoundComponent}
 ];
 export const routingarr=RouterModule.forRoot(arr);

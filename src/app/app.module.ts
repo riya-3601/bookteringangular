@@ -25,6 +25,17 @@ import { EditcustomerComponent } from './customer/editcustomer/editcustomer.comp
 import { OrderComponent } from './order/order.component';
 import { AddorderComponent } from './order/addorder/addorder.component';
 import { EditorderComponent } from './order/editorder/editorder.component';
+import { AddressbookComponent } from './addressbook/addressbook.component';
+import { AddaddressbookComponent } from './addressbook/addaddressbook/addaddressbook.component';
+import { EditaddressbookComponent } from './addressbook/editaddressbook/editaddressbook.component';
+import { BookforsaleComponent } from './bookforsale/bookforsale.component';
+import { AddbookforsaleComponent } from './bookforsale/addbookforsale/addbookforsale.component';
+import { EditbookforsaleComponent } from './bookforsale/editbookforsale/editbookforsale.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from "@angular/material/input";
+import { MatTableModule } from "@angular/material/table";
+import { MatSortModule } from "@angular/material/sort";
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -50,7 +61,13 @@ import { EditorderComponent } from './order/editorder/editorder.component';
     EditemployeedeliveryComponent,
     BookreviewComponent,
     AddbookreviewComponent,
-    EditbookreviewComponent
+    EditbookreviewComponent,
+    AddressbookComponent,
+    AddaddressbookComponent,
+    EditaddressbookComponent,
+    BookforsaleComponent,
+    AddbookforsaleComponent,
+    EditbookforsaleComponent
 
   ],
   imports: [
@@ -59,6 +76,11 @@ import { EditorderComponent } from './order/editorder/editorder.component';
     ReactiveFormsModule,
     routingarr,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

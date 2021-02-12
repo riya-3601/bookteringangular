@@ -1,0 +1,41 @@
+
+<h3>Add Address</h3>
+<div class="container">
+  <div>
+    <form [formGroup]="addressform" (ngSubmit)="onsignupClick()">
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter Address ID" formControlName="address_id">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter one Address " formControlName="address_1">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter second Address" formControlName="address_2">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter city" formControlName="city">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter state" formControlName="state">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter pincode" formControlName="pincode">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter address type" formControlName="address_type">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter fk category ID" formControlName="fk_customer_id">
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button  class="btn btn-info">cancel</button><br>
+    </div>
+    <div class="form-group">
+    </div>
+    </form>
+  </div>
+</div>
+

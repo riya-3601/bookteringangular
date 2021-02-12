@@ -1,32 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders} from "@angular/common/http";
 import { environment } from "../environments/environment";
-import { Ord } from './order/ord';
+import { Bfs } from "./bookforsale/bfs";
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
-  url:string='http://localhost:3000/order/';
+export class BookforsaleService {
+  url:string='http://localhost:3000/bookforsale/';
   constructor(private _http:HttpClient) { }
-  getAllOrders(){
+  getAllBookforsale(){
     return this._http.get(this.url);
   }
-  addorder(obj:Ord){
+  addBookforsale(obj:Bfs){
     let body=JSON.stringify(obj);
     let head=new HttpHeaders().set(environment.headname,environment.headvalue);
     return this._http.post(this.url,body,{headers:head});
   }
-  deleteOrder(id:number){
+  deleteBookforsale(id:number){
     let head=new HttpHeaders().set(environment.headname,environment.headvalue);
     return this._http.delete(this.url+id,{headers:head});
   }
-  getOrderById(id:number){
+  getBookforsaleById(id:number){
     return this._http.get(this.url+id);
   }
-  editOrder(obj:Ord){
+  editBookforsale(obj:Bfs){
     let body=JSON.stringify(obj);
     let head=new HttpHeaders().set(environment.headname,environment.headvalue);
     return this._http.put(this.url,body,{headers:head});
   }
-
 }

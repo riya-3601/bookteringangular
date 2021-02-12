@@ -1,29 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Ord  } from "./ord";
 import { OrderService } from "../order.service";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-export class OrderComponent implements OnInit {
-  order_id:number;
-  order_date:string;
-  order_status:string;
-  order_paymenttype:string;
-  order_totalamount:number;
-  fk_category_id:number;
-  customer_name:string;
+export class OrderComponent implements OnInit,AfterViewInit {
+  displayedColumns: string[] = ['order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name'];
+  dataSource: MatTableDataSource<Ord>;
   obj:Ord[]=[];
-  flag: boolean = false;
-  constructor(private _orddata:OrderService,private _router:Router,private _actRoute:ActivatedRoute) { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  constructor(private _orddata:OrderService,private _router:Router,private _actRoute:ActivatedRoute) {
+    this.dataSource = new MatTableDataSource();
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator=this.paginator;
+    this.dataSource.sort=this.sort;
+  }
 
   ngOnInit(): void {
     this._orddata.getAllOrders().subscribe((data:Ord[])=>{
       this.obj=data;
+      this.dataSource.data=data;
     });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
   onDeleteClick(item: Ord) {
     if(confirm("Are you sure you want to delete?"))
