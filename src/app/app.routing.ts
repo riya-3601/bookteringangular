@@ -26,6 +26,12 @@ import { BookforsaleComponent } from "./bookforsale/bookforsale.component";
 import { AddbookforsaleComponent } from "./bookforsale/addbookforsale/addbookforsale.component";
 import { EditbookforsaleComponent } from "./bookforsale/editbookforsale/editbookforsale.component";
 import { Component } from '@angular/core';
+import { EmployeeComponent } from "./employee/employee.component";
+import { AddemployeeComponent } from "./employee/addemployee/addemployee.component";
+import { EditemployeeComponent } from "./employee/editemployee/editemployee.component";
+import { OrderdetailsComponent } from "./orderdetails/orderdetails.component";
+import { AddorderdetailsComponent } from "./orderdetails/addorderdetails/addorderdetails.component";
+import { EditorderdetailsComponent } from "./orderdetails/editorderdetails/editorderdetails.component";
 
 const arr:Routes=[
   {path:'',redirectTo:'/welcome',pathMatch:'full'},
@@ -54,6 +60,12 @@ const arr:Routes=[
   {path:'bookforsale',component:BookforsaleComponent},
   {path:'addbookforsale',component:AddbookforsaleComponent},
   {path:'editbookforsale/:book_id',component:EditbookforsaleComponent},
+  {path:'employee',component:EmployeeComponent},
+  {path:'addemployee',component:AddemployeeComponent},
+  {path:'editemployee/:employee_id',component:EditemployeeComponent},
+  {path:'orderdetails',component:OrderdetailsComponent},
+  {path:'addorderdetails',component:AddorderdetailsComponent},
+  {path:'editorderdetails/:orderdetails_id',component:EditorderdetailsComponent},
   {path:'**',component:PagenotfoundComponent}
 ];
 export const routingarr=RouterModule.forRoot(arr);

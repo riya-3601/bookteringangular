@@ -36,6 +36,12 @@ import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { EmployeeComponent } from './employee/employee.component';
+import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
+import { EditemployeeComponent } from './employee/editemployee/editemployee.component';
+import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
+import { AddorderdetailsComponent } from './orderdetails/addorderdetails/addorderdetails.component';
+import { EditorderdetailsComponent } from './orderdetails/editorderdetails/editorderdetails.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +73,13 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     EditaddressbookComponent,
     BookforsaleComponent,
     AddbookforsaleComponent,
-    EditbookforsaleComponent
+    EditbookforsaleComponent,
+    EmployeeComponent,
+    AddemployeeComponent,
+    EditemployeeComponent,
+    OrderdetailsComponent,
+    AddorderdetailsComponent,
+    EditorderdetailsComponent
 
   ],
   imports: [
