@@ -1,0 +1,44 @@
+
+<h3>Add Book for Sale</h3>
+<div class="container">
+  <div>
+    <form [formGroup]="bfsform" (ngSubmit)="onsignupClick()">
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter book ID" formControlName="book_id">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter book ISBN" formControlName="book_isbn">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter book Title" formControlName="book_title">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter book Author" formControlName="book_author">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter book Price" formControlName="book_price">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter book Publisher" formControlName="book_publisher">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter book Ratings" formControlName="book_ratings">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter book Image" formControlName="book_image">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter fk category ID" formControlName="fk_customer_id">
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button  class="btn btn-info">cancel</button><br>
+    </div>
+    <div class="form-group">
+    </div>
+    </form>
+  </div>
+</div>
+
