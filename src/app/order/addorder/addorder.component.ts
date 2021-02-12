@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { CustomerService } from 'src/app/customer.service';
+import { Cust } from 'src/app/customer/cust';
 import {  OrderService} from "src/app/order.service";
 @Component({
   selector: 'app-addorder',
@@ -7,10 +9,20 @@ import {  OrderService} from "src/app/order.service";
   styleUrls: ['./addorder.component.css']
 })
 export class AddorderComponent implements OnInit {
+  cust:Cust[]=[];
+  orderstatus:string[]=['Reached','failed','On Hold','Pending Payment','Processing','Canceled']
   ordform:FormGroup;
-  constructor(private _orddata:OrderService) { }
+  applicant: any;
+  constructor(private _orddata:OrderService,private _custdata:CustomerService) { }
 
   ngOnInit(): void {
+
+    this._custdata.getAllCustomer().subscribe(
+      (data:Cust[])=>{
+        this.cust=data;
+      }
+    );
+
     this.ordform=new FormGroup({
       order_id:new FormControl(null),
       order_date:new FormControl(null),
@@ -20,8 +32,15 @@ export class AddorderComponent implements OnInit {
       fk_customer_id:new FormControl(null),
     });
   }
+  updateDOB(dateObject) {
+    // convert object to string then trim it to yyyy-mm-dd
+    const stringified = JSON.stringify(dateObject.value);
+    const dob = stringified.substring(1, 11);
+    this.applicant.contact[0].dob = dob;
+  }
   onsignupClick():void{
 
+    //console.log(this.ordform.value);
     this._orddata.addorder(this.ordform.value).subscribe((data:any)=>{
 
       if(data.affectedRows==1)
@@ -38,5 +57,5 @@ export class AddorderComponent implements OnInit {
        console.log(err);
      });
 
-  }
+   }
 }

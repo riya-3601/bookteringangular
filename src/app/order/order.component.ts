@@ -12,7 +12,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit,AfterViewInit {
-  displayedColumns: string[] = ['order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name'];
+  displayedColumns: string[] = ['order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name','action'];
   dataSource: MatTableDataSource<Ord>;
   obj:Ord[]=[];
   @ViewChild(MatPaginator) paginator: MatPaginator;

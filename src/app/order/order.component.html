@@ -35,7 +35,7 @@
 
 
       <label>Filter</label>
-      <input (keyup)="applyFilter($event)" placeholder="je search karvu hoy te lakho" #input>
+      <input (keyup)="applyFilter($event)" placeholder="Search" #input>
 
 
     <div class="mat-elevation-z8">
@@ -43,13 +43,13 @@
 
         <!-- ID Column -->
         <ng-container matColumnDef="order_date">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> order_date </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Date</th>
           <td mat-cell *matCellDef="let row"> {{row.order_date}} </td>
         </ng-container>
 
         <!-- Progress Column -->
         <ng-container matColumnDef="order_status">
-          <th mat-header-cell *matHeaderCellDef > order_status </th>
+          <th mat-header-cell *matHeaderCellDef > Order Status </th>
           <td mat-cell *matCellDef="let row"> {{row.order_status}} </td>
         </ng-container>
 
@@ -67,7 +67,18 @@
 
         <ng-container matColumnDef="customer_name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> customer_name </th>
-          <td mat-cell *matCellDef="let row" > {{row.customer_name }} </td>
+          <td mat-cell *matCellDef="let row" > {{row.customer_name}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <td mat-cell *matCellDef="let row" >
+            <button mat-icon-button color="accent" >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

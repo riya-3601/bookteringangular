@@ -36,12 +36,19 @@ import { MatInputModule } from "@angular/material/input";
 import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatSelectModule } from "@angular/material/select";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import { EmployeeComponent } from './employee/employee.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 import { EditemployeeComponent } from './employee/editemployee/editemployee.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { AddorderdetailsComponent } from './orderdetails/addorderdetails/addorderdetails.component';
 import { EditorderdetailsComponent } from './orderdetails/editorderdetails/editorderdetails.component';
+
 
 @NgModule({
   declarations: [
@@ -92,7 +99,14 @@ import { EditorderdetailsComponent } from './orderdetails/editorderdetails/edito
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
