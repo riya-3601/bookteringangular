@@ -1,40 +1,79 @@
 
-<h3>Edit Address</h3>
+<div style="text-align:center;">
+  <h3>Edit Address</h3>
+</div>
+<hr>
 <div class="container">
   <div>
     <form [formGroup]="addressform" (ngSubmit)="onEditAddressbook()">
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter Address ID" formControlName="address_id">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter one Address " formControlName="address_1">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter second Address" formControlName="address_2">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter city" formControlName="city">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter state" formControlName="state">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter pincode" formControlName="pincode">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter address type" formControlName="address_type">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter fk category ID" formControlName="fk_customer_id">
-    </div>
-
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Save</button>
-      <button  class="btn btn-info">cancel</button><br>
-    </div>
-    <div class="form-group">
-    </div>
+       <!-- address1 -->
+       <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Enter Address 1</mat-label>
+          <input matInput  placeholder="Enter Order Total Amount"  formControlName="address_1">
+          <mat-error class="alert alert-danger" *ngIf="addressform.get('address_1').hasError('required') && !addressform.get('address_1').pristine" >Address 1 is requried.</mat-error>
+        </mat-form-field>
+      </div>
+      <!-- address2 -->
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Enter Address 2</mat-label>
+          <input matInput  placeholder="Enter Order Total Amount"  formControlName="address_2">
+          <mat-error class="alert alert-danger" *ngIf="addressform.get('address_2').hasError('required') && !addressform.get('address_2').pristine" >Address 1 is requried.</mat-error>
+        </mat-form-field>
+      </div>
+      <!-- city -->
+      <div class="form-group">
+        <mat-form-field class="example-full">
+          <mat-label>Enter city</mat-label>
+          <input matInput  placeholder="Enter city"  formControlName="city">
+          <mat-error class="alert alert-danger" *ngIf="addressform.get('city').hasError('required') && !addressform.get('city').pristine" >City is required</mat-error>
+        </mat-form-field>
+      </div>
+      <!-- state -->
+      <div class="form-group">
+        <mat-form-field class="example-full">
+          <mat-label>Enter state</mat-label>
+          <input matInput  placeholder="Enter state"  formControlName="state">
+          <mat-error class="alert alert-danger" *ngIf="addressform.get('state').hasError('required') && !addressform.get('state').pristine" >State is required</mat-error>
+        </mat-form-field>
+      </div>
+       <!-- pincode -->
+       <div class="form-group">
+        <mat-form-field class="example-full">
+          <mat-label>Enter pincode</mat-label>
+          <input matInput #postalCode  placeholder="Enter pincode"  formControlName="pincode">
+          <mat-hint align="end">{{postalCode.value.length}} / 7</mat-hint>
+          <mat-error class="alert alert-danger" *ngIf="addressform.get('pincode').hasError('required') && !addressform.get('pincode').pristine" >Pincode is required</mat-error>
+          <mat-error class="alert alert-danger" *ngIf="addressform.get('pincode').hasError('pattern') && !addressform.get('pincode').pristine" >It contains only digits.</mat-error>
+        </mat-form-field>
+      </div>
+       <!-- address_type -->
+      <div class="form-group">
+        <mat-label>Select Address Type</mat-label>
+        <br>
+        <mat-radio-group formControlName="address_type" class="example-full-width">
+          <mat-radio-button value="Home">Home</mat-radio-button>
+          <br>
+          <mat-radio-button value="Office">Office</mat-radio-button>
+        </mat-radio-group>
+        <mat-error class="alert alert-danger" *ngIf="addressform.get('address_type').hasError('required') && !addressform.get('address_type').pristine" >Order Payment Type is required</mat-error>
+      </div>
+       <!-- customer name -->
+      <div class="form-group" >
+        <mat-form-field>
+           <mat-label>Select Customer Name</mat-label>
+           <mat-select formControlName="fk_customer_id" >
+             <mat-option *ngFor="let item of cust" [value]="item.customer_id">
+               {{item.customer_name}}
+             </mat-option>
+           </mat-select>
+        </mat-form-field>
+       </div>
+       <div class="form-group">
+        <button mat-button type="submit" mat-raised-button color="primary">Save</button> |
+        <button mat-raised-button color="warn" type="button" class="btn btn-info" (click)="onCancleClick()">cancel</button><br>
+      </div>
     </form>
   </div>
 </div>

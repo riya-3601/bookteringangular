@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { CustomerService } from 'src/app/customer.service';
 import { Cust } from 'src/app/customer/cust';
-import {  OrderService} from "src/app/order.service";
+import { OrderService} from "src/app/order.service";
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-addorder',
   templateUrl: './addorder.component.html',
@@ -13,7 +14,7 @@ export class AddorderComponent implements OnInit {
   orderstatus:string[]=['Reached','failed','On Hold','Pending Payment','Processing','Canceled']
   ordform:FormGroup;
   applicant: any;
-  constructor(private _orddata:OrderService,private _custdata:CustomerService) { }
+  constructor(private _orddata:OrderService,private _custdata:CustomerService,private _router:Router) { }
 
   ngOnInit(): void {
 
@@ -25,27 +26,21 @@ export class AddorderComponent implements OnInit {
 
     this.ordform=new FormGroup({
       order_id:new FormControl(null),
-      order_date:new FormControl(null),
-      order_status:new FormControl(null),
-      order_paymenttype:new FormControl(null),
-      order_totalamount:new FormControl(null),
+      order_date:new FormControl(null,Validators.required),
+      order_status:new FormControl(null,Validators.required),
+      order_paymenttype:new FormControl(null,Validators.required),
+      order_totalamount:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
       fk_customer_id:new FormControl(null),
     });
   }
-  updateDOB(dateObject) {
-    // convert object to string then trim it to yyyy-mm-dd
-    const stringified = JSON.stringify(dateObject.value);
-    const dob = stringified.substring(1, 11);
-    this.applicant.contact[0].dob = dob;
-  }
-  onsignupClick():void{
 
-    //console.log(this.ordform.value);
+  onsignupClick():void{
     this._orddata.addorder(this.ordform.value).subscribe((data:any)=>{
 
       if(data.affectedRows==1)
        {
          alert('Data inserted succesfully');
+         this._router.navigate(['/order']);
        }
        else{
          alert('Something went wrong');
@@ -57,5 +52,14 @@ export class AddorderComponent implements OnInit {
        console.log(err);
      });
 
+   }
+  //  onClearClick():void{
+  //     this.ordform.get('order_totalamount').reset('');
+  //  }
+   onCancleClick():void{
+      if(confirm("Are you sure you want to Cancle?"))
+      {
+        this._router.navigate(['/order']);
+      }
    }
 }

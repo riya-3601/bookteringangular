@@ -1,8 +1,11 @@
-<h3>Edit category</h3>>
+<div style="text-align:center;">
+<h3>Edit category</h3>
+</div>
+<hr>
 <div class="container">
   <div>
     <form [formGroup]="catform" (ngSubmit)="onEditCategory()">
-    <div class="form-group">
+    <!-- <div class="form-group">
       <input  class="form-control" placeholder="Enter categoryID" formControlName="category_id">
     </div>
     <div class="form-group">
@@ -10,11 +13,35 @@
     </div>
     <div class="form-group">
       <input class="form-control" placeholder="Enter categoryisactive?" formControlName="category_isactive">
-    </div>
+    </div> -->
 
+    <!--Category Name-->
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Save</button>
-      <button  class="btn btn-info">cancel</button><br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Category Name</mat-label>
+        <input matInput  placeholder="Enter Category Name"  formControlName="category_name">
+
+        <mat-error class="alert alert-danger" *ngIf="catform.get('category_name').hasError('required') && !catform.get('category_name').pristine" >CAtegory is required</mat-error>
+      </mat-form-field>
+
+    </div>
+<br>
+    <!--Category isactive-->
+    <div class="form-group">
+      <mat-label>Select Category is actve or not?</mat-label>
+      <br>
+      <mat-radio-group formControlName="category_isactive" class="example-full-width">
+        <mat-radio-button value="true">true</mat-radio-button>
+        <br>
+        <mat-radio-button value="false">false</mat-radio-button>
+      </mat-radio-group>
+      <mat-error class="alert alert-danger" *ngIf="catform.get('category_isactive').hasError('required') && !catform.get('category_isactive').pristine" >Order Payment Type is required</mat-error>
+
+      <!-- <input class="form-control" placeholder="Enter Order Payment Type" formControlName="order_paymenttype"> -->
+    </div>
+    <div class="form-group">
+      <button mat-button type="submit" class="btn btn-primary">Save</button> |
+      <button mat-button type="button" class="btn btn-info" (click)="onCancleClick()">cancel</button><br>
     </div>
     <div class="form-group">
     </div>

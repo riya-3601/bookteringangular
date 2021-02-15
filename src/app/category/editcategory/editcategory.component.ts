@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from 'src/app/category.service';
 import { Cat } from '../cat';
@@ -17,7 +17,7 @@ export class EditcategoryComponent implements OnInit {
   ngOnInit(): void {
     this.catform=new FormGroup({
       category_id:new FormControl(null),
-      category_name:new FormControl(null),
+      category_name:new FormControl(null,Validators.required),
       category_isactive:new FormControl(null),
     });
     this.category_id=this._actRoute.snapshot.params['category_id'];
@@ -49,6 +49,8 @@ export class EditcategoryComponent implements OnInit {
 
     });
   }
-
+  onCancleClick(){
+    this._router.navigate(['/category']);
+  }
 
 }

@@ -42,12 +42,15 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { EmployeeComponent } from './employee/employee.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 import { EditemployeeComponent } from './employee/editemployee/editemployee.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { AddorderdetailsComponent } from './orderdetails/addorderdetails/addorderdetails.component';
 import { EditorderdetailsComponent } from './orderdetails/editorderdetails/editorderdetails.component';
+import { DemoComponent } from './demo/demo.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -86,7 +89,8 @@ import { EditorderdetailsComponent } from './orderdetails/editorderdetails/edito
     EditemployeeComponent,
     OrderdetailsComponent,
     AddorderdetailsComponent,
-    EditorderdetailsComponent
+    EditorderdetailsComponent,
+    DemoComponent
 
   ],
   imports: [
@@ -107,6 +111,8 @@ import { EditorderdetailsComponent } from './orderdetails/editorderdetails/edito
     MatDatepickerModule,
     MatNativeDateModule,
     MatRippleModule,
+    MatFormFieldModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

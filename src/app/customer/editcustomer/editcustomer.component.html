@@ -1,33 +1,78 @@
-<h3>Add Customer</h3>>
+<div style="text-align:center;">
+  <h3>Edit Customer</h3>
+</div>
+<hr>
 <div class="container">
   <div>
     <form [formGroup]="editcustomerform" (ngSubmit)="onEditcustClick()">
-    <div class="form-group">
-      <input class="form-control" placeholder="Change customer ID" formControlName="customer_id">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Change customer Email ID" formControlName="customer_emailid">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Change password" formControlName="customer_password">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Change customer name" formControlName="customer_name">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Change customer gender" formControlName="customer_gender">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Change customer mobile no." formControlName="customer_mobileno">
-    </div>
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Save</button>
-      <button  class="btn btn-info">cancel</button><br>
-    </div>
-    <div class="form-group">
-      <button class="btn btn-primary" ></button>
-    </div>
+      <!-- Customer Name -->
+      <div class="form-group" >
+        <mat-form-field>
+          <mat-label>Edit Customer Name</mat-label>
+          <input matInput  placeholder="Edit Customer Name"  formControlName="customer_name">
+          <mat-error class="alert alert-danger" *ngIf="editcustomerform.get('customer_name').hasError('required') && !editcustomerform.get('customer_name').pristine">Customer Name is required.</mat-error>
+         </mat-form-field>
+      </div>
+      <!-- Customer Emailid -->
+      <div class="form-group" >
+        <mat-form-field>
+          <mat-label>Edit Customer Emai ID</mat-label>
+          <input matInput  placeholder="Enter Customer Email ID"  formControlName="customer_emailid">
+          <mat-error class="alert alert-danger" *ngIf="editcustomerform.get('customer_emailid').hasError('required') && !editcustomerform.get('customer_emailid').pristine">Customer Email ID is required.</mat-error>
+          <mat-error class="alert alert-danger" *ngIf="editcustomerform.get('customer_emailid').hasError('email') && !editcustomerform.get('customer_emailid').pristine">Enter correct format of email.</mat-error>
+         </mat-form-field>
+      </div>
+      <!-- Customer Gender -->
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Select Customer Gender</mat-label>
+          <mat-select formControlName="customer_gender" name="customer gender">
+            <mat-option *ngFor="let item of customergender" [value]="item">
+              {{item}}
+            </mat-option>
+          </mat-select>
+          <!-- <mat-error class="alert alert-danger" *ngIf="editcustomerform.get('customer_gender').hasError('required') && !editcustomerform.get('customer_gender').pristine" >Customer Gender is required</mat-error> -->
+        </mat-form-field>
+      </div>
+      <!-- Customer mobileno -->
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Customer Mobile No.</mat-label>
+          <input matInput  placeholder="Enter Customer Mobile No."  formControlName="customer_mobileno">
+
+          <mat-error class="alert alert-danger" *ngIf="editcustomerform.get('customer_mobileno').hasError('required') && !editcustomerform.get('customer_mobileno').pristine" >Order Total Amount is required</mat-error>
+          <mat-error class="alert alert-danger" *ngIf="editcustomerform.get('customer_mobileno').hasError('pattern') && !editcustomerform.get('customer_mobileno').pristine" >Order Total Amount should contain only digits.</mat-error>
+        </mat-form-field>
+
+      </div>
+      <div class="form-group">
+        <button mat-button type="submit" mat-raised-button color="primary">Save</button> |
+        <button  mat-raised-button color="warn" type="button"  (click)="onCancleClick()">cancel</button><br>
+      </div>
     </form>
   </div>
 </div>
 
+
+
+
+
+
+<!-- <div class="form-group">
+  <input class="form-control" placeholder="Change customer ID" formControlName="customer_id">
+</div>
+<div class="form-group">
+  <input class="form-control" placeholder="Change customer Email ID" formControlName="customer_emailid">
+</div>
+<div class="form-group">
+  <input class="form-control" placeholder="Change password" formControlName="customer_password">
+</div>
+<div class="form-group">
+  <input class="form-control" placeholder="Change customer name" formControlName="customer_name">
+</div>
+<div class="form-group">
+  <input class="form-control" placeholder="Change customer gender" formControlName="customer_gender">
+</div>
+<div class="form-group">
+  <input class="form-control" placeholder="Change customer mobile no." formControlName="customer_mobileno">
+</div> -->

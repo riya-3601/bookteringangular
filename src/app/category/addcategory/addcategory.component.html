@@ -1,17 +1,34 @@
-<h3>Add category</h3>
+<div style="text-align:center;">
+  <h3>Add Category</h3>
+</div>
 <div class="container">
   <div>
     <form [formGroup]="catform" (ngSubmit)="onsignupClick()">
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter categoryID" formControlName="category_id">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter categoryname" formControlName="category_name">
-    </div>
-    <div class="form-group">
-      <input class="form-control" placeholder="Enter categoryisactive?" formControlName="category_isactive">
-    </div>
 
+      <!--Category Name-->
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Category Name</mat-label>
+          <input matInput  placeholder="Enter Category Name"  formControlName="category_name">
+
+          <mat-error class="alert alert-danger" *ngIf="catform.get('category_name').hasError('required') && !catform.get('category_name').pristine" >Order Total Amount is required</mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <!--Category isactive-->
+      <div class="form-group">
+        <mat-label>Select Category is actve or not?</mat-label>
+        <br>
+        <mat-radio-group formControlName="category_isactive" class="example-full-width">
+          <mat-radio-button value="true">true</mat-radio-button>
+          <br>
+          <mat-radio-button value="false">false</mat-radio-button>
+        </mat-radio-group>
+        <mat-error class="alert alert-danger" *ngIf="catform.get('category_isactive').hasError('required') && !catform.get('category_isactive').pristine" >Order Payment Type is required</mat-error>
+
+        <!-- <input class="form-control" placeholder="Enter Order Payment Type" formControlName="order_paymenttype"> -->
+      </div>
     <div class="form-group">
       <button type="submit" class="btn btn-primary">Save</button>
       <button  class="btn btn-info">cancel</button><br>
@@ -23,3 +40,15 @@
   </div>
 </div>
 
+
+
+
+ <!-- <div class="form-group">
+      <input class="form-control" placeholder="Enter categoryID" formControlName="category_id">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter categoryname" formControlName="category_name">
+    </div>
+    <div class="form-group">
+      <input class="form-control" placeholder="Enter categoryisactive?" formControlName="category_isactive">
+    </div> -->

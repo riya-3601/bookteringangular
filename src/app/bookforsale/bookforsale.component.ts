@@ -1,32 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit, ViewChild} from '@angular/core';
 import { Bfs } from "./bfs";
 import { BookforsaleService } from "../bookforsale.service";
 import { Router } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
+import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 @Component({
   selector: 'app-bookforsale',
   templateUrl: './bookforsale.component.html',
   styleUrls: ['./bookforsale.component.css']
 })
-export class BookforsaleComponent implements OnInit {
-  book_id:number;
-  book_isbn:number;
-  book_title : string;
-  book_author:string;
-  book_price:number;
-  book_publisher:string;
-  book_ratings:number;
-  book_image:string;
-  fk_customer_id:number;
+export class BookforsaleComponent implements OnInit,AfterViewInit {
+  displayedColumns: string[] = ['book_isbn','book_title','book_author','book_price',
+'book_publisher','book_ratings','book_image','category_name','action' ];
   obj:Bfs[]=[];
-  flag: boolean = false;
-  constructor(private _bfsdata:BookforsaleService,private _router:Router,private _actRoute:ActivatedRoute) { }
+  dataSource: MatTableDataSource<Bfs>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  constructor(private _bfsdata:BookforsaleService,private _router:Router,private _actRoute:ActivatedRoute) {
+    this.dataSource = new MatTableDataSource();
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator=this.paginator;
+    this.dataSource.sort=this.sort;
+  }
 
   ngOnInit(): void {
     this._bfsdata.getAllBookforsale().subscribe((data:Bfs[])=>{
       this.obj=data;
+      this.dataSource.data=data;
     });
   }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   onDeleteClick(item: Bfs) {
     if(confirm("Are you sure you want to delete?"))
     {
@@ -35,6 +51,7 @@ export class BookforsaleComponent implements OnInit {
        if(data.affectedRows==1)
        {
          this.obj.splice(this.obj.indexOf((item),1));
+         this.dataSource.data=this.obj;
          alert('Deleted Successfully');
        }
        else{
@@ -45,6 +62,9 @@ export class BookforsaleComponent implements OnInit {
    }
 }
 onEditClick(item:Bfs){
-  this._router.navigate(['/editorder',item.book_id]);
+  this._router.navigate(['/editbookforsale',item.book_id]);
+ }
+ onAddClick():void{
+  this._router.navigate(['/addbookforsale']);
  }
 }

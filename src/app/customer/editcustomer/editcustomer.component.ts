@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CustomerService } from 'src/app/customer.service';
 import { Cust } from "../cust";
@@ -10,18 +10,20 @@ import { Cust } from "../cust";
   styleUrls: ['./editcustomer.component.css']
 })
 export class EditcustomerComponent implements OnInit {
-  customer_id;
+  customer_id=1;
   editcustomerform:FormGroup;
+  applicant: any;
+  customergender:string[]=['Male','Female','Else'];
   constructor(private _actRoute:ActivatedRoute,private _editcustomer:CustomerService,private _router:Router) { }
 
   ngOnInit(): void {
     this.editcustomerform=new FormGroup({
       customer_id:new FormControl(null),
-      customer_emailid:new FormControl(null),
+      customer_emailid:new FormControl(null,[Validators.required,Validators.email]),
       customer_password:new FormControl(null),
       customer_name:new FormControl(null),
-      customer_gender:new FormControl(null),
-      customer_mobileno:new FormControl(null),
+      customer_gender:new FormControl(null,Validators.required),
+      customer_mobileno:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
   });
   this.customer_id= this._actRoute.snapshot.params['customer_id'];
   console.log(this.customer_id);
@@ -55,5 +57,8 @@ onEditcustClick(){
      console.log(err);
 
   });
+}
+onCancleClick(){
+  this._router.navigate(['/customer']);
 }
 }
