@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup,FormControl } from "@angular/forms";
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from "@angular/router";
 import { BookforbarterService } from "../bookforbarter.service";
 import { Bookbart } from "./bookbart";
@@ -9,13 +12,23 @@ import { Bookbart } from "./bookbart";
   templateUrl: './bookforbarter.component.html',
   styleUrls: ['./bookforbarter.component.css']
 })
-export class BookforbarterComponent implements OnInit {
-
+export class BookforbarterComponent implements OnInit ,AfterViewInit{
+  displayedColumns: string[] = ['bookbarter_title', 'bookbarter_author','bookbarter_status', 'bookbarter_price','customer_name','action'];
+  dataSource: MatTableDataSource<Bookbart>;
   obj:Bookbart[]=[];
   bookforbarteradd:FormGroup;
   flag: boolean = false;
-  constructor(private _bookbartdata:BookforbarterService,private _router:Router) { }
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  constructor(private _bookbartdata:BookforbarterService,private _router:Router) {
+    this.dataSource = new MatTableDataSource();
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator=this.paginator;
+    this.dataSource.sort=this.sort;
+  }
   ngOnInit(): void {
     this.bookforbarteradd=new FormGroup({
       bookbarter_id:new FormControl(null),
@@ -30,9 +43,19 @@ export class BookforbarterComponent implements OnInit {
 
     this._bookbartdata.getAllBookforbarter().subscribe((data:Bookbart[])=>{
       this.obj=data;
+      this.dataSource.data=data;
+      console.log(this.dataSource.data);
     });
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
   onDeleteClick(item: Bookbart) {
     this._bookbartdata.deleteBookforbarter(item.bookbarter_id).subscribe((data:any)=>{
       if(confirm('Are you sure you want to delete?'))
@@ -40,6 +63,7 @@ export class BookforbarterComponent implements OnInit {
       if(data.affectedRows==1)
       {
         this.obj.splice(this.obj.indexOf(item),1);
+        this.dataSource.data=this.obj;
         alert('Deleted successfully');
       }
       else
@@ -54,6 +78,9 @@ export class BookforbarterComponent implements OnInit {
 
 onEditClick(item:Bookbart){
  this._router.navigate(['/editbookforbarter',item.bookbarter_id]);
+}
+onAddBookbartClick(){
+  this._router.navigate(['/addbookforbarter']);
 }
 
 }

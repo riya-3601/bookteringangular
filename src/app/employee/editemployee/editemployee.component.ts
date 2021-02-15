@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormGroup } from "@angular/forms";
+import { FormControl,FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from "src/app/employee.service";
 
@@ -17,10 +17,10 @@ export class EditemployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.employeeadd=new FormGroup({
-      employee_id:new FormControl(null),
-      employee_name:new FormControl(null),
-      employee_mobileno:new FormControl(null),
-      employee_password:new FormControl(null),
+      employee_id:new FormControl(null,[Validators.required]),
+      employee_name:new FormControl(null,[Validators.required]),
+      employee_mobileno:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*'),Validators.maxLength(10)]),
+      employee_password:new FormControl(null,[Validators.required,Validators.maxLength(8)]),
     });
 
     this.employee_id=this._actRoute.snapshot.params['employee_id'];
@@ -55,6 +55,18 @@ export class EditemployeeComponent implements OnInit {
     });
   }
   onCancelClick(): void {
-    this.flag = false;
+    //this.flag = false;
+    if(confirm('Are you sure you want to cancel?')){
+      this._router.navigate(['/employee']);
+    }
+  }
+  onClearClick(){
+    this.employeeadd.get('employee_name').reset('');
+  }
+  onClearMobClick(){
+    this.employeeadd.get('employee_mobileno').reset('');
+  }
+  onClearPassClick(){
+    this.employeeadd.get('employee_password').reset('');
   }
 }

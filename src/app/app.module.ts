@@ -40,15 +40,18 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+//import { MatAccordion,MatExpansionModule } from "@angular/material/expansion";
+
 import { EmployeeComponent } from './employee/employee.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 import { EditemployeeComponent } from './employee/editemployee/editemployee.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { AddorderdetailsComponent } from './orderdetails/addorderdetails/addorderdetails.component';
 import { EditorderdetailsComponent } from './orderdetails/editorderdetails/editorderdetails.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -97,8 +100,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     routingarr,
     HttpClientModule,
     BrowserAnimationsModule,
-<<<<<<< HEAD
-=======
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
@@ -110,7 +111,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRippleModule,
->>>>>>> a3e59c7a27eb2191ba5df0f76bb682348806949c
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

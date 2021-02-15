@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl } from "@angular/forms";
+import { FormGroup,FormControl, Validators } from "@angular/forms";
 import { Emp } from "../emp";
 import { EmployeeService } from "src/app/employee.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-addemployee',
@@ -10,7 +11,7 @@ import { EmployeeService } from "src/app/employee.service";
 })
 export class AddemployeeComponent implements OnInit {
 
-  constructor(private _Empdata:EmployeeService) { }
+  constructor(private _Empdata:EmployeeService,private _router:Router) { }
 
   obj:Emp[]=[];
   employeeadd:FormGroup;
@@ -18,10 +19,10 @@ export class AddemployeeComponent implements OnInit {
   ngOnInit(): void {
 
     this.employeeadd=new FormGroup({
-      employee_id:new FormControl(null),
-      employee_name:new FormControl(null),
-      employee_mobileno:new FormControl(null),
-      employee_password:new FormControl(null),
+      employee_id:new FormControl(null,[Validators.required]),
+      employee_name:new FormControl(null,[Validators.required]),
+      employee_mobileno:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*'),Validators.maxLength(10)]),
+      employee_password:new FormControl(null,[Validators.required,Validators.maxLength(8)]),
     });
   }
 
@@ -33,6 +34,7 @@ export class AddemployeeComponent implements OnInit {
       {
        // this.obj.push(this.bookforbarteradd.value);
        alert('Row successfully inserted');
+       this._router.navigate(['/employee']);
       }
       else
       {
@@ -43,6 +45,18 @@ export class AddemployeeComponent implements OnInit {
     });
   }
   onCancelClick(): void {
-    this.flag = false;
+    //this.flag = false;
+    if(confirm('Are you sure you want to cancel?')){
+      this._router.navigate(['/employee']);
+    }
+  }
+  onClearClick(){
+    this.employeeadd.get('employee_name').reset('');
+  }
+  onClearMobClick(){
+    this.employeeadd.get('employee_mobileno').reset('');
+  }
+  onClearPassClick(){
+    this.employeeadd.get('employee_password').reset('');
   }
 }

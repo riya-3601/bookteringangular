@@ -5,13 +5,46 @@
   <form  [formGroup]="employeedeliveryadd" (ngSubmit)="onsubmitClick()">
   <h2>Add New employee delivery</h2>
 
-   <input class="form-control" type="text" formControlName="delivery_id" placeholder="Enter delivery Id"><br><br>
-   <input class="form-control" type="text" formControlName="delivery_status" placeholder="Enter delivery_status"><br><br>
-   <input class="form-control" type="text"  formControlName="fk_employee_id" placeholder="Enter fk_employee_id"><br><br>
-   <input class="form-control" type="text"  formControlName="fk_order_id" placeholder="Enter fk_order_id"><br><br>
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Select Delivery Status</mat-label>
+      <mat-select formControlName="delivery_status" name="Delivery Status">
+        <mat-option *ngFor="let item of delstatus" [value]="item">
+          {{item}}
+        </mat-option>
+      </mat-select>
+      <p class="alert alert-danger" *ngIf="employeedeliveryadd.get('delivery_status').hasError('required') && employeedeliveryadd.get('delivery_status').dirty">Delivery Status is required</p>
+    </mat-form-field>
+  </div>
 
-   <button type="submit" class="btn btn-primary">Save</button><br>
-  <button  class="btn btn-info">cancel</button><br>
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Select Employee Name</mat-label>
+      <mat-select formControlName="fk_employee_id" name="Employee name">
+        <mat-option *ngFor="let item of emp" [value]="item.employee_id">
+          {{item.employee_name}}
+        </mat-option>
+      </mat-select>
+      <p class="alert alert-danger" *ngIf="employeedeliveryadd.get('fk_employee_id').hasError('required') && employeedeliveryadd.get('fk_employee_id').dirty">Employee name is required</p>
+    </mat-form-field>
+  </div>
+
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Select Order id</mat-label>
+          <mat-select formControlName="fk_order_id" name="Order id">
+            <mat-option *ngFor="let item of ord" [value]="item.order_id">
+              {{item.order_id}}
+            </mat-option>
+          </mat-select>
+          <p class="alert alert-danger" *ngIf="employeedeliveryadd.get('fk_order_id').hasError('required') && employeedeliveryadd.get('fk_order_id').dirty">Order id is required</p>
+        </mat-form-field>
+      </div>
+
+      <button  mat-raised-button type="submit" color="primary">Save</button>
+      <button mat-raised-button color="warn" (click)="onCancelClick()">Cancel</button>
 
   </form>
 </div>

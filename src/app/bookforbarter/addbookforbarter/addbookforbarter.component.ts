@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl } from "@angular/forms";
+import { FormGroup,FormControl, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
 import { BookforbarterService } from "src/app/bookforbarter.service";
+import { CustomerService } from 'src/app/customer.service';
+import { Cust } from 'src/app/customer/cust';
 import { Bookbart } from "../bookbart";
 
 @Component({
@@ -10,20 +13,25 @@ import { Bookbart } from "../bookbart";
 })
 export class AddbookforbarterComponent implements OnInit {
 
-  constructor(private _bookbartdata:BookforbarterService) { }
+  constructor(private _bookbartdata:BookforbarterService,private _custdata:CustomerService,private _router:Router) { }
 
   bookforbarteradd:FormGroup;
   flag: boolean = false;
   obj:Bookbart[]=[];
+  cust:Cust[]=[];
   ngOnInit(): void {
 
     this.bookforbarteradd=new FormGroup({
-      bookbarter_id:new FormControl(null),
-      bookbarter_title:new FormControl(null),
-      bookbarter_author:new FormControl(null),
-      bookbarter_status:new FormControl(null),
-      bookbarter_price:new FormControl(null),
-      fk_customer_id:new FormControl(null),
+      bookbarter_id:new FormControl(null,[Validators.required]),
+      bookbarter_title:new FormControl(null,[Validators.required]),
+      bookbarter_author:new FormControl(null,[Validators.required]),
+      bookbarter_status:new FormControl(null,[Validators.required]),
+      bookbarter_price:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
+      fk_customer_id:new FormControl(null,[Validators.required]),
+    });
+
+    this._custdata.getAllCustomer().subscribe((data:Cust[])=>{
+      this.cust=data;
     });
   }
 
@@ -35,6 +43,7 @@ export class AddbookforbarterComponent implements OnInit {
       {
        // this.obj.push(this.bookforbarteradd.value);
        alert('Row successfully inserted');
+       this._router.navigate(['/bookforbarter']);
       }
       else
       {
@@ -45,7 +54,19 @@ export class AddbookforbarterComponent implements OnInit {
     });
   }
   onCancelClick(): void {
-    this.flag = false;
+    //this.flag = false;
+    if(confirm('Are you sure you want to cancel?')){
+      this._router.navigate(['/bookforbarter']);
+    }
+  }
+  onClearClick(){
+    this.bookforbarteradd.get('bookbarter_title').reset('');
+  }
+  onClearPriceClick(){
+    this.bookforbarteradd.get('bookbarter_price').reset('');
+  }
+  onClearAuthorClick(){
+    this.bookforbarteradd.get('bookbarter_author').reset('');
   }
 
 }

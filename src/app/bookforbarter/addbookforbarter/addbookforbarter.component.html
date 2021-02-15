@@ -1,4 +1,4 @@
-
+<!--
 
 <div class="container">
 
@@ -13,6 +13,76 @@
    <input class="form-control" type="text"  formControlName="fk_customer_id" placeholder="Enter fk_customer_id"><br><br>
    <button type="submit" class="btn btn-primary">Save</button><br>
   <button  class="btn btn-info">cancel</button><br>
+
+  </form>
+</div> -->
+
+
+
+<div class="container">
+
+  <form  [formGroup]="bookforbarteradd" (ngSubmit)="onsubmitClick()">
+  <h2>Add New Book for Barter</h2>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Book Title</mat-label>
+        <input matInput placeholder="Enter Book Title" formControlName="bookbarter_title">
+        <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearClick()">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <mat-error  *ngIf="bookforbarteradd.get('bookbarter_title').hasError('required') && bookforbarteradd.get('bookbarter_title').dirty">Book Title is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Book Author</mat-label>
+        <input matInput placeholder="Enter Book Author" formControlName="bookbarter_author">
+        <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearAuthorClick()">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <mat-error  *ngIf="bookforbarteradd.get('bookbarter_author').hasError('required') && bookforbarteradd.get('bookbarter_author').dirty">Book Author is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-label>Select Status of Book for bartering</mat-label>
+      <br>
+      <mat-radio-group formControlName="bookbarter_status" class="example-full-width">
+        <mat-radio-button value="Available">Available</mat-radio-button>
+        <br>
+        <mat-radio-button value="Unavailable">Unavailable</mat-radio-button>
+        <mat-error  *ngIf="bookforbarteradd.get('bookbarter_status').hasError('required') && bookforbarteradd.get('bookbarter_status').dirty">Book Status is required</mat-error>
+      </mat-radio-group>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Book Price</mat-label>
+        <input matInput placeholder="Enter Book Price" formControlName="bookbarter_price">
+        <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearPriceClick()">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <mat-error  *ngIf="bookforbarteradd.get('bookbarter_price').hasError('required') && bookforbarteradd.get('bookbarter_price').dirty">Book Price is required</mat-error>
+        <mat-error  *ngIf="bookforbarteradd.get('bookbarter_price').hasError('pattern') && bookforbarteradd.get('bookbarter_price').dirty">Book Price should only contain numbers</mat-error>
+      </mat-form-field>
+    </div>
+
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Select Customer Name</mat-label>
+      <mat-select formControlName="fk_customer_id" name="Customer name">
+        <mat-option *ngFor="let item of cust" [value]="item.customer_id">
+          {{item.customer_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error  *ngIf="bookforbarteradd.get('fk_customer_id').hasError('required') && bookforbarteradd.get('fk_customer_id').dirty">Customer name is required</mat-error>
+    </mat-form-field>
+  </div>
+
+
+      <button  mat-raised-button type="submit" color="primary">Save</button>
+      <button mat-raised-button color="warn" (click)="onCancelClick()">Cancel</button>
 
   </form>
 </div>

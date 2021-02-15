@@ -1,4 +1,4 @@
-
+<!--
 
 <div class="container">
 
@@ -12,6 +12,53 @@
 
    <button type="submit" class="btn btn-primary">Save</button><br>
   <button  class="btn btn-info">cancel</button><br>
+
+  </form>
+</div> -->
+<div class="container">
+
+  <form  [formGroup]="employeeadd" (ngSubmit)="onsubmitClick()">
+  <h2>Add New Employee</h2>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Employee Name</mat-label>
+        <input matInput placeholder="Enter Employee name" formControlName="employee_name">
+        <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearClick()">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <mat-error  *ngIf="employeeadd.get('employee_name').hasError('required') && employeeadd.get('employee_name').dirty">Employee name is required</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Employee Mobile no</mat-label>
+        <span matPrefix>+91 &nbsp;</span>
+        <input matInput placeholder="Enter Employee Mobile no." formControlName="employee_mobileno">
+        <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearMobClick()">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <mat-error  *ngIf="employeeadd.get('employee_mobileno').hasError('required') && employeeadd.get('employee_mobileno').dirty">Employee number is required</mat-error>
+        <mat-error  *ngIf="employeeadd.get('employee_mobileno').hasError('pattern') && employeeadd.get('employee_mobileno').dirty">Mobile no. can only have digits</mat-error>
+        <mat-error  *ngIf="employeeadd.get('employee_mobileno').hasError('maxlength') && employeeadd.get('employee_mobileno').dirty">Only 10 digits are allowed</mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Employee Password</mat-label>
+        <input matInput placeholder="Enter Employee password" formControlName="employee_password">
+        <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearPassClick()">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <mat-error  *ngIf="employeeadd.get('employee_password').hasError('required') && employeeadd.get('employee_password').dirty">Employee Password is required</mat-error>
+        <mat-error  *ngIf="employeeadd.get('employee_password').hasError('maxlength') && employeeadd.get('employee_password').dirty">Password should be of maximum 8 characters </mat-error>
+      </mat-form-field>
+    </div>
+
+      <button  mat-raised-button type="submit" color="primary">Save</button>
+      <button mat-raised-button color="warn" (click)="onCancelClick()">Cancel</button>
 
   </form>
 </div>

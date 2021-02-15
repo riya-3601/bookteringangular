@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl } from "@angular/forms";
+import { FormGroup,FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookforbarterService } from "src/app/bookforbarter.service";
+import { CustomerService } from 'src/app/customer.service';
+import { Cust } from 'src/app/customer/cust';
 
 @Component({
   selector: 'app-editbookforbarter',
@@ -10,21 +12,24 @@ import { BookforbarterService } from "src/app/bookforbarter.service";
 })
 export class EditbookforbarterComponent implements OnInit {
 
-  constructor(private _editbookbart:BookforbarterService,private _actRoute:ActivatedRoute,private _router:Router) { }
-
+  constructor(private _editbookbart:BookforbarterService,private _actRoute:ActivatedRoute,private _router:Router,private _custdata:CustomerService) { }
+  cust:Cust[]=[];
   bookforbarteradd:FormGroup;
   flag: boolean = false;
   bookbarter_id;
   ngOnInit(): void {
     this.bookforbarteradd=new FormGroup({
-      bookbarter_id:new FormControl(null),
-      bookbarter_title:new FormControl(null),
-      bookbarter_author:new FormControl(null),
-      bookbarter_status:new FormControl(null),
-      bookbarter_price:new FormControl(null),
-      fk_customer_id:new FormControl(null),
+      bookbarter_id:new FormControl(null,[Validators.required]),
+      bookbarter_title:new FormControl(null,[Validators.required]),
+      bookbarter_author:new FormControl(null,[Validators.required]),
+      bookbarter_status:new FormControl(null,[Validators.required]),
+      bookbarter_price:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
+      fk_customer_id:new FormControl(null,[Validators.required]),
     });
 
+    this._custdata.getAllCustomer().subscribe((data:Cust[])=>{
+      this.cust=data;
+    });
 
     this.bookbarter_id=this._actRoute.snapshot.params['bookbarter_id'];
     console.log(this.bookbarter_id);
@@ -60,6 +65,17 @@ export class EditbookforbarterComponent implements OnInit {
     });
   }
   onCancelClick(): void {
-    this.flag = false;
+    if(confirm('Are you sure you want to cancel?')){
+      this._router.navigate(['/bookforbarter']);
+    }
+  }
+  onClearClick(){
+    this.bookforbarteradd.get('bookbarter_title').reset('');
+  }
+  onClearPriceClick(){
+    this.bookforbarteradd.get('bookbarter_price').reset('');
+  }
+  onClearAuthorClick(){
+    this.bookforbarteradd.get('bookbarter_author').reset('');
   }
 }

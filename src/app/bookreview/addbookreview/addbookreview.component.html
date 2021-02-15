@@ -1,4 +1,4 @@
-
+<!--
 
 <div class="container">
 
@@ -14,6 +14,77 @@
 
    <button type="submit" class="btn btn-primary">Save</button><br>
   <button  class="btn btn-info">cancel</button><br>
+
+  </form>
+</div> -->
+
+<div class="container">
+
+  <form  [formGroup]="bookreviewadd" (ngSubmit)="onsubmitClick()">
+  <h2>Add New Book Review</h2>
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Select Book for review</mat-label>
+      <mat-select formControlName="fk_bookbarter_id" name="Book name">
+        <mat-option *ngFor="let item of book" [value]="item.bookbarter_id">
+          {{item.bookbarter_title}}
+        </mat-option>
+      </mat-select>
+      <mat-error  *ngIf="bookreviewadd.get('fk_bookbarter_id').hasError('required') && bookreviewadd.get('fk_bookbarter_id').dirty">Book is required</mat-error>
+    </mat-form-field>
+  </div>
+
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Give Book Review</mat-label>
+        <textarea matInput  maxlength="200"  placeholder="Enter Book Review" formControlName="bookreview_description"></textarea>
+        <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearDescClick()">
+          <mat-icon>clear</mat-icon>
+        </button>
+        <!-- <mat-hint align="end">{{bookreview_description.value.length}} / 200</mat-hint> -->
+        <mat-error  *ngIf="bookreviewadd.get('bookreview_description').hasError('required') && bookreviewadd.get('bookreview_description').dirty">Book review is required</mat-error>
+        <mat-error  *ngIf="bookreviewadd.get('bookreview_description').hasError('maxlength') && bookreviewadd.get('bookreview_description').dirty">Review Cannot be greater then 200charachters</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Book Review Date</mat-label>
+        <input matInput placeholder="Enter Book Review Date" formControlName="bookreview_date">
+        <mat-error  *ngIf="bookreviewadd.get('bookreview_date').hasError('required') && bookreviewadd.get('bookreview_date').dirty">Book Price is required</mat-error>
+      </mat-form-field>
+    </div>
+
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Select Customer Name</mat-label>
+      <mat-select formControlName="fk_customer_id" name="Customer name">
+        <mat-option *ngFor="let item of cust" [value]="item.customer_id">
+          {{item.customer_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error  *ngIf="bookreviewadd.get('fk_customer_id').hasError('required') && bookreviewadd.get('fk_customer_id').dirty">Customer name is required</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field>
+      <mat-label>Select Category Name</mat-label>
+      <mat-select formControlName="fk_category_id" name="Category name">
+        <mat-option *ngFor="let item of cat" [value]="item.category_id">
+          {{item.category_name}}
+        </mat-option>
+      </mat-select>
+      <mat-error  *ngIf="bookreviewadd.get('fk_category_id').hasError('required') && bookreviewadd.get('fk_category_id').dirty">Customer name is required</mat-error>
+    </mat-form-field>
+  </div>
+
+
+      <button  mat-raised-button type="submit" color="primary">Save</button>
+      <button mat-raised-button color="warn" (click)="onCancelClick()">Cancel</button>
 
   </form>
 </div>
