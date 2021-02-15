@@ -45,12 +45,15 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 //import { MatAccordion,MatExpansionModule } from "@angular/material/expansion";
 
+
 import { EmployeeComponent } from './employee/employee.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
 import { EditemployeeComponent } from './employee/editemployee/editemployee.component';
 import { OrderdetailsComponent } from './orderdetails/orderdetails.component';
 import { AddorderdetailsComponent } from './orderdetails/addorderdetails/addorderdetails.component';
 import { EditorderdetailsComponent } from './orderdetails/editorderdetails/editorderdetails.component';
+import { DemoComponent } from './demo/demo.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -90,7 +93,8 @@ import { EditorderdetailsComponent } from './orderdetails/editorderdetails/edito
     EditemployeeComponent,
     OrderdetailsComponent,
     AddorderdetailsComponent,
-    EditorderdetailsComponent
+    EditorderdetailsComponent,
+    DemoComponent
 
   ],
   imports: [
@@ -112,6 +116,7 @@ import { EditorderdetailsComponent } from './orderdetails/editorderdetails/edito
     MatNativeDateModule,
     MatRippleModule,
     MatFormFieldModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

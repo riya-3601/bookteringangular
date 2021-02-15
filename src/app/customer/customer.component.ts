@@ -1,34 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,AfterViewInit,ViewChild} from '@angular/core';
 import { Router } from "@angular/router";
 import { ActivatedRoute } from '@angular/router';
 import { Cust  } from "./cust";
 import { CustomerService } from "../customer.service";
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
-export class CustomerComponent implements OnInit {
-  customerform :FormGroup;
+export class CustomerComponent implements OnInit,AfterViewInit {
+  displayedColumns: string[] =['customer_emailid','customer_name','customer_gender','customer_mobileno','action'];
+  dataSource: MatTableDataSource<Cust>;
   obj:Cust[]=[];
-  flag: boolean = false;
-  constructor(private _custdata:CustomerService,private _router:Router,private _actRoute:ActivatedRoute) { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
+  constructor(private _custdata:CustomerService,private _router:Router,private _actRoute:ActivatedRoute) {
+    this.dataSource = new MatTableDataSource();
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator=this.paginator;
+    this.dataSource.sort=this.sort;
+  }
   ngOnInit(): void {
     this._custdata.getAllCustomer().subscribe((data:Cust[])=>{
       this.obj=data;
+      this.dataSource.data=data;
     });
-    this.customerform=new FormGroup({
-      customer_id:new FormControl(null),
-      customer_emailid:new FormControl(null),
-      customer_password:new FormControl(null),
-      customer_name:new FormControl(null),
-      customer_gender:new FormControl(null),
-      customer_mobileno:new FormControl(null),
-    });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
   onDeleteClick(item: Cust) {
     if(confirm("Are you sure you want to delete?"))
@@ -38,6 +48,7 @@ export class CustomerComponent implements OnInit {
      if(data.affectedRows==1)
      {
        this.obj.splice(this.obj.indexOf(item),1);
+       this.dataSource.data=this.obj;
        alert('Data deleted successfully');
      }
      else
@@ -51,5 +62,7 @@ export class CustomerComponent implements OnInit {
   onEditClick(item:Cust){
     this._router.navigate(['/editcustomer',item.customer_id]);
   }
-
+  onAddClick():void{
+    this._router.navigate(['/addcustomer']);
+   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/category.service';
-
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-addcategory',
   templateUrl: './addcategory.component.html',
@@ -9,13 +9,13 @@ import { CategoryService } from 'src/app/category.service';
 })
 export class AddcategoryComponent implements OnInit {
   catform:FormGroup;
-  constructor(private _catdata:CategoryService) { }
-
+  constructor(private _catdata:CategoryService,private _router:Router) { }
+  appliction:any;
   ngOnInit(): void {
     this.catform=new FormGroup({
       category_id:new FormControl(null),
-      category_name:new FormControl(null),
-      category_isactive:new FormControl(null),
+      category_name:new FormControl(null,Validators.required),
+      category_isactive:new FormControl(null,Validators.required),
     });
   }
   onsignupClick():void{
@@ -26,6 +26,7 @@ export class AddcategoryComponent implements OnInit {
       if(data.affectedRows==1)
        {
          alert('Data inserted succesfully');
+         this._router.navigate(['/category']);
        }
        else{
          alert('Something went wrong');
@@ -38,5 +39,10 @@ export class AddcategoryComponent implements OnInit {
      });
 
   }
-
+  onCancleClick():void{
+    if(confirm("Are you sure you want to Cancle?"))
+    {
+      this._router.navigate(['/category']);
+    }
+ }
 }

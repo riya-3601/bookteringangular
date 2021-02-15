@@ -1,25 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,AfterViewInit,ViewChild} from '@angular/core';
 import { Router } from "@angular/router";
 import { Cat  } from "./cat";
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from "../category.service";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.css']
 })
-export class CategoryComponent implements OnInit {
-  category_id:number;
-  category_name:string;
-  category_isactive:string;
+export class CategoryComponent implements OnInit ,AfterViewInit{
+  displayedColumns: string[] =['category_name','category_isactive','action'];
   obj:Cat[]=[];
-  flag: boolean = false;
-  constructor(private _catdata:CategoryService,private _router:Router,private _actRoute:ActivatedRoute) { }
+  dataSource: MatTableDataSource<Cat>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  constructor(private _catdata:CategoryService,private _router:Router,private _actRoute:ActivatedRoute) {
+    this.dataSource = new MatTableDataSource();
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator=this.paginator;
+    this.dataSource.sort=this.sort;
+  }
 
   ngOnInit(): void {
     this._catdata.getAllCategory().subscribe((data:Cat[])=>{
       this.obj=data;
+      this.dataSource.data=data;
     });
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
   onDeleteClick(item: Cat) {
     if(confirm("Are you sure you want to delete?"))
@@ -28,7 +46,8 @@ export class CategoryComponent implements OnInit {
        console.log(data);
        if(data.affectedRows==1)
        {
-         this.obj.splice(this.obj.indexOf((item),1));
+         this.obj.splice(this.obj.indexOf(item),1);
+         this.dataSource.data=this.obj;
          alert('Deleted Successfully');
        }
        else{
@@ -42,9 +61,8 @@ export class CategoryComponent implements OnInit {
      this._router.navigate(['/editcategory',item.category_id]);
 
    }
-   onSaveClick(): void {
-     this.obj.push(new Cat(this.category_id,this.category_name,this.category_isactive));
-     this.flag = false;
+   onAddClick():void{
+    this._router.navigate(['/addcategory']);
    }
 
 }

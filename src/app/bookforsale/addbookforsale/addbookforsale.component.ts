@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup ,Validators} from '@angular/forms';
 import { BookforsaleService } from "src/app/bookforsale.service";
+import { CategoryService } from "src/app/category.service";
+import { Cat } from "src/app/category/cat";
+import { Router } from "@angular/router";
+
 @Component({
   selector: 'app-addbookforsale',
   templateUrl: './addbookforsale.component.html',
@@ -8,19 +12,28 @@ import { BookforsaleService } from "src/app/bookforsale.service";
 })
 export class AddbookforsaleComponent implements OnInit {
   bfsform:FormGroup;
-  constructor(private _bfsdata:BookforsaleService) { }
+  cat:Cat[]=[];
+  applicant: any;
+  constructor(private _bfsdata:BookforsaleService,private _catdata:CategoryService,private _router:Router) { }
 
   ngOnInit(): void {
+
+    this._catdata.getAllCategory().subscribe(
+      (data:Cat[])=>{
+        this.cat=data;
+      }
+    );
+
     this.bfsform=new FormGroup({
       book_id:new FormControl(null),
-      book_isbn:new FormControl(null),
-      book_title : new FormControl(null),
-      book_author:new FormControl(null),
-      book_price:new FormControl(null),
-      book_publisher:new FormControl(null),
-      book_ratings:new FormControl(null),
-      book_image:new FormControl(null),
-      fk_customer_id:new FormControl(null),
+      book_isbn:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
+      book_title : new FormControl(null,Validators.required),
+      book_author:new FormControl(null,Validators.required),
+      book_price:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
+      book_publisher:new FormControl(null,Validators.required),
+      book_ratings:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
+      book_image:new FormControl(null,Validators.required),
+      fk_category_id:new FormControl(null),
     });
   }
   onsignupClick():void{
@@ -30,6 +43,7 @@ export class AddbookforsaleComponent implements OnInit {
       if(data.affectedRows==1)
        {
          alert('Data inserted succesfully');
+         this._router.navigate(['/bookforsale']);
        }
        else{
          alert('Something went wrong');
@@ -40,7 +54,12 @@ export class AddbookforsaleComponent implements OnInit {
      function(err){
        console.log(err);
      });
-
   }
+  onCancleClick():void{
+    if(confirm("Are you sure you want to Cancle?"))
+    {
+      this._router.navigate(['/bookforsale']);
+    }
+ }
 
 }

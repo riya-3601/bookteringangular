@@ -1,73 +1,71 @@
-<h3>Add Order</h3>
+<div style="text-align:center;">
+  <h3>Add Order</h3>
+</div>
+<br>
 <div class="container">
   <div>
     <form [formGroup]="ordform" (ngSubmit)="onsignupClick()">
 
     <div class="form-group">
-      <!-- <mat-form-field >
+      <mat-form-field >
         <mat-label>Choose a date for order</mat-label>
         <input matInput [matDatepicker]="picker"  formControlName="order_date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field> -->
-
-      <mat-form-field>
-        <input matInput [matDatepicker]="dp" placeholder="Choose a date "(dateChange)="updateDOB($event)" formControlName="order_date">
-        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #dp disabled="false"></mat-datepicker>
+        <mat-error class="alert alert-danger" *ngIf="ordform.get('order_date').hasError('required') && !ordform.get('order_date').pristine" >Order Date is required</mat-error>
       </mat-form-field>
 
-
-      <!-- <mat-form-field appearance="fill">
-        <mat-label>Choose a Date</mat-label>
-        <input matInput [matDatepicker]="picker2"
-        formControlName="order_date">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field> -->
     </div>
     <div class="form-group">
-      <mat-form-field>
+      <mat-form-field class="example-full-width">
         <mat-label>Select Order Status</mat-label>
         <mat-select formControlName="order_status" name="Order Status">
           <mat-option *ngFor="let item of orderstatus" [value]="item">
             {{item}}
           </mat-option>
         </mat-select>
+        <mat-error class="alert alert-danger" *ngIf="ordform.get('order_status').hasError('required') && !ordform.get('order_status').pristine" >Order Status is required</mat-error>
       </mat-form-field>
     </div>
     <div class="form-group">
+
       <mat-label>Select Payment Type</mat-label>
       <br>
-      <mat-radio-group formControlName="order_paymenttype">
+      <mat-radio-group formControlName="order_paymenttype" class="example-full-width">
         <mat-radio-button value="COD">COD</mat-radio-button>
+        <br>
         <mat-radio-button value="Google Pay">Google Pay</mat-radio-button>
       </mat-radio-group>
+      <mat-error class="alert alert-danger" *ngIf="ordform.get('order_paymenttype').hasError('required') && !ordform.get('order_paymenttype').pristine" >Order Payment Type is required</mat-error>
+
       <!-- <input class="form-control" placeholder="Enter Order Payment Type" formControlName="order_paymenttype"> -->
     </div>
     <div class="form-group">
       <mat-form-field class="example-full-width">
         <mat-label>Total Amount</mat-label>
         <input matInput  placeholder="Enter Order Total Amount"  formControlName="order_totalamount">
-      </mat-form-field>
 
+        <mat-error class="alert alert-danger" *ngIf="ordform.get('order_totalamount').hasError('required') && !ordform.get('order_totalamount').pristine" >Order Total Amount is required</mat-error>
+        <mat-error class="alert alert-danger" *ngIf="ordform.get('order_totalamount').hasError('pattern') && !ordform.get('order_totalamount').pristine" >Order Total Amount should contain only digits.</mat-error>
+      </mat-form-field>
     </div>
     <div class="form-group" >
-      <mat-form-field>
+     <mat-form-field>
         <mat-label>Select Customer Name</mat-label>
-        <mat-select formControlName="fk_customer_id">
+        <mat-select formControlName="fk_customer_id" >
           <mat-option *ngFor="let item of cust" [value]="item.customer_id">
             {{item.customer_name}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+   </mat-form-field>
 
     </div>
 
 
     <div class="form-group">
-      <button type="submit" class="btn btn-primary">Save</button> |
-      <button  class="btn btn-info">cancel</button><br>
+      <button type="submit"  mat-raised-button color="primary">Save</button>
+   |
+      <button type="button" mat-raised-button color="primary" (click)="onCancleClick()">cancel</button><br>
     </div>
     <div class="form-group">
     </div>

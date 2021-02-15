@@ -46,7 +46,8 @@ export class OrderComponent implements OnInit,AfterViewInit {
        console.log(data);
        if(data.affectedRows==1)
        {
-         this.obj.splice(this.obj.indexOf((item),1));
+         this.obj.splice(this.obj.indexOf(item),1);
+          this.dataSource.data=this.obj;
          alert('Deleted Successfully');
        }
        else{
@@ -58,5 +59,8 @@ export class OrderComponent implements OnInit,AfterViewInit {
 }
 onEditClick(item:Ord){
   this._router.navigate(['/editorder',item.order_id]);
+ }
+ onAddClick():void{
+  this._router.navigate(['/addorder']);
  }
 }
