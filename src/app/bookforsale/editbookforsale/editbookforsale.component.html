@@ -1,1 +1,86 @@
-
+<div style="text-align:center;">
+  <h3>Edit Book for Sale</h3>
+</div>
+<hr>
+<div class="container">
+  <form [formGroup]="bfsform" (ngSubmit)="onEditCategory()">
+      <div>
+        <!-- book isbn -->
+      <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <mat-label>Book ISBN</mat-label>
+          <input matInput #isbn  placeholder="Enter Book ISBN"  formControlName="book_isbn">
+          <mat-hint align="end">{{isbn.value.length}} / 15</mat-hint>
+          <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_isbn').hasError('required') && !bfsform.get('book_isbn').pristine" >Book ISBN is required</mat-error>
+          <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_isbn').hasError('pattern') && !bfsform.get('book_isbn').pristine" >ISBN Number contains only digits.</mat-error>
+        </mat-form-field>
+      </div>
+        <!-- book_title -->
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Book Title</mat-label>
+            <input matInput  placeholder="Enter Book Title"  formControlName="book_title">
+            <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_title').hasError('required') && !bfsform.get('book_title').pristine" >Book Title is required</mat-error>
+          </mat-form-field>
+        </div>
+         <!-- book author -->
+         <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Book Author</mat-label>
+            <input matInput  placeholder="Enter Book Author"  formControlName="book_author">
+            <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_author').hasError('required') && !bfsform.get('book_author').pristine" >Book Author is required</mat-error>
+          </mat-form-field>
+        </div>
+         <!-- book_price -->
+         <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Book Price</mat-label>
+            <input matInput  placeholder="Enter Book Price"  formControlName="book_price">
+            <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_price').hasError('required') && !bfsform.get('book_price').pristine" >Book Price is required</mat-error>
+            <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_price').hasError('pattern') && !bfsform.get('book_price').pristine" >Price contains only digits.</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- book_publisher -->
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Book Publisher</mat-label>
+            <input matInput  placeholder="Enter Book Publisher"  formControlName="book_publisher">
+            <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_publisher').hasError('required') && !bfsform.get('book_publisher').pristine" >Book Price is required</mat-error>
+          </mat-form-field>
+        </div>
+         <!-- book_ratings -->
+         <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Book Ratings</mat-label>
+            <input matInput #ratings placeholder="Enter Book Ratings"  formControlName="book_ratings">
+            <mat-hint align="end">{{ratings.value.length}} / 1</mat-hint>
+            <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_ratings').hasError('required') && !bfsform.get('book_ratings').pristine" >Book Ratings is required</mat-error>
+            <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_ratings').hasError('pattern') && !bfsform.get('book_ratings').pristine" >Ratings contains only digits.</mat-error>
+          </mat-form-field>
+        </div>
+         <!-- book_image -->
+         <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Book Image</mat-label>
+            <input matInput  placeholder="Enter Book Image"  formControlName="book_image">
+            <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_image').hasError('required') && !bfsform.get('book_image').pristine" >Book Image is required</mat-error>
+          </mat-form-field>
+        </div>
+         <!-- category_name -->
+         <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Category Name </mat-label>
+            <mat-select formControlName="fk_category_id" >
+              <mat-option *ngFor="let item of cat" [value]="item.category_id">
+                {{item.category_name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form-group">
+        <button mat-button type="submit" mat-raised-button color="primary">Save</button> |
+        <button mat-raised-button color="warn" type="button" class="btn btn-info" (click)="onCancleClick()">cancel</button><br>
+      </div>
+  </form>
+</div>
