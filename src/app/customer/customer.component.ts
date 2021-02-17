@@ -60,9 +60,9 @@ export class CustomerComponent implements OnInit,AfterViewInit {
   }
   }
   onEditClick(item:Cust){
-    this._router.navigate(['/editcustomer',item.customer_id]);
+    this._router.navigate(['/home/editcustomer',item.customer_id]);
   }
   onAddClick():void{
-    this._router.navigate(['/addcustomer']);
+    this._router.navigate(['/home/addcustomer']);
    }
 }

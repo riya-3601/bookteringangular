@@ -40,7 +40,7 @@ export class AddaddressbookComponent implements OnInit {
       if(data.affectedRows==1)
        {
          alert('Data inserted succesfully');
-         this._router.navigate(['/addressbook']);
+         this._router.navigate(['/home/addressbook']);
        }
        else{
          alert('Something went wrong');
@@ -56,7 +56,7 @@ export class AddaddressbookComponent implements OnInit {
   onCancleClick():void{
     if(confirm("Are you sure you want to Cancle?"))
     {
-      this._router.navigate(['/addressbook']);
+      this._router.navigate(['/home/addressbook']);
     }
  }
 }

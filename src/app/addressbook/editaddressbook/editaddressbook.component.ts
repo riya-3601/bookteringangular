@@ -55,7 +55,7 @@ export class EditaddressbookComponent implements OnInit {
       if(data.affectedRows==1)
        {
          alert('Data updated succesfully');
-        this._router.navigate(['/addressbook']);
+        this._router.navigate(['/home/addressbook']);
 
        }
        else{
@@ -69,6 +69,6 @@ export class EditaddressbookComponent implements OnInit {
     });
   }
   onCancleClick(){
-    this._router.navigate(['/addressbook']);
+    this._router.navigate(['/home/addressbook']);
   }
 }

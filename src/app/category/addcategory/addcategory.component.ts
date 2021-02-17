@@ -26,7 +26,7 @@ export class AddcategoryComponent implements OnInit {
       if(data.affectedRows==1)
        {
          alert('Data inserted succesfully');
-         this._router.navigate(['/category']);
+         this._router.navigate(['/home/category']);
        }
        else{
          alert('Something went wrong');
@@ -42,7 +42,7 @@ export class AddcategoryComponent implements OnInit {
   onCancleClick():void{
     if(confirm("Are you sure you want to Cancle?"))
     {
-      this._router.navigate(['/category']);
+      this._router.navigate(['/home/category']);
     }
  }
 }

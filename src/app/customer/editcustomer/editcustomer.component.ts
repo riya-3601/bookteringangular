@@ -44,7 +44,7 @@ onEditcustClick(){
     if(data.affectedRows==1)
      {
        alert('Data updated succesfully');
-      this._router.navigate(['/customer']);
+      this._router.navigate(['/home/customer']);
 
      }
      else{
@@ -59,6 +59,6 @@ onEditcustClick(){
   });
 }
 onCancleClick(){
-  this._router.navigate(['/customer']);
+  this._router.navigate(['/home/customer']);
 }
 }

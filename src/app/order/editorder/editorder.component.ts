@@ -54,7 +54,7 @@ export class EditorderComponent implements OnInit {
       if(data.affectedRows==1)
        {
          alert('Data updated succesfully');
-        this._router.navigate(['/order']);
+        this._router.navigate(['/home/order']);
 
        }
        else{
@@ -68,6 +68,6 @@ export class EditorderComponent implements OnInit {
     });
   }
   onCancleClick(){
-    this._router.navigate(['/order']);
+    this._router.navigate(['/home/order']);
   }
 }

@@ -60,9 +60,9 @@ export class AddressbookComponent implements OnInit,AfterViewInit {
    }
 }
 onEditClick(item:Address){
- this._router.navigate(['/editaddressbook',item.address_id]);
+ this._router.navigate(['/home/editaddressbook',item.address_id]);
  }
  onAddClick():void{
-  this._router.navigate(['/addaddressbook']);
+  this._router.navigate(['/home/addaddressbook']);
  }
 }

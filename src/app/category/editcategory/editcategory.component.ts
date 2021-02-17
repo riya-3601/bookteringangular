@@ -36,7 +36,7 @@ export class EditcategoryComponent implements OnInit {
       if(data.affectedRows==1)
        {
          alert('Data updated succesfully');
-        this._router.navigate(['/category']);
+        this._router.navigate(['/home/category']);
 
        }
        else{
@@ -50,7 +50,7 @@ export class EditcategoryComponent implements OnInit {
     });
   }
   onCancleClick(){
-    this._router.navigate(['/category']);
+    this._router.navigate(['/home/category']);
   }
 
 }

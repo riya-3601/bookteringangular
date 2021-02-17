@@ -58,9 +58,9 @@ export class OrderComponent implements OnInit,AfterViewInit {
    }
 }
 onEditClick(item:Ord){
-  this._router.navigate(['/editorder',item.order_id]);
+  this._router.navigate(['/home/editorder',item.order_id]);
  }
  onAddClick():void{
-  this._router.navigate(['/addorder']);
+  this._router.navigate(['/home/addorder']);
  }
 }

@@ -40,7 +40,7 @@ export class AddorderComponent implements OnInit {
       if(data.affectedRows==1)
        {
          alert('Data inserted succesfully');
-         this._router.navigate(['/order']);
+         this._router.navigate(['/home/order']);
        }
        else{
          alert('Something went wrong');
@@ -59,7 +59,7 @@ export class AddorderComponent implements OnInit {
    onCancleClick():void{
       if(confirm("Are you sure you want to Cancle?"))
       {
-        this._router.navigate(['/order']);
+        this._router.navigate(['/home/order']);
       }
    }
 }

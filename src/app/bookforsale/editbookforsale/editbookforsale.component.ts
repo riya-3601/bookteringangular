@@ -60,7 +60,7 @@ export class EditbookforsaleComponent implements OnInit {
       if(data.affectedRows==1)
        {
          alert('Data updated succesfully');
-        this._router.navigate(['/bookforsale']);
+        this._router.navigate(['/home/bookforsale']);
 
        }
        else{
@@ -74,7 +74,7 @@ export class EditbookforsaleComponent implements OnInit {
     });
   }
   onCancleClick(){
-    this._router.navigate(['/bookforsale']);
+    this._router.navigate(['/home/bookforsale']);
   }
 
 }

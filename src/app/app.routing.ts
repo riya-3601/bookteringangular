@@ -32,10 +32,14 @@ import { EditemployeeComponent } from "./employee/editemployee/editemployee.comp
 import { OrderdetailsComponent } from "./orderdetails/orderdetails.component";
 import { AddorderdetailsComponent } from "./orderdetails/addorderdetails/addorderdetails.component";
 import { EditorderdetailsComponent } from "./orderdetails/editorderdetails/editorderdetails.component";
+import { AdminhomeComponent } from './adminhome/adminhome.component';
+import { LoginComponent } from './login/login.component';
+import { ShellComponent } from './shell/shell.component';
 
 const arr:Routes=[
-  {path:'',redirectTo:'/welcome',pathMatch:'full'},
-  {path:'welcome',component:WelcomeComponent},
+  {path:'',component:LoginComponent},
+  {path:'home',component:ShellComponent,children:[
+  {path:'',component:AdminhomeComponent},
   {path:'category',component:CategoryComponent},
   {path:'addcategory',component:AddcategoryComponent},
   {path:'editcategory/:category_id',component:EditcategoryComponent},
@@ -65,7 +69,9 @@ const arr:Routes=[
   {path:'editemployee/:employee_id',component:EditemployeeComponent},
   {path:'orderdetails',component:OrderdetailsComponent},
   {path:'addorderdetails',component:AddorderdetailsComponent},
-  {path:'editorderdetails/:orderdetails_id',component:EditorderdetailsComponent},
-  {path:'**',component:PagenotfoundComponent}
+  {path:'editorderdetails/:orderdetails_id',component:EditorderdetailsComponent}
+  ]},
+  {path:'pagenotfound',component:PagenotfoundComponent},
+  {path:'**',redirectTo:'/pagenotfound',pathMatch:'full'}
 ];
 export const routingarr=RouterModule.forRoot(arr);

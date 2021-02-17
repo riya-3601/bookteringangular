@@ -54,6 +54,12 @@ import { AddorderdetailsComponent } from './orderdetails/addorderdetails/addorde
 import { EditorderdetailsComponent } from './orderdetails/editorderdetails/editorderdetails.component';
 import { DemoComponent } from './demo/demo.component';
 import { MatCardModule } from '@angular/material/card';
+import { AdminhomeComponent } from './adminhome/adminhome.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
+import { LayoutModule } from '@angular/cdk/layout';
+import { LoginComponent } from './login/login.component';
+import { ShellComponent } from './shell/shell.component';
 
 
 
@@ -94,7 +100,10 @@ import { MatCardModule } from '@angular/material/card';
     OrderdetailsComponent,
     AddorderdetailsComponent,
     EditorderdetailsComponent,
-    DemoComponent
+    DemoComponent,
+    AdminhomeComponent,
+    LoginComponent,
+    ShellComponent
 
   ],
   imports: [
@@ -117,6 +126,9 @@ import { MatCardModule } from '@angular/material/card';
     MatRippleModule,
     MatFormFieldModule,
     MatCardModule,
+    MatGridListModule,
+    MatMenuModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

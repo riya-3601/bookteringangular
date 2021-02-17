@@ -58,11 +58,11 @@ export class CategoryComponent implements OnInit ,AfterViewInit{
    }
    }
    onEditClick(item:Cat){
-     this._router.navigate(['/editcategory',item.category_id]);
+     this._router.navigate(['/home/editcategory',item.category_id]);
 
    }
    onAddClick():void{
-    this._router.navigate(['/addcategory']);
+    this._router.navigate(['/home/addcategory']);
    }
 
 }
