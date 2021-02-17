@@ -25,6 +25,10 @@
     </div>
   </div>
  -->
+ <div style="text-align:center;">
+  <h3>Order Details</h3>
+  </div>
+  <hr>
  <div class="container">
   <div class="row">
     <button mat-fab (click)="onAddOrderdetailsClick()" color="primary" aria-label="Example icon button with a vertical three dot icon">
@@ -33,7 +37,7 @@
 
     <mat-form-field>
       <mat-label>Search...</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search.." #input>
     </mat-form-field>
 
     <div class="mat-elevation-z8">

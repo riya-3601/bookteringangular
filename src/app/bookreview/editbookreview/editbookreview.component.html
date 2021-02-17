@@ -48,7 +48,9 @@
     <div class="form-group">
       <mat-form-field>
         <mat-label>Book Review Date</mat-label>
-        <input matInput placeholder="Enter Book Review Date" formControlName="bookreview_date">
+        <input matInput placeholder="Enter Book Review Date"  [matDatepicker]="picker" formControlName="bookreview_date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
         <mat-error  *ngIf="bookreviewadd.get('bookreview_date').hasError('required') && bookreviewadd.get('bookreview_date').dirty">Book Price is required</mat-error>
       </mat-form-field>
     </div>
