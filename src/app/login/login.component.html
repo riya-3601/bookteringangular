@@ -1,3 +1,33 @@
-<p>login works!</p>
 
-<button (click)="onloginClick()" >login</button>
+<form  [formGroup]="login" (ngSubmit)="onsubmitClick()">
+   <h2 align="center">LOGIN</h2>
+
+<div class="form-group">
+  <div class="container">
+  <mat-form-field >
+    <mat-label>Username</mat-label>
+    <input matInput  placeholder="Enter Username" formControlName="login_username">
+    <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearClick()">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <mat-error  *ngIf="login.get('login_username').hasError('required') && login.get('login_username').dirty"> Username is required</mat-error>
+  </mat-form-field>
+</div>
+<br><br>
+<div class="container">
+  <mat-form-field >
+   <mat-label>Password</mat-label>
+   <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter Password" formControlName="login_password">
+    <button class="example-button-row" matSuffix mat-icon-button type="button" >
+      <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error  *ngIf="login.get('login_password').hasError('required') && login.get('login_password').dirty"> Username is required</mat-error>
+  </mat-form-field>
+</div>
+<button mat-raised-button type="submit" color="primary" text-align="center">
+  Login
+</button>
+</div>
+</form>
+
+
