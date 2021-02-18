@@ -60,6 +60,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { LayoutModule } from '@angular/cdk/layout';
 import { LoginComponent } from './login/login.component';
 import { ShellComponent } from './shell/shell.component';
+import { BookforbarterpopupComponent } from './bookforbarter/bookforbarterpopup/bookforbarterpopup.component';
 
 
 
@@ -103,7 +104,8 @@ import { ShellComponent } from './shell/shell.component';
     DemoComponent,
     AdminhomeComponent,
     LoginComponent,
-    ShellComponent
+    ShellComponent,
+    BookforbarterpopupComponent
 
   ],
   imports: [

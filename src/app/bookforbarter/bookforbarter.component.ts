@@ -2,10 +2,13 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup,FormControl } from "@angular/forms";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from "@angular/router";
+import { BookforbarterpopupComponent } from "./bookforbarterpopup/bookforbarterpopup.component";
 import { BookforbarterService } from "../bookforbarter.service";
 import { Bookbart } from "./bookbart";
+
 
 @Component({
   selector: 'app-bookforbarter',
@@ -21,7 +24,7 @@ export class BookforbarterComponent implements OnInit ,AfterViewInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private _bookbartdata:BookforbarterService,private _router:Router) {
+  constructor(private _bookbartdata:BookforbarterService,private _router:Router,private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
 
@@ -74,6 +77,16 @@ export class BookforbarterComponent implements OnInit ,AfterViewInit{
     }
     })
 
+}
+openDialog(id:number) {
+  const abc = this.dialog.open(BookforbarterpopupComponent, {
+    data: id,
+  });
+
+
+  abc.afterClosed().subscribe((x) => {
+    console.log(x);
+  });
 }
 
 onEditClick(item:Bookbart){
