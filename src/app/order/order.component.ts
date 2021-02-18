@@ -14,6 +14,7 @@ import { MatSort } from '@angular/material/sort';
 export class OrderComponent implements OnInit,AfterViewInit {
   displayedColumns: string[] = ['order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name','action'];
   dataSource: MatTableDataSource<Ord>;
+  orderaccrej:string[]=['Accept','Reject'];
   obj:Ord[]=[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
