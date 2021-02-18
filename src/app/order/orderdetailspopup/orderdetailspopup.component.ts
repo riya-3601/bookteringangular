@@ -20,6 +20,7 @@ export class OrderdetailspopupComponent implements OnInit {
         }
       );
 
+
   }
 
 }

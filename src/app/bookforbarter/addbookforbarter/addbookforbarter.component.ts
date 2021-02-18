@@ -43,7 +43,7 @@ export class AddbookforbarterComponent implements OnInit {
       {
        // this.obj.push(this.bookforbarteradd.value);
        alert('Row successfully inserted');
-       this._router.navigate(['/bookforbarter']);
+       this._router.navigate(['/home/bookforbarter']);
       }
       else
       {
@@ -56,7 +56,7 @@ export class AddbookforbarterComponent implements OnInit {
   onCancelClick(): void {
     //this.flag = false;
     if(confirm('Are you sure you want to cancel?')){
-      this._router.navigate(['/bookforbarter']);
+      this._router.navigate(['/home/bookforbarter']);
     }
   }
   onClearClick(){

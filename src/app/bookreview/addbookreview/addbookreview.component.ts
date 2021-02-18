@@ -56,7 +56,7 @@ export class AddbookreviewComponent implements OnInit {
       {
        // this.obj.push(this.bookforbarteradd.value);
        alert('Row successfully inserted');
-       this._router.navigate(['/bookreview']);
+       this._router.navigate(['/home/bookreview']);
       }
       else
       {
@@ -69,7 +69,7 @@ export class AddbookreviewComponent implements OnInit {
   onCancelClick(): void {
     //this.flag = false;
     if(confirm('Are you sure you want to cancel?')){
-      this._router.navigate(['/bookreview']);
+      this._router.navigate(['/home/bookreview']);
     }
   }
 

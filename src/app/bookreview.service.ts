@@ -7,7 +7,7 @@ import { Bookrev } from "./bookreview/bookrev";
   providedIn: 'root'
 })
 export class BookreviewService {
-
+  url1:string="http://localhost:3000/bookreviewbybookbarterid/";
   url:string='http://localhost:3000/bookreview/';
 
   constructor(private _http:HttpClient) { }
@@ -26,6 +26,9 @@ export class BookreviewService {
   }
   getBookreviewById(id:number){
     return this._http.get(this.url+id);
+  }
+  getBookreviewByBookbarterId(id:number){
+    return this._http.get(this.url1+id);
   }
   editBookreview(obj:Bookrev)
 {

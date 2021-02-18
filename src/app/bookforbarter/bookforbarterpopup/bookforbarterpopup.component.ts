@@ -9,6 +9,7 @@ import {BookreviewService  } from "src/app/bookreview.service";
 import { Bookrev } from "src/app/bookreview/bookrev";
 
 
+
 @Component({
   selector: 'app-bookforbarterpopup',
   templateUrl: './bookforbarterpopup.component.html',
@@ -16,7 +17,7 @@ import { Bookrev } from "src/app/bookreview/bookrev";
 })
 export class BookforbarterpopupComponent implements OnInit,AfterViewInit {
 
-  displayedColumns: string[] = ['bookbarter_title','bookreview_description', 'bookreview_date','bookbarter_status', 'bookbarter_price','customer_name','customer_emailid','category_name','action'];
+  displayedColumns: string[] = ['bookbarter_title','bookreview_description', 'bookreview_date','customer_name','customer_emailid','action'];
   dataSource: MatTableDataSource<Bookrev>;
   obj:Bookrev[]=[];
   bookreviewadd:FormGroup;
@@ -24,8 +25,7 @@ export class BookforbarterpopupComponent implements OnInit,AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public dialogref: MatDialogRef<BookforbarterpopupComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string,private _bookrevdata:BookreviewService,private _router:Router) {
+  constructor(public dialogref: MatDialogRef<BookforbarterpopupComponent>, @Inject(MAT_DIALOG_DATA) public data: any,private _bookrevdata:BookreviewService,private _router:Router) {
     this.dataSource = new MatTableDataSource();
   }
   ngAfterViewInit(): void {
@@ -45,11 +45,12 @@ export class BookforbarterpopupComponent implements OnInit,AfterViewInit {
 
 
 
-    this._bookrevdata.getAllBookreview().subscribe((data:Bookrev[])=>{
-      this.obj=data;
+    this._bookrevdata.getBookreviewByBookbarterId(this.data).subscribe((data:Bookrev[])=>{
+    //   this.obj=data;
       this.dataSource.data=data;
-      console.log(this.dataSource.data);
-    });
+    //   console.log(this.dataSource.data);
+    console.log(data);
+     });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -80,10 +81,10 @@ export class BookforbarterpopupComponent implements OnInit,AfterViewInit {
 }
 
 onEditClick(item:Bookrev){
- this._router.navigate(['/editbookreview',item.bookreview_id]);
+ this._router.navigate(['/home/editbookreview',item.bookreview_id]);
 }
 onAddBookrevClick(){
-  this._router.navigate(['/addbookreview']);
+  this._router.navigate(['/home/addbookreview']);
 }
 
 }
