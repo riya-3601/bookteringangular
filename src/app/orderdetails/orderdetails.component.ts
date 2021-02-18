@@ -77,9 +77,9 @@ export class OrderdetailsComponent implements OnInit,AfterViewInit {
 }
 
 onEditClick(item:Orddet){
- this._router.navigate(['/editorderdetails',item.orderdetails_id]);
+ this._router.navigate(['/home/editorderdetails',item.orderdetails_id]);
 }
 onAddOrderdetailsClick(){
-  this._router.navigate(['/addorderdetails']);
+  this._router.navigate(['/home/addorderdetails']);
 }
 }

@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   obj:Cust[];
   username:String;
   password:String;
-
+ message:string='';
   hide:boolean=true;
   constructor(private _router:Router,private _logdata:LoginService) { }
 
@@ -24,22 +24,29 @@ export class LoginComponent implements OnInit {
       login_password:new FormControl(null,[Validators.required])
       });
 
-      this._logdata.getAllCustomer().subscribe((data:Cust[])=>{
-        this.obj=data;
-      });
-  }
+      }
 
   onsubmitClick(){
-    this.username=this.login.get('login_username').value;
-    this.password=this.login.get('login_password').value;
-    if(this.username=="Admin" || this.username=="admin" && this.password=="enter")
-    {
-      this._router.navigate(['/home']);
-    }
-    else
-    {
-      alert('Wrong Username or Password');
-    }
+    // this.username=this.login.get('login_username').value;
+    // this.password=this.login.get('login_password').value;
+    // if(this.username=="Admin" || this.username=="admin" && this.password=="enter")
+    // {
+    //   this._router.navigate(['/home']);
+    // }
+    // else
+    // {
+    //   alert('Wrong Username or Password');
+    // }
+    this._logdata.getAdmin(this.login.value).subscribe((data:Cust[])=>{
+      this.obj=data;
+      if(data.length==1){
+        this._router.navigate(['/home']);
+      }
+      else{
+          this.message='wrong';
+      }
+    });
+
   }
 
   onClearClick(){

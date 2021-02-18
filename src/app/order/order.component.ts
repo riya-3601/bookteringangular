@@ -6,19 +6,21 @@ import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { OrderdetailspopupComponent } from './orderdetailspopup/orderdetailspopup.component';
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit,AfterViewInit {
-  displayedColumns: string[] = ['order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name','action'];
+  displayedColumns: string[] = ['order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name','action','details'];
   dataSource: MatTableDataSource<Ord>;
   orderaccrej:string[]=['Accept','Reject'];
   obj:Ord[]=[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private _orddata:OrderService,private _router:Router,private _actRoute:ActivatedRoute) {
+  constructor(private _orddata:OrderService,private _router:Router,private _actRoute:ActivatedRoute,public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
   ngAfterViewInit(): void {
@@ -63,5 +65,11 @@ onEditClick(item:Ord){
  }
  onAddClick():void{
   this._router.navigate(['/home/addorder']);
+ }
+ onDetailsClick(item:Ord){
+  this.dialog.open(OrderdetailspopupComponent, {
+    data:item.order_id
+  });
+
  }
 }

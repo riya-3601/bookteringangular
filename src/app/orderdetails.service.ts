@@ -7,7 +7,7 @@ import { Orddet } from "./orderdetails/orddet";
   providedIn: 'root'
 })
 export class OrderdetailsService {
-
+url1:string="http://localhost:3000/orderdetailsbyorderid/";
   url:string='http://localhost:3000/orderdetails/';
   constructor(private _http:HttpClient) { }
 
@@ -27,6 +27,10 @@ export class OrderdetailsService {
   getOrderdetailsById(id:number){
     return this._http.get(this.url+id);
   }
+  getOrderdetailsByOrderId(id:number){
+    return this._http.get(this.url1+id);
+  }
+
   editOrderdetails(obj:Orddet)
 {
   let body=JSON.stringify(obj);
