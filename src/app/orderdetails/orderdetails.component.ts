@@ -73,7 +73,6 @@ export class OrderdetailsComponent implements OnInit,AfterViewInit {
       }
     }
     })
-
 }
 
 onEditClick(item:Orddet){
