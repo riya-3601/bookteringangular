@@ -61,44 +61,6 @@
           <td mat-cell *matCellDef="let row"> {{row.employee_name}}</td>
         </ng-container>
 
-
-
-        <!-- <mat-accordion>
-          <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                View Order Details
-              </mat-panel-title>
-               <mat-panel-description>
-                This is a summary of the content
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p><ng-container matColumnDef="order_date">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Order date </th>
-              <td mat-cell *matCellDef="let row"> {{row.order_date}}</td>
-            </ng-container>
-            </p>>
-
-           <p> <ng-container matColumnDef="order_paymenttype">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment type</th>
-              <td mat-cell *matCellDef="let row"> {{row.order_paymenttype}} </td>
-            </ng-container></p>
-
-            <p>
-              <ng-container matColumnDef="order_totalamount">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total amount </th>
-                <td mat-cell *matCellDef="let row" > {{row.order_totalamount| currency:'INR'}} </td>
-              </ng-container>
-            </p>
-          </mat-expansion-panel>
-          </mat-accordion>-->
-
-
-
-
-
-
-
          <ng-container matColumnDef="order_date">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Order date </th>
           <td mat-cell *matCellDef="let row"> {{row.order_date}}</td>

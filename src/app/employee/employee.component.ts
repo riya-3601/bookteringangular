@@ -6,6 +6,8 @@ import { EmployeeService } from "../employee.service";
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { EmployeepopupComponent } from "./employeepopup/employeepopup.component";
 
 
 @Component({
@@ -14,7 +16,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit ,AfterViewInit{
-  displayedColumns: string[] = [ 'employee_name','employee_mobileno', 'employee_password','action'];
+  displayedColumns: string[] = [ 'employee_name','employee_mobileno', 'employee_password','action','details'];
   dataSource: MatTableDataSource<Emp>;
 
   obj:Emp[]=[];
@@ -23,7 +25,7 @@ export class EmployeeComponent implements OnInit ,AfterViewInit{
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private _empdata:EmployeeService,private _router:Router) {
+  constructor(private _empdata:EmployeeService,private _router:Router,public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
    }
 
@@ -83,4 +85,10 @@ onEditClick(item:Emp){
   onAddEmployeeClick(){
     this._router.navigate(['/home/addemployee']);
   }
+  onDetailsClick(item:Emp){
+    this.dialog.open(EmployeepopupComponent, {
+      data:item.employee_id
+    });
+
+   }
 }

@@ -1,1 +1,89 @@
-<p>employeepopup works!</p>
+<div style="text-align:center;">
+      <h3>Employee Delivery</h3>
+      </div>
+      <hr>
+        <button mat-fab (click)="onAddEmpdelClick()" color="primary" aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>add</mat-icon>
+        </button>
+
+
+     <mat-form-field>
+      <mat-label>Search...</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Search.." #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <ng-container matColumnDef="order_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.order_id}} </td>
+        </ng-container>
+        <!-- ID Column -->
+        <ng-container matColumnDef="delivery_status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Delivery Status </th>
+          <td mat-cell *matCellDef="let row"> {{row.delivery_status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="order_date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Order date </th>
+          <td mat-cell *matCellDef="let row"> {{row.order_date}}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="order_paymenttype">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment type</th>
+          <td mat-cell *matCellDef="let row"> {{row.order_paymenttype}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="order_totalamount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Total amount </th>
+          <td mat-cell *matCellDef="let row" > {{row.order_totalamount| currency:'INR'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="customer_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name</th>
+          <td mat-cell *matCellDef="let row"> {{row.customer_name}}</td>
+        </ng-container>
+        <ng-container matColumnDef="customer_mobileno">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Customer contact no. </th>
+          <td mat-cell *matCellDef="let row"> {{row.customer_mobileno}}</td>
+        </ng-container>
+        <ng-container matColumnDef="address_1">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Address </th>
+          <td mat-cell *matCellDef="let row"> {{row.address_1}}</td>
+        </ng-container>
+        
+
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+          <td mat-cell *matCellDef="let row;let i=index" >
+            <button mat-icon-button color="warn" (click)="onDeleteClick(row,i)" >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="onEditClick(row,i)" >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+         <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+        </tr>
+      </table>
+
+       <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+
+
+
+
+
+
