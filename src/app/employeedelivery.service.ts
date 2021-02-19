@@ -7,7 +7,7 @@ import { Empdel } from "./employeedelivery/empdel";
   providedIn: 'root'
 })
 export class EmployeedeliveryService {
-
+  url1:string='http://localhost:3000/getEmployeeDeliveryByEmployeeId/';
   url:string='http://localhost:3000/employeedelivery/';
   constructor(private _http:HttpClient) { }
 
@@ -32,5 +32,7 @@ export class EmployeedeliveryService {
   let head=new HttpHeaders().set(environment.headname,environment.headvalue);
   return this._http.put(this.url,body,{headers:head});
 }
-
+getEmployeeDeliveryByEmployeeId(id:number){
+  return this._http.get(this.url1+id);
+}
 }
