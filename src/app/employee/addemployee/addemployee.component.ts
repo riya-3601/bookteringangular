@@ -34,7 +34,7 @@ export class AddemployeeComponent implements OnInit {
       {
        // this.obj.push(this.bookforbarteradd.value);
        alert('Row successfully inserted');
-       this._router.navigate(['/employee']);
+       this._router.navigate(['/home/employee']);
       }
       else
       {
@@ -47,7 +47,7 @@ export class AddemployeeComponent implements OnInit {
   onCancelClick(): void {
     //this.flag = false;
     if(confirm('Are you sure you want to cancel?')){
-      this._router.navigate(['/employee']);
+      this._router.navigate(['/home/employee']);
     }
   }
   onClearClick(){

@@ -46,7 +46,7 @@ export class AddemployeedeliveryComponent implements OnInit {
       {
        // this.obj.push(this.bookforbarteradd.value);
        alert('Row successfully inserted');
-       this._router.navigate(['/employeedelivery']);
+       this._router.navigate(['/home/employeedelivery']);
       }
       else
       {
@@ -60,7 +60,7 @@ export class AddemployeedeliveryComponent implements OnInit {
   onCancelClick(): void {
     //this.flag = false;
     if(confirm('Are you sure you want to cancel?')){
-    this._router.navigate(['/employeedelivery']);
+    this._router.navigate(['/home/employeedelivery']);
     }
   }
 

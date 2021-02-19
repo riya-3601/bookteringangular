@@ -61,7 +61,7 @@ export class EditorderdetailsComponent implements OnInit {
       {
        // this.obj.push(this.bookforbarteradd.value);
        alert('Row updated successfully');
-       this._router.navigate(['/orderdetails']);
+       this._router.navigate(['/home/orderdetails']);
       }
       else
       {
@@ -74,7 +74,7 @@ export class EditorderdetailsComponent implements OnInit {
   onCancelClick(): void {
     //this.flag = false;
     if(confirm('Are you sure you want to cancel?')){
-      this._router.navigate(['/bookforbarter']);
+      this._router.navigate(['/home/orderdetails']);
     }
   }
   onClearClick(){

@@ -13,7 +13,7 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./employeedelivery.component.css']
 })
 export class EmployeedeliveryComponent implements OnInit,AfterViewInit {
-  displayedColumns: string[] = ['delivery_status', 'employee_name', 'order_date','order_paymenttype', 'order_totalamount','customer_name','action'];
+  displayedColumns: string[] = ['order_id','delivery_status', 'employee_name', 'order_date','order_paymenttype', 'order_totalamount','customer_name','action'];
   dataSource: MatTableDataSource<Empdel>;
 
   obj:Empdel[]=[];
@@ -57,7 +57,7 @@ export class EmployeedeliveryComponent implements OnInit,AfterViewInit {
   }
 
   onAddEmpdelClick(){
-    this._router.navigate(['/addemployeedelivery']);
+    this._router.navigate(['/home/addemployeedelivery']);
   }
   onDeleteClick(item: Empdel) {
     this._empdeldata.deleteEmployeedelivery(item.delivery_id).subscribe((data:any)=>{
@@ -80,6 +80,6 @@ export class EmployeedeliveryComponent implements OnInit,AfterViewInit {
 }
 
 onEditClick(item:Empdel){
- this._router.navigate(['/editemployeedelivery',item.delivery_id]);
+ this._router.navigate(['/home/editemployeedelivery',item.delivery_id]);
 }
 }

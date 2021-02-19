@@ -4,9 +4,9 @@
   <hr>
  <div class="container">
   <div class="row">
-    <button mat-fab (click)="onAddBookrevClick()" color="primary" aria-label="Example icon button with a vertical three dot icon">
+    <!-- <button mat-fab (click)="onAddBookrevClick()" color="primary" aria-label="Example icon button with a vertical three dot icon">
       <mat-icon>add</mat-icon>
-    </button>
+    </button> -->
 
     <mat-form-field>
       <mat-label>Search...</mat-label>
@@ -33,16 +33,16 @@
         </ng-container>
 
 
-        <ng-container matColumnDef="bookbarter_status">
+        <!-- <ng-container matColumnDef="bookbarter_status">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Status of BookForBarter </th>
           <td mat-cell *matCellDef="let row"> {{row.bookbarter_status}}</td>
-        </ng-container>
+        </ng-container> -->
 
 
-        <ng-container matColumnDef="bookbarter_price">
+        <!-- <ng-container matColumnDef="bookbarter_price">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Price Of Book</th>
           <td mat-cell *matCellDef="let row"> {{row.bookbarter_price| currency:'INR'}} </td>
-        </ng-container>
+        </ng-container> -->
 
 
         <ng-container matColumnDef="customer_name">
@@ -55,10 +55,10 @@
           <td mat-cell *matCellDef="let row"> {{row.customer_emailid}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="category_name">
+        <!-- <ng-container matColumnDef="category_name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Category name</th>
           <td mat-cell *matCellDef="let row"> {{row.category_name}}</td>
-        </ng-container>
+        </ng-container> -->
 
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
@@ -80,16 +80,8 @@
           <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
         </tr>
       </table>
-
        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
-
-
   </div>
 </div>
-
-
-
-
-
 <button mat-button mat-dialog-close>Close</button>

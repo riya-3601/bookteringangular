@@ -16,7 +16,7 @@ import { Bookbart } from "./bookbart";
   styleUrls: ['./bookforbarter.component.css']
 })
 export class BookforbarterComponent implements OnInit ,AfterViewInit{
-  displayedColumns: string[] = ['bookbarter_title', 'bookbarter_author','bookbarter_status', 'bookbarter_price','customer_name','action'];
+  displayedColumns: string[] = ['bookbarter_title', 'bookbarter_author','bookbarter_status', 'bookbarter_price','customer_name','action','reviews'];
   dataSource: MatTableDataSource<Bookbart>;
   obj:Bookbart[]=[];
   bookforbarteradd:FormGroup;
@@ -78,9 +78,9 @@ export class BookforbarterComponent implements OnInit ,AfterViewInit{
     })
 
 }
-openDialog(id:number) {
+openDialog(item:Bookbart) {
   const abc = this.dialog.open(BookforbarterpopupComponent, {
-    data: id,
+    data:item.bookbarter_id
   });
 
 
@@ -90,10 +90,10 @@ openDialog(id:number) {
 }
 
 onEditClick(item:Bookbart){
- this._router.navigate(['/editbookforbarter',item.bookbarter_id]);
+ this._router.navigate(['/home/editbookforbarter',item.bookbarter_id]);
 }
 onAddBookbartClick(){
-  this._router.navigate(['/addbookforbarter']);
+  this._router.navigate(['/home/addbookforbarter']);
 }
 
 }

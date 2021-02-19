@@ -82,9 +82,9 @@ export class BookreviewComponent implements OnInit,AfterViewInit {
 }
 
 onEditClick(item:Bookrev){
- this._router.navigate(['/editbookreview',item.bookreview_id]);
+ this._router.navigate(['/home/editbookreview',item.bookreview_id]);
 }
 onAddBookrevClick(){
-  this._router.navigate(['/addbookreview']);
+  this._router.navigate(['/home/addbookreview']);
 }
 }

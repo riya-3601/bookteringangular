@@ -69,7 +69,7 @@ export class EditbookreviewComponent implements OnInit {
       {
        // this.obj.push(this.bookforbarteradd.value);
        alert('Row updated successfully');
-       this._router.navigate(['/bookreview']);
+       this._router.navigate(['/home/bookreview']);
       }
       else
       {
@@ -82,10 +82,10 @@ export class EditbookreviewComponent implements OnInit {
   onCancelClick(): void {
     //this.flag = false;
     if(confirm('Are you sure you want to cancel?')){
-      this._router.navigate(['/bookreview']);
+      this._router.navigate(['/home/bookreview']);
     }
   }
   onClearDescClick(){
-    this._router.navigate(['/bookreview']);
+    this._router.navigate(['/home/bookreview']);
   }
 }

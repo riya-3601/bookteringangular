@@ -78,9 +78,9 @@ export class EmployeeComponent implements OnInit ,AfterViewInit{
 }
 
 onEditClick(item:Emp){
- this._router.navigate(['/editemployee',item.employee_id]);
+ this._router.navigate(['/home/editemployee',item.employee_id]);
   }
   onAddEmployeeClick(){
-    this._router.navigate(['/addemployee']);
+    this._router.navigate(['/home/addemployee']);
   }
 }

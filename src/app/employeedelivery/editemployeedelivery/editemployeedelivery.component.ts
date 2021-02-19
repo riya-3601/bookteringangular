@@ -61,7 +61,7 @@ export class EditemployeedeliveryComponent implements OnInit {
       {
        // this.obj.push(this.bookforbarteradd.value);
        alert('Row updated successfully');
-       this._router.navigate(['/employeedelivery']);
+       this._router.navigate(['/home/employeedelivery']);
       }
       else
       {
@@ -73,7 +73,7 @@ export class EditemployeedeliveryComponent implements OnInit {
   }
   onCancelClick(): void {
     if(confirm('Are you sure you want to cancel?')){
-      this._router.navigate(['/employeedelivery']);
+      this._router.navigate(['/home/employeedelivery']);
       }
     //this.flag = false;
   }

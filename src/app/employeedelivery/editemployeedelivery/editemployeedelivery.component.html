@@ -35,7 +35,7 @@
   <div class="form-group">
     <mat-form-field>
       <mat-label>Change Employee Name</mat-label>
-      <mat-select formControlName="fk_employee_id" name="Employee name">
+      <mat-select disabled formControlName="fk_employee_id" name="Employee name">
         <mat-option *ngFor="let item of emp" [value]="item.employee_id">
           {{item.employee_name}}
         </mat-option>
@@ -47,7 +47,7 @@
       <div class="form-group">
         <mat-form-field>
           <mat-label>Change Order id</mat-label>
-          <mat-select formControlName="fk_order_id" name="Order id">
+          <mat-select disabled formControlName="fk_order_id" name="Order id">
             <mat-option *ngFor="let item of ord" [value]="item.order_id">
               {{item.order_id}}
             </mat-option>
