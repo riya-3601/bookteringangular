@@ -62,6 +62,7 @@ import { LoginComponent } from './login/login.component';
 import { ShellComponent } from './shell/shell.component';
 import { BookforbarterpopupComponent } from './bookforbarter/bookforbarterpopup/bookforbarterpopup.component';
 import { OrderdetailspopupComponent } from './order/orderdetailspopup/orderdetailspopup.component';
+import { AddressbookpopupComponent } from './customer/addressbookpopup/addressbookpopup.component';
 
 
 
@@ -107,7 +108,8 @@ import { OrderdetailspopupComponent } from './order/orderdetailspopup/orderdetai
     LoginComponent,
     ShellComponent,
     BookforbarterpopupComponent,
-    OrderdetailspopupComponent
+    OrderdetailspopupComponent,
+    AddressbookpopupComponent
 
   ],
   imports: [
