@@ -32,9 +32,9 @@ url1:string="http://localhost:3000/orderdetailsbyorderid/";
   }
 
   editOrderdetails(obj:Orddet)
-{
-  let body=JSON.stringify(obj);
-  let head=new HttpHeaders().set(environment.headname,environment.headvalue);
-  return this._http.put(this.url,body,{headers:head});
-}
+  {
+    let body=JSON.stringify(obj);
+    let head=new HttpHeaders().set(environment.headname,environment.headvalue);
+    return this._http.put(this.url,body,{headers:head});
+  }
 }

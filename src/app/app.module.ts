@@ -110,11 +110,8 @@ import { EmployeepopupComponent } from './employee/employeepopup/employeepopup.c
     ShellComponent,
     BookforbarterpopupComponent,
     OrderdetailspopupComponent,
-<<<<<<< HEAD
-    AddressbookpopupComponent
-=======
+    AddressbookpopupComponent,
     EmployeepopupComponent
->>>>>>> 33b53589c939f48a66e55d1447839d8a6b82b97e
 
   ],
   imports: [

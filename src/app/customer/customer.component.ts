@@ -6,20 +6,22 @@ import { CustomerService } from "../customer.service";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { AddressbookpopupComponent } from "./addressbookpopup/addressbookpopup.component";
+import { Address } from '../addressbook/address';
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit,AfterViewInit {
-  displayedColumns: string[] =['customer_emailid','customer_name','customer_gender','customer_mobileno','action'];
+  displayedColumns: string[] =['customer_emailid','customer_name','customer_gender','customer_mobileno','action','address_details'];
   dataSource: MatTableDataSource<Cust>;
   obj:Cust[]=[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _custdata:CustomerService,private _router:Router,private _actRoute:ActivatedRoute) {
+  constructor(private _custdata:CustomerService,private _router:Router,private _actRoute:ActivatedRoute,public dialog: MatDialog) {
     this.dataSource = new MatTableDataSource();
   }
   ngAfterViewInit(): void {
@@ -64,5 +66,16 @@ export class CustomerComponent implements OnInit,AfterViewInit {
   }
   onAddClick():void{
     this._router.navigate(['/home/addcustomer']);
+   }
+   onDetailsClick(item:Address){
+    console.log(item.customer_id);
+    const abc =this.dialog.open(AddressbookpopupComponent, {
+      data:item.customer_id
+    });
+
+    abc.afterClosed().subscribe((x) => {
+      console.log(x);
+    });
+
    }
 }
