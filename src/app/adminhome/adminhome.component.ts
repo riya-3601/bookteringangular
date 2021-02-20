@@ -10,6 +10,8 @@ import { MatSort } from '@angular/material/sort';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { OrderdetailspopupComponent } from 'src/app/order/orderdetailspopup/orderdetailspopup.component';
 import { Ord } from '../order/ord';
+import { BookforbarterService } from '../bookforbarter.service';
+import { Bookbart } from '../bookforbarter/bookbart';
 
 @Component({
   selector: 'app-adminhome',
@@ -51,9 +53,10 @@ export class AdminhomeComponent {
   dataSource: MatTableDataSource<Ord>;
   orderaccrej:string[]=['Accept','Reject'];
   obj:Ord[]=[];
+  obj1:number[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private _orddata:OrderService,private _router:Router,private _actRoute:ActivatedRoute,public dialog: MatDialog) {
+  constructor(private _orddata:OrderService,private _router:Router,private _actRoute:ActivatedRoute,public dialog: MatDialog,public _bookbarterdata:BookforbarterService) {
     this.dataSource = new MatTableDataSource();
   }
   ngAfterViewInit(): void {
@@ -65,6 +68,9 @@ export class AdminhomeComponent {
     this._orddata.getAllOrders().subscribe((data:Ord[])=>{
       this.obj=data;
       this.dataSource.data=data;
+    });
+    this._bookbarterdata.getAllBookforbarter().subscribe((data:Bookbart[])=>{
+
     });
   }
   applyFilter(event: Event) {
