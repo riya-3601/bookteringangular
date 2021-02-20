@@ -67,8 +67,13 @@ onEditClick(item:Ord){
   this._router.navigate(['/home/addorder']);
  }
  onDetailsClick(item:Ord){
-  this.dialog.open(OrderdetailspopupComponent, {
+  console.log(item.order_id);
+  const abc =this.dialog.open(OrderdetailspopupComponent, {
     data:item.order_id
+  });
+
+  abc.afterClosed().subscribe((x) => {
+    console.log(x);
   });
 
  }

@@ -7,6 +7,7 @@ import { Address } from "./addressbook/address";
 })
 export class AddressbookService {
   url:string='http://localhost:3000/addressbook/';
+  url1:string='http://localhost:3000/addressbycustomerid/';
   constructor(private _http:HttpClient) { }
   getAllAddressbook(){
     return this._http.get(this.url);
@@ -22,6 +23,9 @@ export class AddressbookService {
   }
   getAddressbookById(id:number){
     return this._http.get(this.url+id);
+  }
+  getAddressbyCustomerid(id:number){
+    return this._http.get(this.url1+id);
   }
   editAddressbook(obj:Address){
     let body=JSON.stringify(obj);
