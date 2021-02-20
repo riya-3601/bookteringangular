@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         this._router.navigate(['/home']);
       }
       else{
-          this.message='wrong';
+          this.message='Username or Password is Wrong';
       }
     });
 
