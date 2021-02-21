@@ -1,35 +1,39 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Ord  } from "./ord";
-import { OrderService } from "../order.service";
-import { Router } from "@angular/router";
+import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { EmployeeService } from "src/app/employee.service";
+import { OrderService } from "src/app/order.service";
+import { Ord } from "src/app/order/ord";
+import { Empdel } from "src/app/employeedelivery/empdel";
+import { EmployeedeliveryService } from "src/app/employeedelivery.service";
+import { Router } from '@angular/router';
+import { FormGroup,FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { OrderdetailspopupComponent } from './orderdetailspopup/orderdetailspopup.component';
+import { OrderdetailspopupComponent } from '../order/orderdetailspopup/orderdetailspopup.component';
+import { EmployeeassignService } from '../employeeassign.service';
+
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.css']
+  selector: 'app-employeeassign',
+  templateUrl: './employeeassign.component.html',
+  styleUrls: ['./employeeassign.component.css']
 })
-export class OrderComponent implements OnInit,AfterViewInit {
+export class EmployeeassignComponent implements OnInit ,AfterViewInit{
   displayedColumns: string[] = ['order_id','order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name','action','details'];
   dataSource: MatTableDataSource<Ord>;
-  orderaccrej:string[]=['Accept','Reject'];
   obj:Ord[]=[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private _orddata:OrderService,private _router:Router,private _actRoute:ActivatedRoute,public dialog: MatDialog) {
+  constructor(private _orddata:OrderService,private _router:Router,private _actRoute:ActivatedRoute,public dialog: MatDialog,private _empassdata:EmployeeassignService) {
     this.dataSource = new MatTableDataSource();
-  }
+   }
   ngAfterViewInit(): void {
     this.dataSource.paginator=this.paginator;
     this.dataSource.sort=this.sort;
   }
-
   ngOnInit(): void {
-    this._orddata.getAllOrders().subscribe((data:Ord[])=>{
+    this._empassdata.getAllOrders().subscribe((data:Ord[])=>{
       this.obj=data;
       this.dataSource.data=data;
     });
@@ -60,11 +64,11 @@ export class OrderComponent implements OnInit,AfterViewInit {
      });
    }
 }
+onAddClick():void{
+  this._router.navigate(['/home/addorder']);
+ }
 onEditClick(item:Ord){
   this._router.navigate(['/home/editorder',item.order_id]);
- }
- onAddClick():void{
-  this._router.navigate(['/home/addorder']);
  }
  onDetailsClick(item:Ord){
   console.log(item.order_id);
@@ -78,24 +82,14 @@ onEditClick(item:Ord){
 
  }
  onsignupClick(row:Ord):void{
-   alert('works');
-  this._orddata.editOrder(row).subscribe((data:any)=>{
-    console.log(data);
-    if(data.affectedRows==1)
-       {
-        //  this.obj.splice(this.obj.indexOf(item),1);
-        //   this.dataSource.data=this.obj;
-         alert('Order accepted');
-       }
-       else{
-         alert('Something went wrong');
-         console.log(data);
-       }
-   },
-   function(err){
-     console.log(err);
-   });
-  //this._router.navigate(['/home/employeeassign']);
+  // this._orddata.editOrder(row).subscribe((data:any)=>{
+  //      this._router.navigate(['/home/employeeassign']);
+
+  //  },
+  //  function(err){
+  //    console.log(err);
+  //  });
+  this._router.navigate(['/home/employeeassign']);
 
  }
 

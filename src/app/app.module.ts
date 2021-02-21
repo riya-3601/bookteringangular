@@ -65,6 +65,7 @@ import { BookforbarterpopupComponent } from './bookforbarter/bookforbarterpopup/
 import { OrderdetailspopupComponent } from './order/orderdetailspopup/orderdetailspopup.component';
 import { AddressbookpopupComponent } from './customer/addressbookpopup/addressbookpopup.component';
 import { EmployeepopupComponent } from './employee/employeepopup/employeepopup.component';
+import { EmployeeassignComponent } from './employeeassign/employeeassign.component';
 
 
 
@@ -112,7 +113,8 @@ import { EmployeepopupComponent } from './employee/employeepopup/employeepopup.c
     BookforbarterpopupComponent,
     OrderdetailspopupComponent,
     AddressbookpopupComponent,
-    EmployeepopupComponent
+    EmployeepopupComponent,
+    EmployeeassignComponent
 
   ],
   imports: [

@@ -32,6 +32,7 @@ import { EditemployeeComponent } from "./employee/editemployee/editemployee.comp
 import { OrderdetailsComponent } from "./orderdetails/orderdetails.component";
 import { AddorderdetailsComponent } from "./orderdetails/addorderdetails/addorderdetails.component";
 import { EditorderdetailsComponent } from "./orderdetails/editorderdetails/editorderdetails.component";
+import { EmployeeassignComponent } from "./employeeassign/employeeassign.component";
 import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { LoginComponent } from './login/login.component';
 import { ShellComponent } from './shell/shell.component';
@@ -69,7 +70,8 @@ const arr:Routes=[
   {path:'editemployee/:employee_id',component:EditemployeeComponent},
   {path:'orderdetails',component:OrderdetailsComponent},
   {path:'addorderdetails',component:AddorderdetailsComponent},
-  {path:'editorderdetails/:orderdetails_id',component:EditorderdetailsComponent}
+  {path:'editorderdetails/:orderdetails_id',component:EditorderdetailsComponent},
+  {path:'employeeassign',component:EmployeeassignComponent},
   ]},
   {path:'pagenotfound',component:PagenotfoundComponent},
   {path:'**',redirectTo:'/pagenotfound',pathMatch:'full'}

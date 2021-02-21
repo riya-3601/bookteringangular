@@ -21,7 +21,7 @@ export class AddemployeedeliveryComponent implements OnInit {
   ord:Ord[]=[];
   employeedeliveryadd:FormGroup;
   flag: boolean = false;
-  delstatus:String[]=['Accepted','Packed','Out for Delivery','Delivered'];
+  delstatus:String[]=['Placed','Packed','Out for Delivery','Delivered'];
   ngOnInit(): void {
 
     this._empdata.getAllEmployee().subscribe((data:Emp[])=>{
