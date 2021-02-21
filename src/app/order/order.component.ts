@@ -14,7 +14,7 @@ import { OrderdetailspopupComponent } from './orderdetailspopup/orderdetailspopu
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit,AfterViewInit {
-  displayedColumns: string[] = ['order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name','action','details'];
+  displayedColumns: string[] = ['order_id','order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name','action','details'];
   dataSource: MatTableDataSource<Ord>;
   orderaccrej:string[]=['Accept','Reject'];
   obj:Ord[]=[];
@@ -77,4 +77,24 @@ onEditClick(item:Ord){
   });
 
  }
+ onsignupClick(row:Ord):void{
+  this._orddata.editOrder(row).subscribe((data:any)=>{
+    
+    if(data.affectedRows==1)
+     {
+       alert('Data inserted succesfully');
+       //this._router.navigate(['/home/order']);
+     }
+     else{
+       alert('Something went wrong');
+       console.log(data);
+     }
+
+   },
+   function(err){
+     console.log(err);
+   });
+
+ }
+
 }

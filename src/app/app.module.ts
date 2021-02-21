@@ -43,6 +43,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+import { ChartsModule } from 'ng2-charts';
 //import { MatAccordion,MatExpansionModule } from "@angular/material/expansion";
 
 
@@ -137,6 +138,9 @@ import { EmployeepopupComponent } from './employee/employeepopup/employeepopup.c
     MatGridListModule,
     MatMenuModule,
     LayoutModule,
+    ChartsModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
