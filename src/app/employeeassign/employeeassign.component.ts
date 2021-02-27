@@ -13,6 +13,8 @@ import { MatSort } from '@angular/material/sort';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { OrderdetailspopupComponent } from '../order/orderdetailspopup/orderdetailspopup.component';
 import { EmployeeassignService } from '../employeeassign.service';
+import { Emp } from "src/app/employee/emp";
+import { Empass } from "src/app/employeeassign/empass";
 
 @Component({
   selector: 'app-employeeassign',
@@ -20,12 +22,17 @@ import { EmployeeassignService } from '../employeeassign.service';
   styleUrls: ['./employeeassign.component.css']
 })
 export class EmployeeassignComponent implements OnInit ,AfterViewInit{
-  displayedColumns: string[] = ['order_id','order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name','action','details'];
+  displayedColumns: string[] = ['check','order_id','order_date', 'order_status', 'order_paymenttype', 'order_totalamount','customer_name','details'];
+
   dataSource: MatTableDataSource<Ord>;
+  empsel:FormGroup;
   obj:Ord[]=[];
+  emp1:Emp[]=[];
+  addempass:Ord[]=[];
+  delemp:Empass[]=[];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private _orddata:OrderService,private _router:Router,private _actRoute:ActivatedRoute,public dialog: MatDialog,private _empassdata:EmployeeassignService) {
+  constructor(private _orddata:OrderService,private _empdel:EmployeedeliveryService,private _router:Router,private _actRoute:ActivatedRoute,public dialog: MatDialog,private _empassdata:EmployeeassignService,private _empdata:EmployeeService) {
     this.dataSource = new MatTableDataSource();
    }
   ngAfterViewInit(): void {
@@ -37,6 +44,13 @@ export class EmployeeassignComponent implements OnInit ,AfterViewInit{
       this.obj=data;
       this.dataSource.data=data;
     });
+    this._empdata.getAllEmployee().subscribe((data:Emp[])=>{
+      this.emp1=data;
+    });
+    this.empsel=new FormGroup({
+      employee_id:new FormControl(null),
+      employee_name:new FormControl(null),
+    });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -46,6 +60,7 @@ export class EmployeeassignComponent implements OnInit ,AfterViewInit{
       this.dataSource.paginator.firstPage();
     }
   }
+
   onDeleteClick(item: Ord) {
     if(confirm("Are you sure you want to delete?"))
     {
@@ -92,5 +107,37 @@ onEditClick(item:Ord){
   this._router.navigate(['/home/employeeassign']);
 
  }
+ onAdddeliveryClick(){
+  this._empassdata.addempDelivery(new Empass(this.empsel.get('employee_id').value,this.addempass)).subscribe((data:Empass)=>{
+    console.log(data);
+    // if(data.affectedRows==1)
+    //    {
+    //      alert('Data inserted succesfully');
+    //      this._router.navigate(['/home/order']);
+    //    }
+    //    else{
+    //      alert('Something went wrong');
+    //      console.log(data);
+    //    }
+
+    //  },
+    //  function(err){
+    //    console.log(err);
+
+  });
+
+ }
+ checkbox(item:Ord){
+   console.log(this.addempass);
+   console.log(this.empsel.get('employee_id').value);
+  if(this.addempass.find(x=>x==item))
+  {
+  this.addempass.splice(this.addempass.indexOf(item),1)
+  }
+  else{
+  this.addempass.push(item);
+  }
+ }
+
 
 }

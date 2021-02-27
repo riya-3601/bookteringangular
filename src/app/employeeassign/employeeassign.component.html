@@ -16,10 +16,27 @@
         <input matInput  (keyup)="applyFilter($event)" placeholder="Search" #input>
         <mat-icon>search</mat-icon>
       </div>
+      <form [formGroup]="empsel">
+      <mat-label>Select Employee Name</mat-label>
+      <mat-select formControlName="employee_id" >
+        <mat-option *ngFor="let item of emp1" [value]="item.employee_id">
+          {{item.employee_name}}
+        </mat-option>
+      </mat-select>
+    </form>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
-
+          <!-- <ng-container matColumnDef="check">
+          <input type="checkbox" (change)="checkbox()">
+        </ng-container> -->
           <!-- ID Column -->
+          <ng-container matColumnDef="check">
+            <th mat-header-cell *matHeaderCellDef >Check Box</th>
+
+            <td mat-cell *matCellDef="let row">
+              <input type="checkbox" (change)="checkbox(row)">
+             </td>
+          </ng-container>
           <ng-container matColumnDef="order_id">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Order ID</th>
             <td mat-cell *matCellDef="let row"> {{row.order_id}} </td>
@@ -60,17 +77,6 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> customer_name </th>
             <td mat-cell *matCellDef="let row" > {{row.customer_name}} </td>
           </ng-container>
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-            <td mat-cell *matCellDef="let row;let i=index" >
-              <button mat-raised-button color="primary" (click)="onsignupClick(row)" >
-                Accept
-              </button>
-              <button mat-raised-button color="warn" (click)="onDeleteClick(row,i)" >
-                Reject
-              </button>
-            </td>
-          </ng-container>
           <ng-container matColumnDef="details">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Details </th>
             <td mat-cell *matCellDef="let row;let i=index" >
@@ -91,10 +97,13 @@
 
         <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
       </div>
-
     </div>
   </div>
-
+<div style="text-align:right;">
+  <button mat-raised-button color="primary" (click)="onAdddeliveryClick()">
+    Go
+  </button>
+</div>
 
 
    <!-- <table class="table">
