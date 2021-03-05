@@ -14,6 +14,7 @@ export class AddbookforsaleComponent implements OnInit {
   bfsform:FormGroup;
   cat:Cat[]=[];
   applicant: any;
+  selectedfile:File=null;
   constructor(private _bfsdata:BookforsaleService,private _catdata:CategoryService,private _router:Router) { }
 
   ngOnInit(): void {
@@ -36,9 +37,33 @@ export class AddbookforsaleComponent implements OnInit {
       fk_category_id:new FormControl(null),
     });
   }
-  onsignupClick():void{
+  // console.log(this.loginForm);
+  //   const fd=new FormData();
+  //   fd.append('username',this.loginForm.get('username').value);
+  //   fd.append('email',this.loginForm.get('email').value);
+  //   fd.append('gender',this.loginForm.get('gender').value);
+  //   var str="";
+  //   for(var i=0;i<this.loginForm.get('hobby').value.length;i++)
+  //   {
+  //     str+=this.loginForm.get('hobby').value[i] + ',';
+  //   }
+  //   fd.append('hobby',str);
+  //    fd.append('mobile_no',this.loginForm.get('mobile_no').value);
 
-    this._bfsdata.addBookforsale(this.bfsform.value).subscribe((data:any)=>{
+  //    fd.append('image',this.selectedFile,this.selectedFile.name);
+  onsignupClick():void{
+    const fd=new FormData();
+    fd.append('book_isbn',this.bfsform.get('book_isbn').value);
+    fd.append('book_title',this.bfsform.get('book_title').value);
+    fd.append('book_author',this.bfsform.get('book_author').value);
+    fd.append('book_price',this.bfsform.get('book_price').value);
+    fd.append('book_publisher',this.bfsform.get('book_publisher').value);
+    fd.append('book_ratings',this.bfsform.get('book_ratings').value);
+    fd.append('book_image',this.selectedfile,this.selectedfile.name);
+    fd.append('fk_category_id',this.bfsform.get('fk_category_id').value);
+    console.log(fd);
+
+    this._bfsdata.addBookforsale(fd).subscribe((data:any)=>{
 
       if(data.affectedRows==1)
        {
@@ -60,6 +85,10 @@ export class AddbookforsaleComponent implements OnInit {
     {
       this._router.navigate(['/home/bookforsale']);
     }
+ }
+
+ onFileAdd(value){
+  this.selectedfile=<File>value.target.files[0];
  }
 
 }

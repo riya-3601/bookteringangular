@@ -61,11 +61,12 @@
         </div>
          <!-- book_image -->
          <div class="form-group">
-          <mat-form-field class="example-full-width">
+           <input type="file" (change)="onFileAdd($event)">
+          <!-- <mat-form-field class="example-full-width">
             <mat-label>Book Image</mat-label>
-            <input matInput  placeholder="Enter Book Image"  formControlName="book_image">
+            <input matInput type="file" placeholder="Enter Book Image"  formControlName="book_image">
             <mat-error class="alert alert-danger" *ngIf="bfsform.get('book_image').hasError('required') && !bfsform.get('book_image').pristine" >Book Image is required</mat-error>
-          </mat-form-field>
+          </mat-form-field> -->
         </div>
          <!-- category_name -->
          <div class="form-group">

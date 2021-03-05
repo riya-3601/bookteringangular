@@ -11,10 +11,8 @@ export class BookforsaleService {
   getAllBookforsale(){
     return this._http.get(this.url);
   }
-  addBookforsale(obj:Bfs){
-    let body=JSON.stringify(obj);
-    let head=new HttpHeaders().set(environment.headname,environment.headvalue);
-    return this._http.post(this.url,body,{headers:head});
+  addBookforsale(obj:FormData){
+    return this._http.post(this.url,obj);
   }
   deleteBookforsale(id:number){
     let head=new HttpHeaders().set(environment.headname,environment.headvalue);

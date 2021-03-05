@@ -54,7 +54,9 @@
 
         <ng-container matColumnDef="book_image">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
-          <td mat-cell *matCellDef="let row" > {{row.book_image}} </td>
+          <td mat-cell *matCellDef="let row" >
+            <img src="http://localhost:3000/images/uploads/{{row.book_image}}" alt="" height="50" width="50">
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="category_name">
