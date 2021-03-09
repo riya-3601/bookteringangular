@@ -63,6 +63,7 @@ export class BookforsaleComponent implements OnInit,AfterViewInit {
 }
 onEditClick(item:Bfs){
   this._router.navigate(['/home/editbookforsale',item.book_id]);
+  console.log(this.dataSource);
  }
  onAddClick():void{
   this._router.navigate(['/home/addbookforsale']);

@@ -16,6 +16,7 @@ export class EditbookforsaleComponent implements OnInit {
   cat:Cat[]=[];
   applicant: any;
   bfsform:FormGroup;
+  selectedfile:File=null;
   constructor(private _bfsdata:BookforsaleService,private _catdata:CategoryService,private _router:Router,private _actRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -42,6 +43,7 @@ export class EditbookforsaleComponent implements OnInit {
     this._bfsdata.getBookforsaleById(this.book_id).subscribe((data:Bfs[])=>{
       console.log(data);
       this.bfsform.patchValue({
+        book_id:data[0].book_id,
         book_isbn:data[0].book_isbn,
         book_title:data[0].book_title,
         book_author:data[0].book_author,
@@ -55,7 +57,18 @@ export class EditbookforsaleComponent implements OnInit {
   }
   onEditCategory(){
 
-    this._bfsdata.editBookforsale(this.bfsform.value).subscribe((data:any)=>{
+    const fd=new FormData();
+    fd.append('book_isbn',this.bfsform.get('book_isbn').value);
+    fd.append('book_title',this.bfsform.get('book_title').value);
+    fd.append('book_author',this.bfsform.get('book_author').value);
+    fd.append('book_price',this.bfsform.get('book_price').value);
+    fd.append('book_publisher',this.bfsform.get('book_publisher').value);
+    fd.append('book_ratings',this.bfsform.get('book_ratings').value);
+    fd.append('book_image',this.selectedfile,this.selectedfile.name);
+    fd.append('fk_category_id',this.bfsform.get('fk_category_id').value);
+    console.log(fd);
+
+    this._bfsdata.editBookforsale(fd).subscribe((data:any)=>{
 
       if(data.affectedRows==1)
        {
@@ -75,6 +88,10 @@ export class EditbookforsaleComponent implements OnInit {
   }
   onCancleClick(){
     this._router.navigate(['/home/bookforsale']);
+  }
+
+  onEditFile(value){
+    this.selectedfile=<File>value.target.files[0];
   }
 
 }
