@@ -19,14 +19,17 @@ export class AddbookforbarterComponent implements OnInit {
   flag: boolean = false;
   obj:Bookbart[]=[];
   cust:Cust[]=[];
+  selectedfile:File=null;
   ngOnInit(): void {
 
     this.bookforbarteradd=new FormGroup({
       bookbarter_id:new FormControl(null,[Validators.required]),
       bookbarter_title:new FormControl(null,[Validators.required]),
       bookbarter_author:new FormControl(null,[Validators.required]),
+      bookbarter_description:new FormControl(null,[Validators.required,Validators.maxLength(200)]),
       bookbarter_status:new FormControl(null,[Validators.required]),
       bookbarter_price:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
+      bookbarter_image:new FormControl(null),
       fk_customer_id:new FormControl(null,[Validators.required]),
     });
 
@@ -38,7 +41,18 @@ export class AddbookforbarterComponent implements OnInit {
 
   onsubmitClick()
   {
-    this._bookbartdata.addBookforbarter(this.bookforbarteradd.value).subscribe((data:any)=>{
+    const fd=new FormData();
+    fd.append('bookbarter_title',this.bookforbarteradd.get('bookbarter_title').value);
+    fd.append('bookbarter_author',this.bookforbarteradd.get('bookbarter_author').value);
+    fd.append('bookbarter_description',this.bookforbarteradd.get('bookbarter_description').value);
+    fd.append('bookbarter_status',this.bookforbarteradd.get('bookbarter_status').value);
+    fd.append('bookbarter_price',this.bookforbarteradd.get('bookbarter_price').value);
+    fd.append('bookbarter_image',this.selectedfile,this.selectedfile.name);
+    fd.append('fk_customer_id',this.bookforbarteradd.get('fk_customer_id').value);
+    console.log(fd);
+
+
+    this._bookbartdata.addBookforbarter(fd).subscribe((data:any)=>{
       if(data.affectedRows==1)
       {
        // this.obj.push(this.bookforbarteradd.value);
@@ -68,5 +82,10 @@ export class AddbookforbarterComponent implements OnInit {
   onClearAuthorClick(){
     this.bookforbarteradd.get('bookbarter_author').reset('');
   }
-
+  onClearDescClick(){
+    this.bookforbarteradd.get('bookbarter_description').reset('');
+  }
+  onFileAdd(value){
+    this.selectedfile=<File>value.target.files[0];
+   }
 }

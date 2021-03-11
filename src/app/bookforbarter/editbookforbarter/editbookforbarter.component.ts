@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookforbarterService } from "src/app/bookforbarter.service";
 import { CustomerService } from 'src/app/customer.service';
@@ -12,70 +12,90 @@ import { Cust } from 'src/app/customer/cust';
 })
 export class EditbookforbarterComponent implements OnInit {
 
-  constructor(private _editbookbart:BookforbarterService,private _actRoute:ActivatedRoute,private _router:Router,private _custdata:CustomerService) { }
-  cust:Cust[]=[];
-  bookforbarteradd:FormGroup;
+  constructor(private _editbookbart: BookforbarterService, private _actRoute: ActivatedRoute, private _router: Router, private _custdata: CustomerService) { }
+  cust: Cust[] = [];
+  bookforbarteradd: FormGroup;
   flag: boolean = false;
+  selectedfile: File =null;
   bookbarter_id;
   ngOnInit(): void {
-    this.bookforbarteradd=new FormGroup({
-      bookbarter_id:new FormControl(null,[Validators.required]),
-      bookbarter_title:new FormControl(null,[Validators.required]),
-      bookbarter_author:new FormControl(null,[Validators.required]),
-      bookbarter_status:new FormControl(null,[Validators.required]),
-      bookbarter_price:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
-      fk_customer_id:new FormControl(null,[Validators.required]),
+    this.bookforbarteradd = new FormGroup({
+      bookbarter_id: new FormControl(null, [Validators.required]),
+      bookbarter_title: new FormControl(null, [Validators.required]),
+      bookbarter_author: new FormControl(null, [Validators.required]),
+      bookbarter_description: new FormControl(null, [Validators.required, Validators.maxLength(200)]),
+      bookbarter_status: new FormControl(null, [Validators.required]),
+      bookbarter_price: new FormControl(null, [Validators.required, Validators.pattern('[0-9]*')]),
+      bookbarter_image: new FormControl(null),
+      fk_customer_id: new FormControl(null, [Validators.required]),
     });
 
-    this._custdata.getAllCustomer().subscribe((data:Cust[])=>{
-      this.cust=data;
+    this._custdata.getAllCustomer().subscribe((data: Cust[]) => {
+      this.cust = data;
     });
 
-    this.bookbarter_id=this._actRoute.snapshot.params['bookbarter_id'];
+    this.bookbarter_id = this._actRoute.snapshot.params['bookbarter_id'];
     console.log(this.bookbarter_id);
-    this._editbookbart.getBookforbarterById(this.bookbarter_id).subscribe((data:any)=>{
+    this._editbookbart.getBookforbarterById(this.bookbarter_id).subscribe((data: any) => {
       console.log(data);
       this.bookforbarteradd.patchValue({
-        bookbarter_id:data[0].bookbarter_id,
-        bookbarter_title:data[0].bookbarter_title,
-        bookbarter_author:data[0].bookbarter_author,
-        bookbarter_status:data[0].bookbarter_status,
-        bookbarter_price:data[0].bookbarter_price,
-        fk_customer_id:data[0].fk_customer_id
+        bookbarter_id: data[0].bookbarter_id,
+        bookbarter_title: data[0].bookbarter_title,
+        bookbarter_author: data[0].bookbarter_author,
+        bookbarter_description: data[0].bookbarter_description,
+        bookbarter_status: data[0].bookbarter_status,
+        bookbarter_price: data[0].bookbarter_price,
+        bookbarter_image: data[0].bookbarter_image,
+        fk_customer_id: data[0].fk_customer_id
       });
     });
   }
 
-  onEditClick()
-  {
-    this._editbookbart.editBookforbarter(this.bookforbarteradd.value).subscribe((data:any)=>{
-      if(data.affectedRows==1)
-      {
-       // this.obj.push(this.bookforbarteradd.value);
-       alert('Row updated successfully');
-       this._router.navigate(['/home/bookforbarter']);
+  onEditClick() {
+
+    const fd = new FormData();
+    fd.append('bookbarter_title', this.bookforbarteradd.get('bookbarter_title').value);
+    fd.append('bookbarter_author', this.bookforbarteradd.get('bookbarter_author').value);
+    fd.append('bookbarter_description', this.bookforbarteradd.get('bookbarter_description').value);
+    fd.append('bookbarter_status', this.bookforbarteradd.get('bookbarter_status').value);
+    fd.append('bookbarter_price', this.bookforbarteradd.get('bookbarter_price').value);
+    fd.append('bookbarter_image', this.selectedfile, this.selectedfile.name);
+    fd.append('fk_customer_id', this.bookforbarteradd.get('fk_customer_id').value);
+
+
+    this._editbookbart.editBookforbarter(fd).subscribe((data: any) => {
+      if (data.affectedRows == 1) {
+        // this.obj.push(this.bookforbarteradd.value);
+        alert('Row updated successfully');
+        this._router.navigate(['/home/bookforbarter']);
       }
-      else
-      {
+      else {
         alert('Something went wrong');
-        console.log(data);
+        //console.log(data);
       }
-    },function(err){
+    }, function (err) {
       console.log(err);
     });
   }
   onCancelClick(): void {
-    if(confirm('Are you sure you want to cancel?')){
+    if (confirm('Are you sure you want to cancel?')) {
       this._router.navigate(['/home/bookforbarter']);
     }
   }
-  onClearClick(){
+  onClearClick() {
     this.bookforbarteradd.get('bookbarter_title').reset('');
   }
-  onClearPriceClick(){
+  onClearPriceClick() {
     this.bookforbarteradd.get('bookbarter_price').reset('');
   }
-  onClearAuthorClick(){
+  onClearAuthorClick() {
     this.bookforbarteradd.get('bookbarter_author').reset('');
   }
+  onClearDescClick() {
+    this.bookforbarteradd.get('bookbarter_description').reset('');
+  }
+  onFileAdd(value) {
+      this.selectedfile = <File>value.target.files[0];
+  }
+
 }

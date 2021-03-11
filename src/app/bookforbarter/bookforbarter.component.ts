@@ -16,7 +16,7 @@ import { Bookbart } from "./bookbart";
   styleUrls: ['./bookforbarter.component.css']
 })
 export class BookforbarterComponent implements OnInit ,AfterViewInit{
-  displayedColumns: string[] = ['bookbarter_title', 'bookbarter_author','bookbarter_status', 'bookbarter_price','customer_name','action','reviews'];
+  displayedColumns: string[] = ['bookbarter_title', 'bookbarter_author','bookbarter_description','bookbarter_status', 'bookbarter_price','bookbarter_image','customer_name','action','reviews'];
   dataSource: MatTableDataSource<Bookbart>;
   obj:Bookbart[]=[];
   bookforbarteradd:FormGroup;
@@ -37,8 +37,10 @@ export class BookforbarterComponent implements OnInit ,AfterViewInit{
       bookbarter_id:new FormControl(null),
       bookbarter_title:new FormControl(null),
       bookbarter_author:new FormControl(null),
+      bookbarter_description:new FormControl(null),
       bookbarter_status:new FormControl(null),
       bookbarter_price:new FormControl(null),
+      bookbarter_image:new FormControl(null),
       fk_customer_id:new FormControl(null),
     });
 

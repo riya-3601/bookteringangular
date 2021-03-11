@@ -14,10 +14,8 @@ export class BookforbarterService {
   getAllBookforbarter(){
     return this._http.get(this.url);
   }
-  addBookforbarter(obj:Bookbart){
-    let body=JSON.stringify(obj);
-    let head=new HttpHeaders().set(environment.headname,environment.headvalue);
-    return this._http.post(this.url,body,{headers:head});
+  addBookforbarter(obj:FormData){
+    return this._http.post(this.url,obj);
   }
   deleteBookforbarter(id:number){
     let head=new HttpHeaders().set(environment.headname,environment.headvalue);
@@ -26,12 +24,12 @@ export class BookforbarterService {
   getBookforbarterById(id:number){
     return this._http.get(this.url+id);
   }
-  editBookforbarter(obj:Bookbart)
-{
-  let body=JSON.stringify(obj);
-  let head=new HttpHeaders().set(environment.headname,environment.headvalue);
-  return this._http.put(this.url,body,{headers:head});
-}
+  editBookforbarter(obj:FormData)
+  {
+  // let body=JSON.stringify(obj);
+  // let head=new HttpHeaders().set(environment.headname,environment.headvalue);
+  return this._http.put(this.url,obj);
+  }
 
 }
 
