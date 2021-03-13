@@ -21,9 +21,9 @@ export class BookforsaleService {
   getBookforsaleById(id:number){
     return this._http.get(this.url+id);
   }
-  editBookforsale(obj:Bfs){
-    let body=JSON.stringify(obj);
-    let head=new HttpHeaders().set(environment.headname,environment.headvalue);
-    return this._http.put(this.url,body,{headers:head});
+  editBookforsale(obj:FormData){
+    // let body=JSON.stringify(obj);
+    // let head=new HttpHeaders().set(environment.headname,environment.headvalue);
+    return this._http.put(this.url,obj);
   }
 }
