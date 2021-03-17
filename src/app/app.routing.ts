@@ -36,10 +36,11 @@ import { EmployeeassignComponent } from "./employeeassign/employeeassign.compone
 import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { LoginComponent } from './login/login.component';
 import { ShellComponent } from './shell/shell.component';
+import { AuthguardService } from './authguard.service';
 
 const arr:Routes=[
   {path:'',component:LoginComponent},
-  {path:'home',component:ShellComponent,children:[
+  {path:'home',component:ShellComponent,canActivate:[AuthguardService],children:[
   {path:'',component:AdminhomeComponent},
   {path:'category',component:CategoryComponent},
   {path:'addcategory',component:AddcategoryComponent},

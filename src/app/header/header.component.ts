@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   }
   onLogoutClick(){
     if(confirm("Are you sure you want to logout?")){
+      localStorage.removeItem("username");
       this._router.navigate(['/']);
     }
   }
