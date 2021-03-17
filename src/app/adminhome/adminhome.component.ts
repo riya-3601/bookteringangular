@@ -19,6 +19,7 @@ import { Bookbart } from '../bookforbarter/bookbart';
   styleUrls: ['./adminhome.component.css']
 })
 export class AdminhomeComponent {
+  username:String;
   public lineChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40,55,90,35,20,30], label: 'Book for Sale' },
     {data:[45,60,30,25,65,80,55,70,20,30,46,50],label:'Book for Barter'},
@@ -65,6 +66,8 @@ export class AdminhomeComponent {
   }
 
   ngOnInit(): void {
+    this.username=localStorage.getItem("username");
+
     this._orddata.getAllOrders().subscribe((data:Ord[])=>{
       this.obj=data;
       this.dataSource.data=data;
