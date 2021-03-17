@@ -5,16 +5,16 @@ table {
 }
 
 .mat-form-field {
+  margin-left: 19%;
   font-size: 20px;
-  width: 100%;
+  width: 60%;
 }
 
 td, th {
   width: 100%;
 }
 .button1{
-  padding: 0 6px 0 6px;
-  margin: 6px 8px 6px 8px;
-  font-size: 16px;
-  text-align:center;
+
+  margin-left: 40%;
+  width:20%;
 }

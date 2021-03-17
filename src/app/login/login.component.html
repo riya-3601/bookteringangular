@@ -5,12 +5,13 @@
 <div class="form-group">
   <div class="container">
   <mat-form-field >
-    <mat-label>Username</mat-label>
+    <mat-label>Email ID</mat-label>
     <input matInput  placeholder="Enter Username" formControlName="login_username">
     <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearClick()">
       <mat-icon>clear</mat-icon>
     </button>
     <mat-error  *ngIf="login.get('login_username').hasError('required') && login.get('login_username').dirty"> Username is required</mat-error>
+    <mat-error  *ngIf="login.get('login_username').hasError('email') && login.get('login_username').dirty"> Incorrect format</mat-error>
   </mat-form-field>
 </div>
 <br><br>
