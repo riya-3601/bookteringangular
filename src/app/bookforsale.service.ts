@@ -26,4 +26,10 @@ export class BookforsaleService {
     // let head=new HttpHeaders().set(environment.headname,environment.headvalue);
     return this._http.put(this.url,obj);
   }
+  editBookforsalewithfile(obj:Bfs){
+
+let  body=JSON.stringify(obj);
+let head=new HttpHeaders().set(environment.headname,environment.headvalue);
+    return this._http.put(this.url+obj.book_id,obj,{headers:head});
+  }
 }

@@ -12,7 +12,7 @@ import { Bfs } from "../bfs";
   styleUrls: ['./editbookforsale.component.css']
 })
 export class EditbookforsaleComponent implements OnInit {
-  book_id=1;
+  book_id:number;
   cat:Cat[]=[];
   applicant: any;
   bfsform:FormGroup;
@@ -56,8 +56,32 @@ export class EditbookforsaleComponent implements OnInit {
     });
   }
   onEditCategory(){
+    console.log(this.selectedfile);
 
+    if(this.selectedfile==null || this.selectedfile==undefined ){
+
+      let obj:Bfs=new Bfs(this.book_id,this.bfsform.get('book_isbn').value,this.bfsform.get('book_title').value,this.bfsform.get('book_author').value,this.bfsform.get('book_price').value,this.bfsform.get('book_publisher').value,this.bfsform.get('book_ratings').value,'',this.bfsform.get('fk_category_id').value)
+
+    this._bfsdata.editBookforsalewithfile(obj).subscribe((data:any)=>{
+      if(data.affectedRows==1)
+       {
+         alert('Data updated succesfully');
+        this._router.navigate(['/home/bookforsale']);
+
+       }
+       else{
+         alert('Something went wrong');
+         console.log(data);
+       }
+    },
+    function(err){
+      console.log(err);
+    });
+
+    }
+    else{
     const fd=new FormData();
+    fd.append('book_id',this.book_id+'');
     fd.append('book_isbn',this.bfsform.get('book_isbn').value);
     fd.append('book_title',this.bfsform.get('book_title').value);
     fd.append('book_author',this.bfsform.get('book_author').value);
@@ -86,12 +110,14 @@ export class EditbookforsaleComponent implements OnInit {
 
     });
   }
+  }
   onCancleClick(){
     this._router.navigate(['/home/bookforsale']);
   }
 
   onEditFile(value){
     this.selectedfile=<File>value.target.files[0];
+    console.log("file chagne ",this.selectedfile);
   }
 
 }
