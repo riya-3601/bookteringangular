@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 })
 export class AddorderComponent implements OnInit {
   cust:Cust[]=[];
-  orderstatus:string[]=['Accepted','Packed','Out for Delivery','Delivered'];
+  orderstatus:string[]=['Confirmed','Packed','Out for Delivery','Delivered'];
   ordform:FormGroup;
   applicant: any;
   constructor(private _orddata:OrderService,private _custdata:CustomerService,private _router:Router) { }

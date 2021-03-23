@@ -22,7 +22,7 @@ export class EditemployeedeliveryComponent implements OnInit {
   emp:Emp[]=[];
   obj:Empdel[]=[];
   ord:Ord[]=[];
-  delstatus:String[]=['Accepted','Packed','Out for Delivery','Delivered'];
+  delstatus:String[]=['Assigned','Packed','Out for Delivery','Delivered'];
 
   ngOnInit(): void {
 

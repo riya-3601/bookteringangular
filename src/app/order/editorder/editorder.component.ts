@@ -14,7 +14,7 @@ import { Cust } from 'src/app/customer/cust';
 export class EditorderComponent implements OnInit {
   order_id=1;
   cust:Cust[]=[];
-  orderstatus:string[]=['Accepted','Packed','Out for Delivery','Delivered'];
+  orderstatus:string[]=['Confirmed','Packed','Out for Delivery','Delivered'];
   ordform:FormGroup;
   applicant: any;
 
