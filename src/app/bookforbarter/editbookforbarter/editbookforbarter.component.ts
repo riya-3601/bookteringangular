@@ -71,7 +71,7 @@ export class EditbookforbarterComponent implements OnInit {
       }
       else {
         alert('Something went wrong');
-        //console.log(data);
+        console.log(data);
       }
     }, function (err) {
       console.log(err);
