@@ -33,12 +33,13 @@ export class EditemployeedeliveryComponent implements OnInit {
       this.ord=data;
     });
 
+
     this.employeedeliveryadd=new FormGroup({
       delivery_id:new FormControl(null),
       delivery_status:new FormControl(null),
       fk_employee_id:new FormControl(null),
       fk_order_id:new FormControl(null),
-      employee_name:new FormControl(null),
+
     });
 
     this.delivery_id=this._actRoute.snapshot.params['delivery_id'];
@@ -46,7 +47,7 @@ export class EditemployeedeliveryComponent implements OnInit {
     this._editempdel.getEmployeedeliveryById(this.delivery_id).subscribe((data:any)=>{
       console.log(data);
       this.employeedeliveryadd.patchValue({
-        //delivery_id:data[0].delivery_id,
+        delivery_id:data[0].delivery_id,
         delivery_status:data[0].delivery_status,
         fk_employee_id:data[0].fk_employee_id,
         fk_order_id:data[0].fk_order_id
@@ -56,16 +57,25 @@ export class EditemployeedeliveryComponent implements OnInit {
 
   onEditClick()
   {
+    // this._orddata.getOrderById(this.employeedeliveryadd.get('fk_order_id').value).subscribe((data:Ord[])=>{
+    //   console.log(data);
+    // });
     this._editempdel.editEmployeedelivery(this.employeedeliveryadd.value).subscribe((data:any)=>{
       if(data.affectedRows==1)
       {
        // this.obj.push(this.bookforbarteradd.value);
        alert('Row updated successfully');
-       this._router.navigate(['/home/employeedelivery']);
+       if(this.employeedeliveryadd.get('delivery_status').value=='Delivered'){
+         this._orddata.editOrderDelivered(this.employeedeliveryadd.get('fk_order_id').value).subscribe((data:any)=>{
+          console.log(data);
+         });
+       }
+       this._router.navigate(['/home/employee']);
       }
       else
       {
         alert('Something went wrong');
+        console.log(data);
       }
     },function(err){
       console.log(err);
@@ -73,7 +83,7 @@ export class EditemployeedeliveryComponent implements OnInit {
   }
   onCancelClick(): void {
     if(confirm('Are you sure you want to cancel?')){
-      this._router.navigate(['/home/employeedelivery']);
+      this._router.navigate(['/home/employee']);
       }
     //this.flag = false;
   }

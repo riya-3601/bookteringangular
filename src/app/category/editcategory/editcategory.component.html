@@ -26,6 +26,13 @@
 
     </div>
 <br>
+
+<div class="form-group">
+  <label *ngIf="!imageFlag">Format not supported..</label>
+  <img src="http://localhost:3000/images/category/{{this.catform.get('category_image').value}}" height="70" width="50">
+ <input type="file" (change)="onEditFile($event)">
+ </div>
+ <br>
     <!--Category isactive-->
     <div class="form-group">
       <mat-label>Select Category is actve or not?</mat-label>

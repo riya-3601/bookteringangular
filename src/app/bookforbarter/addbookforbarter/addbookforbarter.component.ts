@@ -41,6 +41,7 @@ export class AddbookforbarterComponent implements OnInit {
 
   onsubmitClick()
   {
+    if(this.imageFlag){
     const fd=new FormData();
     fd.append('bookbarter_title',this.bookforbarteradd.get('bookbarter_title').value);
     fd.append('bookbarter_author',this.bookforbarteradd.get('bookbarter_author').value);
@@ -67,6 +68,10 @@ export class AddbookforbarterComponent implements OnInit {
       console.log(err);
     });
   }
+  else{
+    alert('File format Not supported');
+  }
+  }
   onCancelClick(): void {
     //this.flag = false;
     if(confirm('Are you sure you want to cancel?')){
@@ -85,7 +90,17 @@ export class AddbookforbarterComponent implements OnInit {
   onClearDescClick(){
     this.bookforbarteradd.get('bookbarter_description').reset('');
   }
+  imageFlag:boolean=true;
   onFileAdd(value){
+
     this.selectedfile=<File>value.target.files[0];
+    if(this.selectedfile.type=='image/png'|| this.selectedfile.type=='image/jpg'|| this.selectedfile.type=='image/jpeg'){
+      this.imageFlag=true;
+    }
+    else{
+      this.imageFlag=false;
+      this.selectedfile=null;
+    }
+    console.log(this.selectedfile);
    }
 }

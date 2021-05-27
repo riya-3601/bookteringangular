@@ -15,7 +15,7 @@ import { Bookrev } from "./bookrev";
 })
 export class BookreviewComponent implements OnInit,AfterViewInit {
 
-  displayedColumns: string[] = ['bookbarter_title','bookreview_description', 'bookreview_date','bookbarter_status', 'bookbarter_price','customer_name','customer_emailid','category_name','action'];
+  displayedColumns: string[] = ['bookbarter_title','bookreview_description', 'bookreview_date','bookbarter_status', 'bookbarter_price','customer_name','customer_emailid','action'];
   dataSource: MatTableDataSource<Bookrev>;
   obj:Bookrev[]=[];
   bookreviewadd:FormGroup;
@@ -41,7 +41,7 @@ export class BookreviewComponent implements OnInit,AfterViewInit {
       bookreview_date:new FormControl(null),
       fk_bookbarter_id:new FormControl(null),
       fk_customer_id:new FormControl(null),
-      fk_category_id:new FormControl(null),
+
     });
 
 

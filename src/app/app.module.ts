@@ -66,6 +66,8 @@ import { OrderdetailspopupComponent } from './order/orderdetailspopup/orderdetai
 import { AddressbookpopupComponent } from './customer/addressbookpopup/addressbookpopup.component';
 import { EmployeepopupComponent } from './employee/employeepopup/employeepopup.component';
 import { EmployeeassignComponent } from './employeeassign/employeeassign.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { OrderpopupComponent } from './orderdetails/orderpopup/orderpopup.component';
 
 
 
@@ -114,7 +116,9 @@ import { EmployeeassignComponent } from './employeeassign/employeeassign.compone
     OrderdetailspopupComponent,
     AddressbookpopupComponent,
     EmployeepopupComponent,
-    EmployeeassignComponent
+    EmployeeassignComponent,
+    ContactusComponent,
+    OrderpopupComponent
 
   ],
   imports: [

@@ -12,7 +12,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./bookforsale.component.css']
 })
 export class BookforsaleComponent implements OnInit,AfterViewInit {
-  displayedColumns: string[] = ['book_isbn','book_title','book_author','book_price',
+  displayedColumns: string[] = ['book_isbn','book_title','book_author','book_status','book_price',
 'book_publisher','book_ratings','book_image','category_name','action' ];
   obj:Bfs[]=[];
   dataSource: MatTableDataSource<Bfs>;

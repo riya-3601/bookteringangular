@@ -12,7 +12,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent implements OnInit ,AfterViewInit{
-  displayedColumns: string[] =['category_name','category_isactive','action'];
+  displayedColumns: string[] =['category_name','category_image','category_isactive','action'];
   obj:Cat[]=[];
   dataSource: MatTableDataSource<Cat>;
   @ViewChild(MatPaginator) paginator: MatPaginator;

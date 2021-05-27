@@ -49,7 +49,7 @@
       <mat-form-field>
         <mat-label>Book Description</mat-label>
         <textarea matInput #desc placeholder="Enter Book Description" formControlName="bookbarter_description"></textarea>
-        <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearAuthorClick()">
+        <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearDescClick()">
           <mat-icon>clear</mat-icon>
         </button>
         <mat-hint align="end">{{desc.value.length}} / 200</mat-hint>
@@ -82,6 +82,7 @@
     </div>
 
     <div class="form-group">
+      <label *ngIf="!imageFlag">Format not supported..</label>
       <input type="file" (change)="onFileAdd($event)">
     </div>
 

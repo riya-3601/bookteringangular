@@ -11,7 +11,7 @@ import { Cust } from 'src/app/customer/cust';
 export class AddcustomerComponent implements OnInit {
   addcustomerform :FormGroup;
   applicant: any;
-  customergender:string[]=['Male','Female','Else'];
+  customergender:string[]=['Male','Female','Others'];
   constructor(private _addcustdata:CustomerService,private _custdata:CustomerService,private _router:Router) { }
 
   ngOnInit(): void {

@@ -13,7 +13,7 @@ export class EditcustomerComponent implements OnInit {
   customer_id=1;
   editcustomerform:FormGroup;
   applicant: any;
-  customergender:string[]=['Male','Female','Else'];
+  customergender:string[]=['Male','Female','Others'];
   constructor(private _actRoute:ActivatedRoute,private _editcustomer:CustomerService,private _router:Router) { }
 
   ngOnInit(): void {

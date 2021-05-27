@@ -35,12 +35,10 @@ export class AddbookreviewComponent implements OnInit {
       bookreview_date:new FormControl(null,[Validators.required]),
       fk_bookbarter_id:new FormControl(null,[Validators.required]),
       fk_customer_id:new FormControl(null,[Validators.required]),
-      fk_category_id:new FormControl(null,[Validators.required]),
+
     });
 
-    this._catdata.getAllCategory().subscribe((data:Cat[])=>{
-      this.cat=data;
-    });
+
     this._custdata.getAllCustomer().subscribe((data:Cust[])=>{
       this.cust=data;
     });

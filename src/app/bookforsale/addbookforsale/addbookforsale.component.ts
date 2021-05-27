@@ -30,6 +30,8 @@ export class AddbookforsaleComponent implements OnInit {
       book_isbn:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
       book_title : new FormControl(null,Validators.required),
       book_author:new FormControl(null,Validators.required),
+      book_description:new FormControl(null,[Validators.required,Validators.maxLength(400)]),
+      book_status:new FormControl(null,[Validators.required]),
       book_price:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
       book_publisher:new FormControl(null,Validators.required),
       book_ratings:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*')]),
@@ -37,25 +39,15 @@ export class AddbookforsaleComponent implements OnInit {
       fk_category_id:new FormControl(null),
     });
   }
-  // console.log(this.loginForm);
-  //   const fd=new FormData();
-  //   fd.append('username',this.loginForm.get('username').value);
-  //   fd.append('email',this.loginForm.get('email').value);
-  //   fd.append('gender',this.loginForm.get('gender').value);
-  //   var str="";
-  //   for(var i=0;i<this.loginForm.get('hobby').value.length;i++)
-  //   {
-  //     str+=this.loginForm.get('hobby').value[i] + ',';
-  //   }
-  //   fd.append('hobby',str);
-  //    fd.append('mobile_no',this.loginForm.get('mobile_no').value);
 
-  //    fd.append('image',this.selectedFile,this.selectedFile.name);
   onsignupClick():void{
+    if(this.imageFlag){
     const fd=new FormData();
     fd.append('book_isbn',this.bfsform.get('book_isbn').value);
     fd.append('book_title',this.bfsform.get('book_title').value);
     fd.append('book_author',this.bfsform.get('book_author').value);
+    fd.append('book_description',this.bfsform.get('book_description').value);
+    fd.append('book_status',this.bfsform.get('book_status').value);
     fd.append('book_price',this.bfsform.get('book_price').value);
     fd.append('book_publisher',this.bfsform.get('book_publisher').value);
     fd.append('book_ratings',this.bfsform.get('book_ratings').value);
@@ -64,10 +56,11 @@ export class AddbookforsaleComponent implements OnInit {
     console.log(fd);
 
     this._bfsdata.addBookforsale(fd).subscribe((data:any)=>{
-
+      console.log(data);
       if(data.affectedRows==1)
        {
          alert('Data inserted succesfully');
+
          this._router.navigate(['/home/bookforsale']);
        }
        else{
@@ -79,6 +72,7 @@ export class AddbookforsaleComponent implements OnInit {
      function(err){
        console.log(err);
      });
+    }
   }
   onCancleClick():void{
     if(confirm("Are you sure you want to Cancle?"))
@@ -86,9 +80,17 @@ export class AddbookforsaleComponent implements OnInit {
       this._router.navigate(['/home/bookforsale']);
     }
  }
-
+ imageFlag:boolean=true;
  onFileAdd(value){
   this.selectedfile=<File>value.target.files[0];
+  if(this.selectedfile.type=='image/png'|| this.selectedfile.type=='image/jpg'|| this.selectedfile.type=='image/jpeg'){
+    this.imageFlag=true;
+  }
+  else{
+    this.imageFlag=false;
+    this.selectedfile=null;
+  }
+  console.log(this.selectedfile);
  }
 
 }

@@ -15,7 +15,7 @@ import { Address } from '../addressbook/address';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit,AfterViewInit {
-  displayedColumns: string[] =['customer_emailid','customer_name','customer_gender','customer_mobileno','action','address_details'];
+  displayedColumns: string[] =['customer_emailid','customer_name','customer_gender','customer_mobileno','address_details'];
   dataSource: MatTableDataSource<Cust>;
   obj:Cust[]=[];
   @ViewChild(MatPaginator) paginator: MatPaginator;

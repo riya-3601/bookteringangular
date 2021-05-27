@@ -37,6 +37,7 @@ import { AdminhomeComponent } from './adminhome/adminhome.component';
 import { LoginComponent } from './login/login.component';
 import { ShellComponent } from './shell/shell.component';
 import { AuthguardService } from './authguard.service';
+import { ContactusComponent } from "./contactus/contactus.component";
 
 const arr:Routes=[
   {path:'',component:LoginComponent},
@@ -73,6 +74,7 @@ const arr:Routes=[
   {path:'addorderdetails',component:AddorderdetailsComponent},
   {path:'editorderdetails/:orderdetails_id',component:EditorderdetailsComponent},
   {path:'employeeassign',component:EmployeeassignComponent},
+  {path:'contactus',component:ContactusComponent},
   ]},
   {path:'pagenotfound',component:PagenotfoundComponent},
   {path:'**',redirectTo:'/pagenotfound',pathMatch:'full'}

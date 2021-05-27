@@ -6,6 +6,10 @@ import { OrderdetailsService } from "../orderdetails.service";
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { OrderService } from '../order.service';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Ord } from '../order/ord';
+import { OrderpopupComponent } from './orderpopup/orderpopup.component';
 
 @Component({
   selector: 'app-orderdetails',
@@ -14,15 +18,16 @@ import { MatSort } from '@angular/material/sort';
 })
 export class OrderdetailsComponent implements OnInit,AfterViewInit {
 
-  displayedColumns: string[] = ['book_title','orderdetails_quantity', 'order_date','order_status', 'order_paymenttype','order_totalamount','customer_name','customer_mobileno','action'];
-  dataSource: MatTableDataSource<Orddet>;
+  displayedColumns: string[] = ['order_date','order_status', 'order_paymenttype','order_totalamount','customer_name','customer_mobileno','address_1','info'];
+  dataSource: MatTableDataSource<Ord>;
   obj:Orddet[]=[];
+  obj1:Ord[]=[];
   Orderdetailsadd:FormGroup;
   flag: boolean = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(private _orddetdata:OrderdetailsService,private _router:Router) {
+  constructor(public dialog: MatDialog,private _orddetdata:OrderdetailsService,private _router:Router,private _orddata:OrderService) {
     this.dataSource = new MatTableDataSource();
    }
 
@@ -39,13 +44,17 @@ export class OrderdetailsComponent implements OnInit,AfterViewInit {
       fk_book_id:new FormControl(null),
     });
 
-
-
-    this._orddetdata.getAllOrderdetails().subscribe((data:Orddet[])=>{
-      this.obj=data;
+    this._orddata.getAllOrdersAdmin().subscribe((data:Ord[])=>{
+      this.obj1=data;
       this.dataSource.data=data;
       console.log(this.dataSource.data);
     });
+
+    // this._orddetdata.getAllOrderdetails().subscribe((data:Orddet[])=>{
+    //  // this.obj=data;
+    //   this.dataSource.data=data;
+    //   console.log(this.dataSource.data);
+    // });
 
   }
 
@@ -56,6 +65,17 @@ export class OrderdetailsComponent implements OnInit,AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+  openDialog(item:Ord){
+    console.log(item.order_id);
+  const abc =this.dialog.open(OrderpopupComponent, {
+    data:item.order_id
+  });
+
+  abc.afterClosed().subscribe((x) => {
+    console.log(x);
+  });
+
   }
   onDeleteClick(item: Orddet) {
     this._orddetdata.deleteOrderdetails(item.orderdetails_id).subscribe((data:any)=>{

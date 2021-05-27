@@ -12,7 +12,7 @@ import { Cust } from 'src/app/customer/cust';
   styleUrls: ['./editaddressbook.component.css']
 })
 export class EditaddressbookComponent implements OnInit {
-  address_id=1;
+  address_id=0;
   cust:Cust[]=[];
   addressform:FormGroup;
   applicant: any;

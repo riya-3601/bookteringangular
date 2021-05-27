@@ -78,13 +78,13 @@ onEditClick(item:Ord){
 
  }
  onsignupClick(row:Ord):void{
-   alert('works');
+
   this._orddata.editOrder(row).subscribe((data:any)=>{
     console.log(data);
     if(data.affectedRows==1)
        {
-        //  this.obj.splice(this.obj.indexOf(item),1);
-         //this.dataSource.data=this.obj;
+         this.obj.splice(this.obj.indexOf(row),1);
+         this.dataSource.data=this.obj;
          alert('Order accepted');
        }
        else{

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders} from "@angular/common/http";
 import { environment } from "../environments/environment";
 import { Cat } from "./category/cat";
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,8 @@ export class CategoryService {
   getAllCategory(){
     return this._http.get(this.url);
   }
-  addCategory(obj:Cat){
-    let body=JSON.stringify(obj);
-    let head=new HttpHeaders().set(environment.headname,environment.headvalue);
-    return this._http.post(this.url,body,{headers:head});
+  addCategory(obj:FormData){
+    return this._http.post(this.url,obj);
   }
   deleteCategory(id:number){
     let head=new HttpHeaders().set(environment.headname,environment.headvalue);
@@ -24,9 +23,13 @@ export class CategoryService {
   getCategoryById(id:number){
     return this._http.get(this.url+id);
   }
-  editCategory(obj:Cat){
+  editCategorywithfile(obj:Cat){
     let body=JSON.stringify(obj);
     let head=new HttpHeaders().set(environment.headname,environment.headvalue);
-    return this._http.put(this.url,body,{headers:head});
+    return this._http.put(this.url+obj.category_id,body,{headers:head});
   }
+  editCategory(obj:FormData){
+    return this._http.put(this.url,obj);
+  }
+
 }

@@ -7,6 +7,9 @@ table {
   width: 100%;
 }
 
-td, th {
-  width: 10%;
+ th {
+  width: 5%;
+}
+td{
+  text-align: justify;
 }

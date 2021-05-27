@@ -10,14 +10,16 @@ import { Cat } from '../cat';
   styleUrls: ['./editcategory.component.css']
 })
 export class EditcategoryComponent implements OnInit {
-  category_id:number=1;
+  category_id:number;
   catform:FormGroup;
+  selectedfile:File=null;
   constructor(private _actRoute:ActivatedRoute,private _editcat:CategoryService,private _router:Router) { }
 
   ngOnInit(): void {
     this.catform=new FormGroup({
       category_id:new FormControl(null),
       category_name:new FormControl(null,Validators.required),
+      category_image:new FormControl(null,Validators.required),
       category_isactive:new FormControl(null),
     });
     this.category_id=this._actRoute.snapshot.params['category_id'];
@@ -27,12 +29,45 @@ export class EditcategoryComponent implements OnInit {
       this.catform.patchValue({
         category_id:data[0].category_id,
         category_name:data[0].category_name,
+        category_image:data[0].category_image,
         category_isactive:data[0].category_isactive
       });
     });
   }
   onEditCategory(){
-    this._editcat.editCategory(this.catform.value).subscribe((data:any)=>{
+    console.log(this.selectedfile);
+
+    if(this.selectedfile==null || this.selectedfile==undefined ){
+
+      let obj:Cat=new Cat(this.category_id,this.catform.get('category_name').value,'',this.catform.get('category_isactive').value);
+
+    this._editcat.editCategorywithfile(obj).subscribe((data:any)=>{
+      if(data.affectedRows==1)
+       {
+         alert('Data updated succesfully');
+        this._router.navigate(['/home/category']);
+
+       }
+       else{
+         alert('Something went wrong');
+         console.log(data);
+       }
+    },
+    function(err){
+      console.log(err);
+    });
+
+    }
+    else{
+    const fd=new FormData();
+    fd.append('category_id',this.category_id+'');
+    fd.append('category_name',this.catform.get('category_name').value);
+    fd.append('category_image',this.selectedfile,this.selectedfile.name);
+    fd.append('category_isactive',this.catform.get('category_isactive').value);
+    console.log(fd);
+
+    this._editcat.editCategory(fd).subscribe((data:any)=>{
+
       if(data.affectedRows==1)
        {
          alert('Data updated succesfully');
@@ -49,8 +84,21 @@ export class EditcategoryComponent implements OnInit {
 
     });
   }
+  }
   onCancleClick(){
     this._router.navigate(['/home/category']);
+  }
+  imageFlag:boolean=true;
+  onEditFile(value){
+    this.selectedfile=<File>value.target.files[0];
+    if(this.selectedfile.type=='image/png'|| this.selectedfile.type=='image/jpg'|| this.selectedfile.type=='image/jpeg'){
+      this.imageFlag=true;
+    }
+    else{
+      this.imageFlag=false;
+      this.selectedfile=null;
+    }
+    console.log(this.selectedfile);
   }
 
 }

@@ -43,6 +43,7 @@ export class EmployeeassignComponent implements OnInit ,AfterViewInit{
     this._empassdata.getAllOrders().subscribe((data:Ord[])=>{
       this.obj=data;
       this.dataSource.data=data;
+      console.log(data);
     });
     this._empdata.getAllEmployee().subscribe((data:Emp[])=>{
       this.emp1=data;
@@ -108,26 +109,33 @@ onEditClick(item:Ord){
 
  }
  onAdddeliveryClick(){
-  this._empassdata.addempDelivery(new Empass(this.empsel.get('employee_id').value,this.addempass)).subscribe((data:Empass)=>{
+   if(this.empsel.get('employee_id').value==null){
+     alert('Please select employee');
+   }
+   else{
+  this._empassdata.addempDelivery(new Empass(this.empsel.get('employee_id').value,this.addempass)).subscribe((data:any)=>{
     console.log(data);
-    // if(data.affectedRows==1)
-    //    {
-    //      alert('Data inserted succesfully');
-    //      this._router.navigate(['/home/order']);
-    //    }
-    //    else{
-    //      alert('Something went wrong');
-    //      console.log(data);
-    //    }
+    if(data.affectedRows==1)
+       {
+         alert('Order assigned');
+         this._empassdata.getAllOrders().subscribe((data:Ord[])=>{
+          this.obj=data;
+          this.dataSource.data=data;
+        });
+       }
+       else{
+             alert('Something went wrong');
+             console.log(data);
+           }
 
-    //  },
-    //  function(err){
-    //    console.log(err);
-
-  });
-
+         },
+         function(err){
+           console.log(err);
+    });
+  }
  }
  checkbox(item:Ord){
+    this.addempass=[];
    console.log(this.addempass);
    console.log(this.empsel.get('employee_id').value);
   if(this.addempass.find(x=>x==item))

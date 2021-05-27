@@ -31,12 +31,10 @@ export class EditbookreviewComponent implements OnInit {
       bookreview_date:new FormControl(null,[Validators.required]),
       fk_bookbarter_id:new FormControl(null,[Validators.required]),
       fk_customer_id:new FormControl(null,[Validators.required]),
-      fk_category_id:new FormControl(null,[Validators.required]),
+
     });
 
-    this._catdata.getAllCategory().subscribe((data:Cat[])=>{
-      this.cat=data;
-    });
+
     this._custdata.getAllCustomer().subscribe((data:Cust[])=>{
       this.cust=data;
     });
@@ -56,7 +54,7 @@ export class EditbookreviewComponent implements OnInit {
         bookreview_description:data[0].bookreview_description,
         bookreview_date:data[0].bookreview_date,
         fk_customer_id:data[0].fk_customer_id,
-        fk_category_id:data[0].fk_category_id
+
       });
     });
   }

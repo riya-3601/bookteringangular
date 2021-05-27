@@ -12,8 +12,8 @@ url1:string="http://localhost:3000/orderdetailsbyorderid/";
   constructor(private _http:HttpClient) { }
 
 
-  getAllOrderdetails(){
-    return this._http.get(this.url);
+  getAllOrderdetails(id:number){
+    return this._http.get(this.url+id);
   }
   addOrderdetails(obj:Orddet){
     let body=JSON.stringify(obj);

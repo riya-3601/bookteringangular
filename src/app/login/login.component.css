@@ -3,8 +3,26 @@
 table {
   width: 100%;
 }
-
+body,html{
+  height: 100%;
+}
+.text{
+  color: azure;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.bg
+{
+  background-image: url("bookslider4.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .mat-form-field {
+  color: azure;
   margin-left: 19%;
   font-size: 20px;
   width: 60%;

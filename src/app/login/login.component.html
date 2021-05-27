@@ -1,38 +1,43 @@
 
-<form  [formGroup]="login" (ngSubmit)="onsubmitClick()">
+<html class="bg">
+  <body class="bg">
+<form class="text"  [formGroup]="login" (ngSubmit)="onsubmitClick()">
    <h2 align="center">LOGIN</h2>
 
 <div class="form-group">
   <div class="container">
   <mat-form-field >
-    <mat-label>Email ID</mat-label>
-    <input matInput  placeholder="Enter Username" formControlName="login_username">
+    <mat-label style="color:darkred;font-size: 20pt"><b>Email ID</b></mat-label>
+    <input  style="color:darkred;font-size: 20pt;" matInput  placeholder="Enter Username" formControlName="login_username">
     <button class="example-button-row" matSuffix mat-icon-button type="button" (click)="onClearClick()">
       <mat-icon>clear</mat-icon>
     </button>
-    <mat-error  *ngIf="login.get('login_username').hasError('required') && login.get('login_username').dirty"> Username is required</mat-error>
+    <mat-error  *ngIf="login.get('login_username').hasError('required') && login.get('login_username').dirty">Emailid is required</mat-error>
     <mat-error  *ngIf="login.get('login_username').hasError('email') && login.get('login_username').dirty"> Incorrect format</mat-error>
   </mat-form-field>
 </div>
 <br><br>
 <div class="container">
   <mat-form-field >
-   <mat-label>Password</mat-label>
-   <input matInput [type]="hide ? 'password' : 'text'" placeholder="Enter Password" formControlName="login_password">
+   <mat-label style="color:darkred;font-size: 20pt"><b>Password</b></mat-label>
+   <input style="color:darkred;font-size: 20pt;" matInput [type]="hide ? 'password' : 'text'" placeholder="Enter Password" formControlName="login_password">
     <button class="example-button-row" matSuffix mat-icon-button type="button" >
       <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-    <mat-error  *ngIf="login.get('login_password').hasError('required') && login.get('login_password').dirty"> Username is required</mat-error>
+    <mat-error  *ngIf="login.get('login_password').hasError('required') && login.get('login_password').dirty"> Password is required</mat-error>
   </mat-form-field>
 </div><br>
-<!-- <p class="alert alert-danger" *ngIf="data.length!=1">{{message}}</p> -->
+
 <p class="alert alert-danger" *ngIf="message!=''">{{message}}</p>
 
-<button mat-raised-button class="button1" type="submit" color="primary" >
+<button mat-raised-button class="button1" type="submit" color="primary" style="font-size: 20pt;" >
   Login
 </button>
 
 </div>
 </form>
+</body>
+</html>
+
 
 

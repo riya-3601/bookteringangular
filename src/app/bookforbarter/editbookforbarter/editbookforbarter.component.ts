@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookforbarterService } from "src/app/bookforbarter.service";
 import { CustomerService } from 'src/app/customer.service';
 import { Cust } from 'src/app/customer/cust';
+import { Bookbart } from '../bookbart';
 
 @Component({
   selector: 'app-editbookforbarter',
@@ -52,8 +53,34 @@ export class EditbookforbarterComponent implements OnInit {
   }
 
   onEditClick() {
+    if(this.imageFlag){
+    console.log(this.selectedfile);
 
+    if(this.selectedfile==null || this.selectedfile==undefined ){
+
+      let obj:Bookbart=new Bookbart(this.bookbarter_id,this.bookforbarteradd.get('bookbarter_title').value,this.bookforbarteradd.get('bookbarter_author').value,this.bookforbarteradd.get('bookbarter_description').value,this.bookforbarteradd.get('bookbarter_status').value,this.bookforbarteradd.get('bookbarter_price').value,'',this.bookforbarteradd.get('fk_customer_id').value)
+
+    this._editbookbart.editBookforbarterwithfile(obj).subscribe((data:any)=>{
+      if(data.affectedRows==1)
+       {
+         alert('Data updated succesfully');
+        this._router.navigate(['/home/bookforbarter']);
+
+       }
+       else{
+         alert('Something went wrong');
+         console.log(data);
+       }
+    },
+    function(err){
+      console.log(err);
+    });
+
+    }
+  else
+  {
     const fd = new FormData();
+    fd.append('bookbarter_id',this.bookbarter_id+'');
     fd.append('bookbarter_title', this.bookforbarteradd.get('bookbarter_title').value);
     fd.append('bookbarter_author', this.bookforbarteradd.get('bookbarter_author').value);
     fd.append('bookbarter_description', this.bookforbarteradd.get('bookbarter_description').value);
@@ -77,6 +104,8 @@ export class EditbookforbarterComponent implements OnInit {
       console.log(err);
     });
   }
+}
+}
   onCancelClick(): void {
     if (confirm('Are you sure you want to cancel?')) {
       this._router.navigate(['/home/bookforbarter']);
@@ -94,8 +123,18 @@ export class EditbookforbarterComponent implements OnInit {
   onClearDescClick() {
     this.bookforbarteradd.get('bookbarter_description').reset('');
   }
+  imageFlag:boolean=true;
   onFileAdd(value) {
-      this.selectedfile = <File>value.target.files[0];
-  }
+    this.selectedfile=<File>value.target.files[0];
+    if(this.selectedfile.type=='image/png'|| this.selectedfile.type=='image/jpg'|| this.selectedfile.type=='image/jpeg'){
+      this.imageFlag=true;
+    }
+    else{
+      this.imageFlag=false;
+      this.selectedfile=null;
+    }
+    console.log(this.selectedfile);
+   }
+
 
 }

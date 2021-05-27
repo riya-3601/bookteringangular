@@ -81,10 +81,8 @@
 
     <div class="form-group">
       <img src="http://localhost:3000/images/bookforbarter/{{this.bookforbarteradd.get('bookbarter_image').value}}" alt="" height="50" width="50">
+      <br><label *ngIf="!imageFlag">Format not supported..</label>
       <input type="file" (change)="onFileAdd($event)"  >
-
-
-
     </div>
 
 

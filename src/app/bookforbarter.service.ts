@@ -30,6 +30,12 @@ export class BookforbarterService {
   // let head=new HttpHeaders().set(environment.headname,environment.headvalue);
   return this._http.put(this.url,obj);
   }
+  editBookforbarterwithfile(obj:Bookbart){
+    let  body=JSON.stringify(obj);
+    let head=new HttpHeaders().set(environment.headname,environment.headvalue);
+    return this._http.put(this.url+obj.bookbarter_id,obj,{headers:head});
+
+  }
 
 }
 

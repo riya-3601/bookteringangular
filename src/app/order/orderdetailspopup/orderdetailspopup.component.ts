@@ -29,11 +29,11 @@ export class OrderdetailspopupComponent implements OnInit ,AfterViewInit{
   }
 
   ngOnInit(): void {
-    this.ordform=new FormGroup({
-      book_title:new FormControl(null),
-      orderdetails_quantity:new FormControl(null)
-    });
-
+    // this.ordform=new FormGroup({
+    //   book_title:new FormControl(null),
+    //   orderdetails_quantity:new FormControl(null)
+    // });
+    console.log(this.data);
       this._orddetail.getOrderdetailsByOrderId(this.data).subscribe((data:Orddet[])=>{
          this.dataSource.data=data;
           console.log(data);
