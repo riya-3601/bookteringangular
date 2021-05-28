@@ -41,6 +41,7 @@
         <mat-error  *ngIf="employeeadd.get('employee_mobileno').hasError('required') && employeeadd.get('employee_mobileno').dirty">Employee number is required</mat-error>
         <mat-error  *ngIf="employeeadd.get('employee_mobileno').hasError('pattern') && employeeadd.get('employee_mobileno').dirty">Mobile no. can only have digits</mat-error>
         <mat-error  *ngIf="employeeadd.get('employee_mobileno').hasError('maxlength') && employeeadd.get('employee_mobileno').dirty">Only 10 digits are allowed</mat-error>
+        <mat-error  *ngIf="employeeadd.get('employee_mobileno').hasError('minlength') && employeeadd.get('employee_mobileno').dirty">Mobile number should be of 10 digits</mat-error>
       </mat-form-field>
     </div>
 

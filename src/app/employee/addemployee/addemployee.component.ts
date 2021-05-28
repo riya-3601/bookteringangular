@@ -21,7 +21,7 @@ export class AddemployeeComponent implements OnInit {
     this.employeeadd=new FormGroup({
       employee_id:new FormControl(null,[Validators.required]),
       employee_name:new FormControl(null,[Validators.required]),
-      employee_mobileno:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*'),Validators.maxLength(10)]),
+      employee_mobileno:new FormControl(null,[Validators.required,Validators.pattern('[0-9]*'),Validators.maxLength(10),Validators.minLength(10)]),
       employee_password:new FormControl(null,[Validators.required,Validators.maxLength(8)]),
     });
   }

@@ -44,7 +44,7 @@
             </button> -->
             <mat-hint align="end">{{desc.value.length}} / 400</mat-hint>
             <mat-error  *ngIf="bfsform.get('book_description').hasError('required') && bfsform.get('book_description').dirty">Book Author is required</mat-error>
-            <mat-error  *ngIf="bfsform.get('book_description').hasError('maxlength') && bfsform.get('book_description').dirty">Max 200 characters</mat-error>
+            <mat-error  *ngIf="bfsform.get('book_description').hasError('maxlength') && bfsform.get('book_description').dirty">Max 400 characters</mat-error>
           </mat-form-field>
         </div>
         <br>
